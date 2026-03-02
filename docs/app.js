@@ -267,10 +267,10 @@ function renderListAllButton() {
     return;
   }
   if (state.lang === "it") {
-    listAllEl.textContent = state.listAll ? "Cerca" : "Tutti i termini";
+    listAllEl.textContent = state.listAll ? "Cerca" : "Elenca tutti";
     return;
   }
-  listAllEl.textContent = state.listAll ? "Search" : "All terms";
+  listAllEl.textContent = state.listAll ? "Search" : "List all";
 }
 
 
@@ -317,10 +317,10 @@ function renderControlCopy() {
 
   if (state.lang === "it") {
     searchEl.placeholder = "Cerca termini, sinonimi, definizioni...";
-    randomTermEl.textContent = "Casuale";
+    randomTermEl.textContent = "Estrai termine";
   } else {
     searchEl.placeholder = "Search terms, aliases, definitions...";
-    randomTermEl.textContent = "Random";
+    randomTermEl.textContent = "Draw term";
   }
   renderThemeToggle();
 }
@@ -1108,7 +1108,7 @@ function renderCards(terms) {
     if (term.key_intuition && term.key_intuition.trim()) {
       const summaryEl = intuitionDetailsEl.querySelector("summary");
       if (summaryEl) {
-        summaryEl.textContent = state.lang === "it" ? "Intuizione chiave" : "Key intuition";
+        summaryEl.textContent = state.lang === "it" ? "Intuizione" : "Intuition";
       }
       intuitionEl.textContent = term.key_intuition;
     } else {
