@@ -196,6 +196,22 @@ function renderIntro() {
 }
 
 
+function renderThemeToggle() {
+  const dark = document.body.classList.contains("dark");
+  themeToggleEl.textContent = dark ? "☀" : "☾";
+
+  let label = "Switch to dark theme";
+  if (state.lang === "it") {
+    label = dark ? "Passa al tema chiaro" : "Passa al tema scuro";
+  } else {
+    label = dark ? "Switch to light theme" : "Switch to dark theme";
+  }
+
+  themeToggleEl.setAttribute("aria-label", label);
+  themeToggleEl.title = label;
+}
+
+
 function renderControlCopy() {
   document.querySelectorAll("[data-shortcuts]").forEach((node) => {
     node.hidden = node.dataset.shortcuts !== state.lang;
@@ -208,12 +224,11 @@ function renderControlCopy() {
   if (state.lang === "it") {
     searchEl.placeholder = "Cerca termini, alias, definizioni...";
     randomTermEl.textContent = "Casuale";
-    themeToggleEl.textContent = "Tema";
-    return;
+  } else {
+    searchEl.placeholder = "Search terms, aliases, definitions...";
+    randomTermEl.textContent = "Random";
   }
-  searchEl.placeholder = "Search terms, aliases, definitions...";
-  randomTermEl.textContent = "Random";
-  themeToggleEl.textContent = "Theme";
+  renderThemeToggle();
 }
 
 
@@ -897,9 +912,7 @@ function render() {
   }
 
   if (!state.query.trim()) {
-    updateMeta(state.lang === "it"
-      ? "Premi / per attivare la ricerca, oppure sfoglia tutti i termini."
-      : "Press / to jump to search, or browse all terms.");
+    updateMeta("");
     return;
   }
 
@@ -914,6 +927,7 @@ function setupTheme() {
   const useDark = localStorage.getItem("theme") === "dark" ||
     (!localStorage.getItem("theme") && media.matches);
   document.body.classList.toggle("dark", useDark);
+  renderThemeToggle();
   themeToggleEl.addEventListener("click", () => {
     const next = !document.body.classList.contains("dark");
     document.body.classList.toggle("dark", next);

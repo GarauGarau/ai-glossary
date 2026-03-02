@@ -20,11 +20,7 @@
 
         <div class="top-controls" aria-label="Top controls">
           <nav id="lang-switch" class="lang-switch" aria-label="Language selector"></nav>
-          <div class="actions">
-            <button id="random-term" type="button" class="ghost">Random</button>
-            <button id="list-all" type="button" class="ghost">All terms</button>
-            <button id="theme-toggle" type="button" class="ghost">Theme</button>
-          </div>
+          <button id="theme-toggle" type="button" class="ghost icon-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">☾</button>
         </div>
       </header>
 
@@ -42,20 +38,23 @@
             <span data-shortcuts="en">Shortcuts: <span class="kbd">/</span> jump to search, <span class="kbd">Esc</span> clear.</span>
             <span data-shortcuts="it" hidden>Scorciatoie: <span class="kbd">/</span> attiva la ricerca, <span class="kbd">Esc</span> pulisci.</span>
           </div>
+          <div class="actions">
+            <button id="random-term" type="button" class="ghost">Random</button>
+            <button id="list-all" type="button" class="ghost">All terms</button>
+          </div>
 
           <section class="map-panel" aria-label="Term map">
             <div class="map-head">
               <div class="map-title">
                 <span class="kicker">Map</span>
-                <span class="map-sub" data-map-lang="en">Semantic space (EN)</span>
-                <span class="map-sub" data-map-lang="it" hidden>Spazio semantico (EN)</span>
+                <span class="map-sub">Term map</span>
               </div>
               <div id="map-label" class="map-label" aria-live="polite"></div>
             </div>
             <canvas id="term-map" class="term-map" aria-label="Knowledge map"></canvas>
             <div class="map-hint">
-              <span data-map-lang="en">Lines link semantically similar terms. Click a dot to open one.</span>
-              <span data-map-lang="it" hidden>Le linee collegano termini semanticamente simili. Clicca un pallino per aprirne uno.</span>
+              <span data-map-lang="en">Each point is a glossary term: nearby points have similar meaning, and lines show nearest neighbors. The map is built from term embeddings projected to 2D.</span>
+              <span data-map-lang="it" hidden>Ogni punto rappresenta un termine del glossario: punti vicini hanno significato simile, e le linee mostrano i vicini più prossimi. La mappa è creata da embedding dei termini proiettati in 2D.</span>
             </div>
           </section>
         </section>
