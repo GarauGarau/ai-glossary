@@ -108,7 +108,7 @@ def embed_texts(
     return embeddings
 
 
-def cosine_distance_matrix(vectors: list[list[float]]) -> list[list[float]]:
+def angular_distance_matrix(vectors: list[list[float]]) -> list[list[float]]:
     n = len(vectors)
     norms = [math.sqrt(sum(v * v for v in vec)) or 1.0 for vec in vectors]
     dist = [[0.0 for _ in range(n)] for _ in range(n)]
@@ -122,9 +122,8 @@ def cosine_distance_matrix(vectors: list[list[float]]) -> list[list[float]]:
             for k in range(len(vi)):
                 dot += vi[k] * vj[k]
             cos = dot / (ni * nj)
-            # numeric safety
             cos = max(-1.0, min(1.0, cos))
-            d = 1.0 - cos
+            d = math.acos(cos) / math.pi
             dist[i][j] = d
             dist[j][i] = d
     return dist
@@ -136,7 +135,7 @@ def mds_2d(
     seed: int,
     iters: int,
     lr: float,
-    min_dist: float,
+    weight_power: float,
 ) -> list[tuple[float, float]]:
     # Simple gradient-descent MDS (stress minimization) for small N.
     n = len(distances)
@@ -155,14 +154,13 @@ def mds_2d(
 
         for i in range(n):
             for j in range(i + 1, n):
-                dij = max(min_dist, distances[i][j])
+                dij = distances[i][j]
                 dx = xs[i] - xs[j]
                 dy = ys[i] - ys[j]
                 dist_ij = math.hypot(dx, dy) + eps
                 diff = dist_ij - dij
 
-                # weight closer pairs a bit more
-                w = 1.0 / (dij + 0.08)
+                w = 1.0 / (max(0.03, dij) ** weight_power)
                 fac = (2.0 * w * diff) / dist_ij
 
                 gx[i] += fac * dx
@@ -224,8 +222,9 @@ def main() -> None:
     parser.add_argument("--out", default=str(ROOT / "docs" / "term_map.json"), help="Output JSON path")
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--timeout", type=int, default=60)
-    parser.add_argument("--iters", type=int, default=1400)
+    parser.add_argument("--iters", type=int, default=2200)
     parser.add_argument("--lr", type=float, default=0.016)
+    parser.add_argument("--weight-power", type=float, default=0.6)
     parser.add_argument("--seed", type=int, default=7)
     args = parser.parse_args()
 
@@ -238,8 +237,14 @@ def main() -> None:
         timeout_s=max(5, args.timeout),
     )
 
-    dist = cosine_distance_matrix(vectors)
-    pts = mds_2d(dist, seed=args.seed, iters=max(200, args.iters), lr=args.lr, min_dist=0.06)
+    dist = angular_distance_matrix(vectors)
+    pts = mds_2d(
+        dist,
+        seed=args.seed,
+        iters=max(200, args.iters),
+        lr=args.lr,
+        weight_power=max(0.2, args.weight_power),
+    )
     unit = normalize_to_unit(pts)
 
     neighbors: dict[str, list[str]] = {}

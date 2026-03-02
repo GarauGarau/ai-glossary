@@ -6,6 +6,8 @@ const state = {
   dataByLang: new Map(),
   termMap: null,
   mapHoverId: "",
+  mapHoverPos: null,
+  mapSelectedId: "",
   mapReady: false,
 };
 
@@ -25,8 +27,11 @@ const mapLabelEl = document.getElementById("map-label");
 const cardTemplate = document.getElementById("card-template");
 
 
-function getCssRgb(name) {
-  const raw = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+function getCssRgb(name, sourceEl = document.body) {
+  const primary = sourceEl || document.body || document.documentElement;
+  const fallback = document.documentElement;
+  const raw = (getComputedStyle(primary).getPropertyValue(name).trim() ||
+    getComputedStyle(fallback).getPropertyValue(name).trim());
   const parts = raw.split(/\s+/).map((v) => Number(v)).filter((v) => Number.isFinite(v));
   if (parts.length !== 3) {
     return [0, 0, 0];
@@ -42,15 +47,6 @@ function rgba(rgb, a) {
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
-}
-
-
-function quantile(sortedValues, q) {
-  if (!sortedValues.length) {
-    return 0;
-  }
-  const idx = Math.floor(clamp(q, 0, 1) * (sortedValues.length - 1));
-  return sortedValues[idx];
 }
 
 
@@ -250,6 +246,18 @@ function getSelectedTermId(terms) {
 }
 
 
+function getMapNeighbors(termId) {
+  if (!termId || !state.termMap || !state.termMap.items) {
+    return [];
+  }
+  const neighbors = state.termMap.neighbors?.[termId];
+  if (!Array.isArray(neighbors)) {
+    return [];
+  }
+  return neighbors.filter((id) => typeof id === "string" && id in state.termMap.items);
+}
+
+
 function setSearchToTermId(termId) {
   const term = getTermById(state.lang, termId);
   if (!term) {
@@ -271,6 +279,7 @@ function setupTermMap() {
   const updateHoverFromEvent = (e) => {
     if (!state.termMap || !state.termMap.items) {
       state.mapHoverId = "";
+      state.mapHoverPos = null;
       mapCanvasEl.style.cursor = "default";
       if (mapLabelEl) {
         mapLabelEl.textContent = "";
@@ -301,8 +310,9 @@ function setupTermMap() {
       }
     }
 
-    const hit = bestDist <= 10;
+    const hit = bestDist <= 12;
     state.mapHoverId = hit ? bestId : "";
+    state.mapHoverPos = hit ? { x: mx, y: my } : null;
     mapCanvasEl.style.cursor = hit ? "pointer" : "default";
     if (mapLabelEl) {
       if (!hit) {
@@ -316,14 +326,17 @@ function setupTermMap() {
 
   mapCanvasEl.addEventListener("pointermove", (e) => {
     updateHoverFromEvent(e);
+    renderTermMap(state.mapSelectedId);
   });
 
   mapCanvasEl.addEventListener("pointerleave", () => {
     state.mapHoverId = "";
+    state.mapHoverPos = null;
     mapCanvasEl.style.cursor = "default";
     if (mapLabelEl) {
       mapLabelEl.textContent = "";
     }
+    renderTermMap(state.mapSelectedId);
   });
 
   mapCanvasEl.addEventListener("click", () => {
@@ -350,6 +363,7 @@ function renderTermMap(selectedId) {
   if (!mapPanelEl || !mapCanvasEl) {
     return;
   }
+  state.mapSelectedId = selectedId || "";
   if (!state.termMap || !state.termMap.items) {
     mapPanelEl.hidden = true;
     return;
@@ -375,132 +389,254 @@ function renderTermMap(selectedId) {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, cssW, cssH);
 
-  const ink = getCssRgb("--ink-rgb");
-  const accent = getCssRgb("--accent-rgb");
-  const accent2 = getCssRgb("--accent2-rgb");
-  const baseA = document.body.classList.contains("dark") ? 0.24 : 0.18;
-  const dotFill = rgba(ink, baseA);
-  const selectedFill = rgba(accent, 0.92);
-  const selectedRing = rgba(accent, 0.55);
-  const selectedGlow = rgba(accent2, 0.24);
+  const isDark = document.body.classList.contains("dark");
+  const ink = getCssRgb("--ink-rgb", mapCanvasEl);
+  const accent = getCssRgb("--accent-rgb", mapCanvasEl);
+  const accent2 = getCssRgb("--accent2-rgb", mapCanvasEl);
+  const edgeBase = rgba(ink, isDark ? 0.20 : 0.12);
+  const edgeActive = rgba(accent2, isDark ? 0.62 : 0.44);
+  const nodeMuted = rgba(ink, isDark ? 0.24 : 0.17);
+  const nodeFill = rgba(ink, isDark ? 0.44 : 0.30);
+  const neighborFill = rgba(accent2, isDark ? 0.78 : 0.62);
+  const selectedFill = rgba(accent, 0.96);
+  const selectedRing = rgba(accent, isDark ? 0.72 : 0.56);
+  const selectedGlow = rgba(accent2, isDark ? 0.42 : 0.28);
+  const hoverFill = rgba(accent2, isDark ? 0.94 : 0.86);
+  const hoverRing = rgba(accent2, isDark ? 0.70 : 0.56);
+  const hoverGlow = rgba(accent2, isDark ? 0.32 : 0.24);
+  const labelBg = rgba(ink, isDark ? 0.20 : 0.08);
+  const labelBorder = rgba(ink, isDark ? 0.36 : 0.18);
+  const labelText = rgba(ink, isDark ? 0.94 : 0.90);
 
-  const margin = 12;
+  const margin = 14;
   const innerW = Math.max(1, cssW - margin * 2);
   const innerH = Math.max(1, cssH - margin * 2);
 
-  const ids = Object.keys(state.termMap.items);
-  const rawXs = [];
-  const rawYs = [];
+  const items = state.termMap.items;
+  const ids = Object.keys(items);
+  let xMin = Infinity;
+  let xMax = -Infinity;
+  let yMin = Infinity;
+  let yMax = -Infinity;
+  let needsNormalization = false;
   for (const id of ids) {
-    const p = state.termMap.items[id];
-    const x = Number(p.x ?? p[0]);
-    const y = Number(p.y ?? p[1]);
-    if (Number.isFinite(x) && Number.isFinite(y)) {
-      rawXs.push(x);
-      rawYs.push(y);
+    const p = items[id];
+    const xRaw = Number(p.x ?? p[0]);
+    const yRaw = Number(p.y ?? p[1]);
+    if (!Number.isFinite(xRaw) || !Number.isFinite(yRaw)) {
+      continue;
+    }
+    xMin = Math.min(xMin, xRaw);
+    xMax = Math.max(xMax, xRaw);
+    yMin = Math.min(yMin, yRaw);
+    yMax = Math.max(yMax, yRaw);
+    if (xRaw < 0 || xRaw > 1 || yRaw < 0 || yRaw > 1) {
+      needsNormalization = true;
     }
   }
-  rawXs.sort((a, b) => a - b);
-  rawYs.sort((a, b) => a - b);
 
-  // Robust scaling: spread points by clipping extreme outliers.
-  const xLo = quantile(rawXs, 0.07);
-  const xHi = quantile(rawXs, 0.93);
-  const yLo = quantile(rawYs, 0.07);
-  const yHi = quantile(rawYs, 0.93);
-  const xMin = rawXs[0] ?? 0;
-  const xMax = rawXs[rawXs.length - 1] ?? 1;
-  const yMin = rawYs[0] ?? 0;
-  const yMax = rawYs[rawYs.length - 1] ?? 1;
+  if (!Number.isFinite(xMin) || !Number.isFinite(yMin)) {
+    mapPanelEl.hidden = true;
+    return;
+  }
 
-  const x0 = (xHi - xLo) > 1e-9 ? xLo : xMin;
-  const x1 = (xHi - xLo) > 1e-9 ? xHi : xMax;
-  const y0 = (yHi - yLo) > 1e-9 ? yLo : yMin;
-  const y1 = (yHi - yLo) > 1e-9 ? yHi : yMax;
-
-  // Project normalized coordinates into canvas space, and keep them for hit-testing.
+  const spanX = Math.max(1e-9, xMax - xMin);
+  const spanY = Math.max(1e-9, yMax - yMin);
+  const validIds = [];
   for (const id of ids) {
     const p = state.termMap.items[id];
     const xRaw = Number(p.x ?? p[0]);
     const yRaw = Number(p.y ?? p[1]);
-    const xClamped = clamp(xRaw, x0, x1);
-    const yClamped = clamp(yRaw, y0, y1);
-    const x = (x1 - x0) > 1e-9 ? (xClamped - x0) / (x1 - x0) : 0.5;
-    const y = (y1 - y0) > 1e-9 ? (yClamped - y0) / (y1 - y0) : 0.5;
+    if (!Number.isFinite(xRaw) || !Number.isFinite(yRaw)) {
+      delete p._px;
+      delete p._py;
+      continue;
+    }
+    const xNorm = needsNormalization ? (xRaw - xMin) / spanX : xRaw;
+    const yNorm = needsNormalization ? (yRaw - yMin) / spanY : yRaw;
+    const x = clamp(xNorm, 0, 1);
+    const y = clamp(yNorm, 0, 1);
     p._px = margin + clamp(x, 0, 1) * innerW;
-    // Flip Y so "up" feels natural.
     p._py = margin + (1 - clamp(y, 0, 1)) * innerH;
+    validIds.push(id);
   }
 
-  // Base dots.
-  ctx.fillStyle = dotFill;
-  const r = 2.1;
-  for (const id of Object.keys(state.termMap.items)) {
-    const p = state.termMap.items[id];
+  const ambientA = ctx.createRadialGradient(cssW * 0.08, cssH * 0.10, 0, cssW * 0.08, cssH * 0.10, cssW * 0.88);
+  ambientA.addColorStop(0, rgba(accent, isDark ? 0.16 : 0.10));
+  ambientA.addColorStop(1, rgba(accent, 0));
+  ctx.fillStyle = ambientA;
+  ctx.fillRect(0, 0, cssW, cssH);
+
+  const ambientB = ctx.createRadialGradient(cssW * 0.92, cssH * 0.90, 0, cssW * 0.92, cssH * 0.90, cssW * 0.84);
+  ambientB.addColorStop(0, rgba(accent2, isDark ? 0.14 : 0.10));
+  ambientB.addColorStop(1, rgba(accent2, 0));
+  ctx.fillStyle = ambientB;
+  ctx.fillRect(0, 0, cssW, cssH);
+
+  const edgePairs = [];
+  const edgeSeen = new Set();
+  for (const id of validIds) {
+    for (const neighborId of getMapNeighbors(id)) {
+      const from = items[id];
+      const to = items[neighborId];
+      if (!from || !to || typeof to._px !== "number" || typeof to._py !== "number") {
+        continue;
+      }
+      const key = id < neighborId ? `${id}|${neighborId}` : `${neighborId}|${id}`;
+      if (edgeSeen.has(key)) {
+        continue;
+      }
+      edgeSeen.add(key);
+      edgePairs.push([id, neighborId]);
+    }
+  }
+
+  if (edgePairs.length) {
+    ctx.strokeStyle = edgeBase;
+    ctx.lineWidth = 1;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    for (const [a, b] of edgePairs) {
+      const pa = items[a];
+      const pb = items[b];
+      if (!pa || !pb) {
+        continue;
+      }
+      ctx.moveTo(pa._px, pa._py);
+      ctx.lineTo(pb._px, pb._py);
+    }
+    ctx.stroke();
+  }
+
+  const activeId = state.mapHoverId || selectedId || "";
+  const activeNeighbors = new Set(getMapNeighbors(activeId));
+
+  if (activeId && items[activeId]) {
+    const source = items[activeId];
+    ctx.save();
+    ctx.strokeStyle = edgeActive;
+    ctx.lineWidth = 1.8;
+    ctx.shadowColor = rgba(accent2, isDark ? 0.32 : 0.24);
+    ctx.shadowBlur = 8;
+    ctx.beginPath();
+    for (const neighborId of activeNeighbors) {
+      const target = items[neighborId];
+      if (!target || typeof target._px !== "number" || typeof target._py !== "number") {
+        continue;
+      }
+      ctx.moveTo(source._px, source._py);
+      ctx.lineTo(target._px, target._py);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  ctx.fillStyle = nodeMuted;
+  const r = 2.3;
+  for (const id of validIds) {
+    const p = items[id];
     ctx.beginPath();
     ctx.arc(p._px, p._py, r, 0, Math.PI * 2);
     ctx.fill();
   }
 
-  // Selected dot.
-  if (selectedId && state.termMap.items[selectedId]) {
-    const p = state.termMap.items[selectedId];
+  if (activeNeighbors.size) {
+    ctx.fillStyle = neighborFill;
+    for (const neighborId of activeNeighbors) {
+      const p = items[neighborId];
+      if (!p || typeof p._px !== "number" || typeof p._py !== "number") {
+        continue;
+      }
+      ctx.beginPath();
+      ctx.arc(p._px, p._py, 2.9, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  ctx.fillStyle = nodeFill;
+  for (const id of validIds) {
+    const p = items[id];
+    ctx.beginPath();
+    ctx.arc(p._px, p._py, 1.55, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  if (selectedId && items[selectedId]) {
+    const p = items[selectedId];
+    const hoveredSame = state.mapHoverId === selectedId;
+    const coreR = hoveredSame ? 4.9 : 4.4;
+    const ringR = hoveredSame ? 11.0 : 9.8;
 
     ctx.save();
     ctx.shadowColor = selectedGlow;
-    ctx.shadowBlur = 14;
+    ctx.shadowBlur = hoveredSame ? 18 : 14;
     ctx.fillStyle = selectedFill;
     ctx.beginPath();
-    ctx.arc(p._px, p._py, 4.2, 0, Math.PI * 2);
+    ctx.arc(p._px, p._py, coreR, 0, Math.PI * 2);
     ctx.fill();
     ctx.restore();
 
     ctx.strokeStyle = selectedRing;
-    ctx.lineWidth = 1.5;
+    ctx.lineWidth = 1.8;
     ctx.beginPath();
-    ctx.arc(p._px, p._py, 9.2, 0, Math.PI * 2);
+    ctx.arc(p._px, p._py, ringR, 0, Math.PI * 2);
     ctx.stroke();
   }
 
-  // Label the 3 nearest terms (by precomputed neighbors if available).
-  if (selectedId) {
-    const precomputed = Array.isArray(state.termMap.neighbors?.[selectedId])
-      ? state.termMap.neighbors[selectedId]
-      : null;
-    const neighbors = precomputed && precomputed.length
-      ? precomputed
-      : (() => {
-          const sel = state.termMap.items[selectedId];
-          if (!sel) {
-            return [];
-          }
-          return Object.keys(state.termMap.items)
-            .filter((id) => id !== selectedId)
-            .map((id) => {
-              const it = state.termMap.items[id];
-              const d = Math.hypot((it._px - sel._px), (it._py - sel._py));
-              return { id, d };
-            })
-            .sort((a, b) => a.d - b.d)
-            .slice(0, 3)
-            .map((row) => row.id);
-        })();
-    if (neighbors.length) {
-      ctx.font = "12px " + getComputedStyle(document.documentElement).getPropertyValue("--font-mono").trim();
-      ctx.textBaseline = "middle";
+  if (state.mapHoverId && items[state.mapHoverId] && state.mapHoverPos) {
+    const p = items[state.mapHoverId];
+    ctx.save();
+    ctx.shadowColor = hoverGlow;
+    ctx.shadowBlur = 16;
+    ctx.fillStyle = hoverFill;
+    ctx.beginPath();
+    ctx.arc(p._px, p._py, 4.3, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
 
-      const bg = rgba(ink, document.body.classList.contains("dark") ? 0.10 : 0.06);
-      const border = rgba(ink, document.body.classList.contains("dark") ? 0.22 : 0.14);
-      const text = rgba(ink, document.body.classList.contains("dark") ? 0.86 : 0.88);
+    ctx.strokeStyle = hoverRing;
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(p._px, p._py, 8.2, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  const monoFont = getComputedStyle(mapCanvasEl).getPropertyValue("--font-mono").trim() || "monospace";
+  const fallbackNeighbors = (anchorId, count) => {
+    const center = items[anchorId];
+    if (!center) {
+      return [];
+    }
+    return validIds
+      .filter((id) => id !== anchorId)
+      .map((id) => {
+        const item = items[id];
+        return {
+          id,
+          d: Math.hypot(item._px - center._px, item._py - center._py),
+        };
+      })
+      .sort((a, b) => a.d - b.d)
+      .slice(0, count)
+      .map((row) => row.id);
+  };
+
+  const labelAnchorId = activeId;
+  if (labelAnchorId && items[labelAnchorId]) {
+    const neighborIds = getMapNeighbors(labelAnchorId).slice(0, 3);
+    const labels = neighborIds.length ? neighborIds : fallbackNeighbors(labelAnchorId, 3);
+    if (labels.length) {
+      ctx.font = "12px " + monoFont;
+      ctx.textBaseline = "middle";
       const offsets = [
         [10, -12],
         [10, 12],
         [-10, -12],
       ];
 
-      for (let i = 0; i < Math.min(3, neighbors.length); i += 1) {
-        const id = neighbors[i];
-        const item = state.termMap.items[id];
+      for (let i = 0; i < Math.min(labels.length, 3); i += 1) {
+        const id = labels[i];
+        const item = items[id];
         if (!item) {
           continue;
         }
@@ -510,10 +646,8 @@ function renderTermMap(selectedId) {
         const dy = offsets[i][1];
         const mx = item._px;
         const my = item._py;
-
         const metrics = ctx.measureText(label);
         const padX = 8;
-        const padY = 6;
         const boxW = Math.ceil(metrics.width) + padX * 2;
         const boxH = 22;
 
@@ -525,24 +659,62 @@ function renderTermMap(selectedId) {
         x = clamp(x, 6, cssW - boxW - 6);
         y = clamp(y - boxH / 2, 6, cssH - boxH - 6);
 
-        // Leader line
-        ctx.strokeStyle = border;
+        ctx.strokeStyle = labelBorder;
         ctx.lineWidth = 1;
         ctx.beginPath();
         ctx.moveTo(mx, my);
         ctx.lineTo(clamp(x + (dx < 0 ? boxW : 0), 0, cssW), clamp(y + boxH / 2, 0, cssH));
         ctx.stroke();
 
-        // Label pill
-        ctx.fillStyle = bg;
-        ctx.strokeStyle = border;
+        ctx.fillStyle = labelBg;
+        ctx.strokeStyle = labelBorder;
         roundedRect(ctx, x, y, boxW, boxH, 11);
         ctx.fill();
         ctx.stroke();
 
-        ctx.fillStyle = text;
+        ctx.fillStyle = labelText;
         ctx.fillText(label, x + padX, y + boxH / 2);
       }
+    }
+  }
+
+  if (state.mapHoverId && state.mapHoverPos) {
+    const term = getTermById(state.lang, state.mapHoverId);
+    const tooltipText = term ? term.term : state.mapHoverId;
+    if (tooltipText) {
+      ctx.font = "12px " + monoFont;
+      ctx.textBaseline = "middle";
+      const padX = 10;
+      const boxH = 24;
+      const boxW = Math.ceil(ctx.measureText(tooltipText).width) + padX * 2;
+      let x = state.mapHoverPos.x + 14;
+      let y = state.mapHoverPos.y - boxH - 10;
+      if (x + boxW > cssW - 6) {
+        x = state.mapHoverPos.x - boxW - 14;
+      }
+      if (y < 6) {
+        y = state.mapHoverPos.y + 12;
+      }
+      x = clamp(x, 6, cssW - boxW - 6);
+      y = clamp(y, 6, cssH - boxH - 6);
+
+      ctx.fillStyle = labelBg;
+      ctx.strokeStyle = labelBorder;
+      roundedRect(ctx, x, y, boxW, boxH, 11);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.fillStyle = labelText;
+      ctx.fillText(tooltipText, x + padX, y + boxH / 2);
+    }
+  }
+
+  if (mapLabelEl && !state.mapHoverId) {
+    if (selectedId) {
+      const selectedTerm = getTermById(state.lang, selectedId);
+      mapLabelEl.textContent = selectedTerm ? selectedTerm.term : selectedId;
+    } else {
+      mapLabelEl.textContent = "";
     }
   }
 }
@@ -713,7 +885,8 @@ function render() {
   const terms = getActiveTerms();
   renderCards(terms);
 
-  renderTermMap(getSelectedTermId(terms));
+  state.mapSelectedId = getSelectedTermId(terms);
+  renderTermMap(state.mapSelectedId);
 
   if (state.listAll) {
     const total = dataset ? dataset.terms.length : terms.length;
