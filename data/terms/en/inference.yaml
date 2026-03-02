@@ -1,0 +1,26 @@
+term: Inference
+aliases:
+  - Generation
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Inference is the process of using a trained model to generate an output. Training is when the model learns (once, extremely expensive); inference is when it applies what it learned (every single time you send a prompt). Every API call, every chat message, every AI-generated email is an inference operation. This is the phase that costs money at scale and determines how fast the model responds.
+key_intuition: |
+  Training is like writing a cookbook: it takes years of effort, testing, and millions of dollars. Inference is like cooking a meal from that cookbook: you do it thousands of times a day, and each meal costs ingredients and gas. When you see AI pricing like "$3 per million input tokens," you're paying for inference - the compute required to run your text through the model's billions of parameters.
+use_cases: Reasoning about latency/cost per request; scaling throughput (batching, caching); model selection and optimization.
+links:
+  - title: Patterson et al. (2022) - The Carbon Footprint of Machine Learning Training
+    url: https://scholar.google.com/scholar?q=The+Carbon+Footprint+of+Machine+Learning+Training+Patterson+2022
+    type: technical
+  - title: Kwon et al. (2023) - PagedAttention (arXiv:2309.06180)
+    url: https://arxiv.org/abs/2309.06180
+    type: technical
+related:
+  - llm
+  - api
+  - test-time-compute
+  - quantization
+  - mixture-of-experts

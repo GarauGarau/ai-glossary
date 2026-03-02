@@ -1,0 +1,26 @@
+term: Hallucination
+aliases:
+  - Allucinazione
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Un'allucinazione è quando un'AI genera informazioni false, inventate o senza senso, ma le presenta con lo stesso tono sicuro di informazioni corrette. Il modello non sa di essere nel torto perché non ha un concetto di verità. Sta producendo la sequenza di token statisticamente più probabile e, a volte, quella sequenza è semplicemente sbagliata.
+key_intuition: |
+  Immagina di essere a una festa e che qualcuno ti chieda di un libro che non hai letto. Invece di dire "non lo so", metti insieme quello che hai sentito dalle recensioni, altre opere dell'autore, le convenzioni del genere e improvvisi una risposta plausibile. Potresti cogliere il senso o potresti inventarti un dettaglio che non esiste. Questa è un'allucinazione. Il modello improvvisa sempre perché non ha mai "letto il libro": ha assorbito pattern su come si parla di libri.
+
+  Più l'argomento è specifico e oscuro, più cresce il rischio di allucinazioni. Chiedere della Rivoluzione francese? Rischio basso. Chiedere di uno specifico caso giudiziario del 2019? Rischio alto. Chiedere un URL o una citazione? Rischio altissimo: il modello ama generare URL plausibili che in realtà non esistono.
+use_cases: Sapere quando verificare; ancorare le risposte con RAG/citazioni; progettare UX più sicure in contesti ad alto rischio.
+links:
+  - title: Ji et al. (2023) - Survey of Hallucination in Natural Language Generation
+    url: https://scholar.google.com/scholar?q=Survey+of+Hallucination+in+Natural+Language+Generation+Ji+2023
+    type: technical
+  - title: Huang et al. (2023) - Survey on Hallucination in LLMs (arXiv:2311.05232)
+    url: https://arxiv.org/abs/2311.05232
+    type: technical
+related:
+  - llm
+  - rag
+  - prompt-engineering

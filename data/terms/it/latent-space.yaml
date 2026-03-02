@@ -1,0 +1,25 @@
+term: Latent Space
+aliases:
+  - Spazio latente
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Lo spazio latente è la rappresentazione interna e nascosta che un modello crea del suo input - uno spazio matematico ad alta dimensionalità in cui i concetti sono codificati come punti. Non lo puoi vedere direttamente, ma e dove avviene tutto il "pensiero". In questo spazio, concetti simili si raggruppano, relazioni diventano operazioni geometriche è il significato astratto diventa computabile.
+key_intuition: |
+  Pensa a una mappa del mondo. Ogni città ha coordinate (latitudine, longitudine). Città vicine hanno coordinate simili. Puoi calcolare la distanza tra due città, trovare cluster (i paesi) o persino fare aritmetica: "le coordinate di Parigi meno il centro della Francia più il centro della Germania" ti porta vicino a Berlino. Lo spazio latente è la stessa idea, ma con centinaia o migliaia di dimensioni invece di due e con le "città" sostituite da concetti, parole, immagini o qualunque dato che il modello ha imparato a rappresentare.
+
+  Nella generazione di immagini (Stable Diffusion, DALL-E), lo spazio latente e dove succede la magia. Il modello non genera pixel direttamente - naviga dentro una rappresentazione compressa in cui muoversi in una direzione può portare da "giorno" a "notte" o da "foto" a "pittura a olio".
+use_cases: Capire embedding e modelli generativi; interpolare tra concetti; ragionare su representation learning.
+links:
+  - title: Kingma & Welling (2014) - VAE (arXiv:1312.6114)
+    url: https://arxiv.org/abs/1312.6114
+    type: technical
+  - title: Radford et al. (2016) - DCGAN (arXiv:1511.06434)
+    url: https://arxiv.org/abs/1511.06434
+    type: technical
+related:
+  - embedding
+  - vector-database
+  - mixture-of-experts

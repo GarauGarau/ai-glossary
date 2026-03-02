@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Glossary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..800&family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="masthead">
+        <div class="brand">
+          <div class="kicker">Reference index</div>
+          <h1>AI Glossary</h1>
+          <p class="subtitle">Definitions, key intuitions, sources. Fast search. EN / IT.</p>
+        </div>
+
+        <div class="top-controls" aria-label="Top controls">
+          <nav id="lang-switch" class="lang-switch" aria-label="Language selector"></nav>
+          <div class="actions">
+            <button id="random-term" type="button" class="ghost">Random</button>
+            <button id="list-all" type="button" class="ghost">All terms</button>
+            <button id="theme-toggle" type="button" class="ghost">Theme</button>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout">
+        <section class="controls" aria-label="Search">
+          <label class="sr-only" for="search">Search</label>
+          <div class="search-wrap">
+            <input id="search" type="search" placeholder="Search terms, aliases, definitions..." autocomplete="off" spellcheck="false">
+            <div class="search-kbd" aria-hidden="true"><span class="kbd">/</span></div>
+          </div>
+          <div class="meta" aria-live="polite">
+            <span id="meta-status">Loading...</span>
+          </div>
+          <div class="shortcuts" aria-label="Keyboard shortcuts">
+            <span data-shortcuts="en">Shortcuts: <span class="kbd">/</span> jump to search, <span class="kbd">Esc</span> clear.</span>
+            <span data-shortcuts="it" hidden>Scorciatoie: <span class="kbd">/</span> attiva la ricerca, <span class="kbd">Esc</span> pulisci.</span>
+          </div>
+
+          <section class="map-panel" aria-label="Term map">
+            <div class="map-head">
+              <div class="map-title">
+                <span class="kicker">Map</span>
+                <span class="map-sub" data-map-lang="en">Semantic space (EN)</span>
+                <span class="map-sub" data-map-lang="it" hidden>Spazio semantico (EN)</span>
+              </div>
+              <div id="map-label" class="map-label" aria-live="polite"></div>
+            </div>
+            <canvas id="term-map" class="term-map" aria-label="Knowledge map"></canvas>
+            <div class="map-hint">
+              <span data-map-lang="en">Click a dot to open a term.</span>
+              <span data-map-lang="it" hidden>Clicca un pallino per aprire un termine.</span>
+            </div>
+          </section>
+        </section>
+
+        <section class="content" aria-label="Results">
+          <section id="intro" class="intro" aria-label="About this glossary">
+            <article class="card intro-card">
+              <div id="intro-en" class="intro-copy">
+                <div class="kicker">Start here</div>
+                <h2 class="intro-title">Know the words. Save the tokens.</h2>
+                <p class="intro-lede">
+                  A compact AI terminology glossary with definitions, a key intuition, and sources.
+                  Use it to stay precise without burning tokens on basics.
+                </p>
+                <div class="intro-grid">
+                  <div class="intro-block">
+                    <h3>What you get</h3>
+                    <p>Fast search, key intuition, sources, difficulty, and related terms.</p>
+                  </div>
+                  <div class="intro-block">
+                    <h3>Contribute</h3>
+                    <p>Open source: improve definitions and translations, or propose new terms (and new languages).</p>
+                  </div>
+                </div>
+                <div class="intro-actions">
+                  <button type="button" class="ghost intro-action" data-intro-action="all">Browse all terms</button>
+                  <button type="button" class="ghost intro-action" data-intro-action="random">Random term</button>
+                </div>
+              </div>
+
+              <div id="intro-it" class="intro-copy" hidden>
+                <div class="kicker">Parti da qui</div>
+                <h2 class="intro-title">Conosci i termini. Risparmia token.</h2>
+                <p class="intro-lede">
+                  Un glossario essenziale di terminologia AI: definizioni, intuizione chiave e fonti.
+                  Utile per orientarsi e restare precisi senza sprecare token sui concetti base.
+                </p>
+                <div class="intro-grid">
+                  <div class="intro-block">
+                    <h3>Cosa contiene</h3>
+                    <p>Ricerca istantanea, difficoltà, intuizione chiave, fonti e termini correlati.</p>
+                  </div>
+                  <div class="intro-block">
+                    <h3>Contribuisci</h3>
+                    <p>È open source: puoi migliorare definizioni e traduzioni, oppure proporre nuovi termini (e nuove lingue).</p>
+                  </div>
+                </div>
+                <div class="intro-actions">
+                  <button type="button" class="ghost intro-action" data-intro-action="all">Sfoglia i termini</button>
+                  <button type="button" class="ghost intro-action" data-intro-action="random">Termine casuale</button>
+                </div>
+              </div>
+
+              <div class="intro-footer">
+                <div class="intro-tip">
+                  <span class="kicker">
+                    <span data-intro-lang="en">Try</span>
+                    <span data-intro-lang="it" hidden>Prova</span>
+                  </span>
+                  <div class="chips" aria-label="Example terms">
+                    <button type="button" class="chip" data-quick-term="LLM">LLM</button>
+                    <button type="button" class="chip" data-quick-term="Token">Token</button>
+                    <button type="button" class="chip" data-quick-term="RAG">RAG</button>
+                    <button type="button" class="chip" data-quick-term="Transformer">Transformer</button>
+                    <button type="button" class="chip" data-quick-term="RLHF">RLHF</button>
+                    <button type="button" class="chip" data-quick-term="Quantization">Quantization</button>
+                  </div>
+                </div>
+                <p class="intro-hint">
+                  <span data-intro-lang="en">Tip: press <span class="kbd">/</span> to jump to the search bar. Press <span class="kbd">Esc</span> to clear.</span>
+                  <span data-intro-lang="it" hidden>Suggerimento: premi <span class="kbd">/</span> per attivare la barra di ricerca. Premi <span class="kbd">Esc</span> per pulire.</span>
+                </p>
+              </div>
+            </article>
+          </section>
+
+          <section id="results" class="results" aria-live="polite"></section>
+        </section>
+      </div>
+    </main>
+
+    <template id="card-template">
+      <article class="card">
+        <div class="card-head">
+          <h2 class="term"></h2>
+          <span class="difficulty"></span>
+        </div>
+        <div class="tags" aria-label="Tags"></div>
+        <p class="definition"></p>
+        <details class="details intuition-details">
+          <summary>Key intuition</summary>
+          <p class="key-intuition"></p>
+        </details>
+        <p class="use-cases"></p>
+        <div class="links"></div>
+        <div class="related"></div>
+        <a class="report" target="_blank" rel="noreferrer">Report a problem</a>
+      </article>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>

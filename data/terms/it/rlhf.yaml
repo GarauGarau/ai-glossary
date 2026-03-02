@@ -1,0 +1,25 @@
+term: RLHF
+aliases:
+  - Reinforcement Learning from Human Feedback
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  RLHF è la tecnica di addestramento che trasforma un language model grezzo in un assistente conversazionale utile e sicuro. Il processo: valutatori umani confrontano più output del modello e li classificano per qualità. Un "reward model" impara da queste preferenze. Poi il language model viene ottimizzato per produrre output che il reward model valuta alti. È uno dei motivi per cui ChatGPT e sembrato una svolta anche se i modelli GPT esistevano già prima.
+key_intuition: |
+  Un LLM di base è come una persona brillantissima ma non socializzata: molto competente, ma potrebbe rispondere a "come risolvo il mio codice?" continuando il tuo messaggio come se fosse un post su un forum, o generando qualcosa di offensivo, o divagando senza senso. RLHF e addestramento alla socializzazione. Attraverso migliaia di esempi di "questa risposta e meglio di quella", il modello impara a essere utile, chiaro, onesto e sicuro. È la lucidatura che rende l'intelligenza grezza utilizzabile.
+use_cases: Allineare assistenti per utilità/sicurezza; modellare tono e rifiuti; migliorare qualità prodotto via preferenze umane.
+links:
+  - title: Ouyang et al. (2022) - InstructGPT / Instruction tuning with human feedback (arXiv:2203.02155)
+    url: https://arxiv.org/abs/2203.02155
+    type: technical
+  - title: Bai et al. (2022) - Helpful and Harmless Assistant with RLHF (arXiv:2204.05862)
+    url: https://arxiv.org/abs/2204.05862
+    type: technical
+related:
+  - llm
+  - fine-tuning
+  - prompt-engineering
+  - benchmark
+  - pre-training-vs-post-training

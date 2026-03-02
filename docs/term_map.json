@@ -1,0 +1,302 @@
+{
+  "version": 1,
+  "source_lang": "en",
+  "created_at": "2026-03-02T12:41:49Z",
+  "embedding": {
+    "provider": "lm-studio",
+    "base_url": "http://127.0.0.1:1234/v1",
+    "model": "text-embedding-nomic-embed-text-v1.5"
+  },
+  "neighbors": {
+    "ai-agent": [
+      "api",
+      "mcp",
+      "transformer"
+    ],
+    "api": [
+      "ai-agent",
+      "open-source-vs-closed-source-models",
+      "mcp"
+    ],
+    "attention-mechanism": [
+      "transformer",
+      "llm",
+      "token"
+    ],
+    "benchmark": [
+      "test-time-compute",
+      "overfitting-and-generalization",
+      "prompt"
+    ],
+    "chain-of-thought": [
+      "test-time-compute",
+      "reasoning-vs-pattern-matching",
+      "llm"
+    ],
+    "context-window": [
+      "token",
+      "prompt",
+      "attention-mechanism"
+    ],
+    "distillation": [
+      "fine-tuning",
+      "temperature",
+      "inference"
+    ],
+    "embedding": [
+      "vector-database",
+      "latent-space",
+      "token"
+    ],
+    "fine-tuning": [
+      "overfitting-and-generalization",
+      "pre-training-vs-post-training",
+      "distillation"
+    ],
+    "guardrails": [
+      "synthetic-data-model-collapse",
+      "benchmark",
+      "ai-agent"
+    ],
+    "hallucination": [
+      "synthetic-data-model-collapse",
+      "rag",
+      "llm"
+    ],
+    "inference": [
+      "test-time-compute",
+      "pre-training-vs-post-training",
+      "reasoning-vs-pattern-matching"
+    ],
+    "latent-space": [
+      "embedding",
+      "llm",
+      "vector-database"
+    ],
+    "llm": [
+      "reasoning-vs-pattern-matching",
+      "chain-of-thought",
+      "rlhf"
+    ],
+    "mcp": [
+      "api",
+      "ai-agent",
+      "benchmark"
+    ],
+    "mixture-of-experts": [
+      "inference",
+      "chain-of-thought",
+      "llm"
+    ],
+    "open-source-vs-closed-source-models": [
+      "api",
+      "synthetic-data-model-collapse",
+      "pre-training-vs-post-training"
+    ],
+    "overfitting-and-generalization": [
+      "fine-tuning",
+      "benchmark",
+      "synthetic-data-model-collapse"
+    ],
+    "pre-training-vs-post-training": [
+      "inference",
+      "fine-tuning",
+      "rlhf"
+    ],
+    "prompt-engineering": [
+      "prompt",
+      "pre-training-vs-post-training",
+      "api"
+    ],
+    "prompt": [
+      "prompt-engineering",
+      "pre-training-vs-post-training",
+      "benchmark"
+    ],
+    "quantization": [
+      "synthetic-data-model-collapse",
+      "overfitting-and-generalization",
+      "inference"
+    ],
+    "rag": [
+      "llm",
+      "hallucination",
+      "vector-database"
+    ],
+    "reasoning-vs-pattern-matching": [
+      "llm",
+      "chain-of-thought",
+      "inference"
+    ],
+    "rlhf": [
+      "llm",
+      "pre-training-vs-post-training",
+      "ai-agent"
+    ],
+    "synthetic-data-model-collapse": [
+      "pre-training-vs-post-training",
+      "overfitting-and-generalization",
+      "quantization"
+    ],
+    "temperature": [
+      "distillation",
+      "inference",
+      "reasoning-vs-pattern-matching"
+    ],
+    "test-time-compute": [
+      "inference",
+      "chain-of-thought",
+      "benchmark"
+    ],
+    "token": [
+      "attention-mechanism",
+      "context-window",
+      "inference"
+    ],
+    "transformer": [
+      "attention-mechanism",
+      "llm",
+      "ai-agent"
+    ],
+    "vector-database": [
+      "embedding",
+      "rag",
+      "latent-space"
+    ],
+    "vibe-coding": [
+      "api",
+      "prompt-engineering",
+      "temperature"
+    ]
+  },
+  "items": {
+    "ai-agent": {
+      "x": 0.04094086244168943,
+      "y": 0.8897987318301323
+    },
+    "api": {
+      "x": 0.029906867836666524,
+      "y": 0.8787655278966261
+    },
+    "attention-mechanism": {
+      "x": 0.09996801916500454,
+      "y": 0.9278214911862536
+    },
+    "benchmark": {
+      "x": 0.05478198459394843,
+      "y": 0.9156082256138033
+    },
+    "chain-of-thought": {
+      "x": 0.08568685171211692,
+      "y": 0.9390557606248353
+    },
+    "context-window": {
+      "x": 0.007353369689266922,
+      "y": 0.9063530519738637
+    },
+    "distillation": {
+      "x": 0.06405547419178496,
+      "y": 0.9877216434526189
+    },
+    "embedding": {
+      "x": 0.1289511451796812,
+      "y": 0.9708642112622864
+    },
+    "fine-tuning": {
+      "x": 0.025297166378576177,
+      "y": 0.983264231559734
+    },
+    "guardrails": {
+      "x": 0.011445829742573252,
+      "y": 0.8761624467928352
+    },
+    "hallucination": {
+      "x": 0.11643162273424432,
+      "y": 0.9451846302921145
+    },
+    "inference": {
+      "x": 0.0378986139513422,
+      "y": 0.9543009039000497
+    },
+    "latent-space": {
+      "x": 0.08915021787052185,
+      "y": 0.9844354796263992
+    },
+    "llm": {
+      "x": 0.07115299193569626,
+      "y": 0.9519591588267059
+    },
+    "mcp": {
+      "x": 0.023448180968541642,
+      "y": 0.9071273201720497
+    },
+    "mixture-of-experts": {
+      "x": 0.01571425397435441,
+      "y": 0.9738389422947473
+    },
+    "open-source-vs-closed-source-models": {
+      "x": 0.0,
+      "y": 0.9268277048462521
+    },
+    "overfitting-and-generalization": {
+      "x": 0.03642762735058001,
+      "y": 0.9847618504656412
+    },
+    "pre-training-vs-post-training": {
+      "x": 0.022720170416851728,
+      "y": 0.9455560908568481
+    },
+    "prompt-engineering": {
+      "x": 0.07019028394617942,
+      "y": 0.8756738059131488
+    },
+    "prompt": {
+      "x": 0.056408088281681264,
+      "y": 0.8701639808493813
+    },
+    "quantization": {
+      "x": 0.04280798102910936,
+      "y": 1.0
+    },
+    "rag": {
+      "x": 0.09638386804877325,
+      "y": 0.9599586976835346
+    },
+    "reasoning-vs-pattern-matching": {
+      "x": 0.0673465360522754,
+      "y": 0.970206688455696
+    },
+    "rlhf": {
+      "x": 0.011924235657135041,
+      "y": 0.9439781942251104
+    },
+    "synthetic-data-model-collapse": {
+      "x": 0.028642561154053257,
+      "y": 0.9579176802654529
+    },
+    "temperature": {
+      "x": 0.13725915032442293,
+      "y": 0.9314533263314309
+    },
+    "test-time-compute": {
+      "x": 1.0,
+      "y": 0.0
+    },
+    "token": {
+      "x": 0.05527332332492447,
+      "y": 0.9387496651786887
+    },
+    "transformer": {
+      "x": 0.09718014373685617,
+      "y": 0.9080746403689757
+    },
+    "vector-database": {
+      "x": 0.12093380659381119,
+      "y": 0.9879176054660715
+    },
+    "vibe-coding": {
+      "x": 0.10895857722811178,
+      "y": 0.8687825461510305
+    }
+  }
+}

@@ -1,0 +1,27 @@
+term: Chain-of-Thought
+aliases:
+  - CoT
+  - Reasoning models
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  Chain-of-Thought is a technique where the model is encouraged (or trained) to explicitly show its step-by-step reasoning before giving a final answer. Instead of jumping to a conclusion, the model "thinks out loud." This dramatically improves performance on complex tasks: math, logic, multi-step planning, code debugging. Reasoning models (OpenAI's o1/o3, Anthropic's extended thinking) take this further by being specifically trained to reason at length before answering.
+key_intuition: |
+  Ask someone "what's 17 times 24?" and demand an instant answer - they'll likely get it wrong. But if you say "take your time, show your work," they'll write "17 x 24 = 17 x 20 + 17 x 4 = 340 + 68 = 408" and get it right. The same applies to LLMs. By generating intermediate reasoning steps, the model essentially gives itself scratch paper. Each step constrains the next, reducing the chance of error propagating.
+
+  Here's the counterintuitive part: making the model produce MORE tokens (the reasoning steps) actually makes the final answer MORE accurate. You're trading tokens (which cost money) for quality. This is a paradigm shift: intelligence can be improved not just by making the model bigger, but by letting it think longer.
+use_cases: Improving accuracy on multi-step tasks; deciding when to spend tokens; prompting patterns for reasoning.
+links:
+  - title: Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)
+    url: https://arxiv.org/abs/2201.11903
+    type: technical
+  - title: Lightman et al. (2023) - Let's Verify Step by Step (arXiv:2305.20050)
+    url: https://arxiv.org/abs/2305.20050
+    type: technical
+related:
+  - prompt-engineering
+  - test-time-compute
+  - rlhf

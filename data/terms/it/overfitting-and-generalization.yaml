@@ -1,0 +1,26 @@
+term: Overfitting & Generalization
+aliases:
+  - Overfitting
+  - Generalizzazione
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  L'overfitting è quando un modello memorizza i dati di addestramento invece di imparare pattern generalizzabili. Va benissimo su esempi già visti, ma fallisce su quelli nuovi. La generalizzazione è l'opposto: la capacità di performare bene su dati mai visti. Tutta l'arte del machine learning è massimizzare la generalizzazione minimizzando l'overfitting.
+key_intuition: |
+  Immagina uno studente che si prepara a un esame. Uno studente in overfitting memorizza le domande e risposte esatte dei test di pratica. Se l'esame reale usa le stesse domande, prende il massimo. Se le domande sono riformulate o compaiono nuovi argomenti, è perso. Uno studente che generalizza capisce i principi sottostanti, quindi gestisce domande nuove che non ha mai visto. Potrebbe andare un po peggio sul test di pratica, ma farà meglio all'esame vero.
+
+  Ecco perché i benchmark possono essere fuorvianti: un modello addestrato (intenzionalmente o accidentalmente) su domande di benchmark può eccellere nei benchmark ma deludere nel mondo reale. È anche per questo che "insegnare per il test" è problematico in AI come lo è in educazione.
+use_cases: Interpretare train vs real-world; evitare over-ottimizzazione sui benchmark e data leakage.
+links:
+  - title: Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 5)
+    url: https://www.deeplearningbook.org/
+    type: reference
+  - title: Zhang et al. - Rethinking Generalization (arXiv:1611.03530)
+    url: https://arxiv.org/abs/1611.03530
+    type: technical
+related:
+  - benchmark
+  - synthetic-data-model-collapse

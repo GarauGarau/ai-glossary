@@ -1,0 +1,1098 @@
+{
+  "lang": "it",
+  "terms": [
+    {
+      "term": "AI Agent",
+      "aliases": [
+        "Agentic AI",
+        "Agente AI"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Un AI agent è un sistema che va oltre la risposta a un singolo prompt: può pianificare compiti multi-step, usare strumenti esterni (motori di ricerca, API, interpreti di codice, database), eseguire azioni, osservare risultati e adattare il proprio approccio. Invece di \"rispondi alla mia domanda\", gli dai un obiettivo come \"ricerca i competitor e produci un report\", e lui capisce autonomamente i passi per arrivarci.\n",
+      "key_intuition": "Un chatbot è come un bibliotecario che risponde alle domande da dietro un banco. Un agente è come un assistente di ricerca che lascia il banco: consulta più database, incrocia fonti, prende appunti, scrive una bozza di report, capisce che gli serve altro dato, lo va a trovare e torna con un risultato finito. L'LLM è il cervello, ma il framework dell'agente aggiunge mani, occhi e la capacità di muoversi.\n",
+      "use_cases": "Automatizzare workflow multi-step con tool; assistenti di ricerca; esecuzione di codice; loop di pianificazione/esecuzione.",
+      "links": [
+        {
+          "title": "Yao et al. (2023) - ReAct (arXiv:2210.03629)",
+          "url": "https://arxiv.org/abs/2210.03629",
+          "type": "technical"
+        },
+        {
+          "title": "Wang et al. (2024) - Survey on LLM-based Autonomous Agents (arXiv:2308.11432)",
+          "url": "https://arxiv.org/abs/2308.11432",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "api",
+        "rag",
+        "mcp",
+        "guardrails",
+        "prompt-engineering"
+      ],
+      "id": "ai-agent"
+    },
+    {
+      "term": "API",
+      "aliases": [
+        "Application Programming Interface",
+        "Interfaccia di programmazione delle applicazioni"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Nel contesto AI, un'API è il modo in cui gli sviluppatori interagiscono con i modelli in modo programmatico, tramite codice, invece che tramite un'interfaccia chat come ChatGPT o Claude.ai. Quando qualcuno dice \"uso l'API di OpenAI\" o \"abbiamo integrato Claude via API\", significa che il loro software invia testo al modello e riceve testo in risposta automaticamente, senza che una persona debba digitare in una finestra di chat.\n",
+      "key_intuition": "Pensa a un ristorante. L'interfaccia chat (ChatGPT, Claude.ai) è come sedersi al tavolo: parli con il cameriere, ordini un piatto alla volta, lo consumi. L'API è come l'ingresso di servizio della cucina: puoi inviare 10.000 ordini in una volta, specificare esattamente come preparare ciascuno, riceverli in blocco e servirli ai tuoi clienti. Stesso cibo, accesso radicalmente diverso.\n",
+      "use_cases": "Integrare modelli in prodotti; automatizzare richieste ad alto volume; controllare costi/latenza con impostazioni e batching.",
+      "links": [
+        {
+          "title": "Anthropic API Documentation",
+          "url": "https://docs.anthropic.com/api",
+          "type": "official"
+        },
+        {
+          "title": "OpenAI API Reference",
+          "url": "https://platform.openai.com/docs",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "llm",
+        "inference",
+        "temperature",
+        "context-window"
+      ],
+      "id": "api"
+    },
+    {
+      "term": "Attention Mechanism",
+      "aliases": [
+        "Attention"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Il meccanismo di attention è l'operazione matematica al cuore dei Transformer. Per ogni token in input, l'attention calcola un punteggio di rilevanza rispetto a ogni altro token, creando una mappa pesata di \"su cosa devo concentrarmi per capire questa parola nel contesto?\". È ciò che permette al modello di risolvere ambiguità, tracciare riferimenti e capire dipendenze a lungo raggio nel testo.\n",
+      "key_intuition": "Leggi questa frase: \"The trophy didn't fit in the suitcase because it was too big.\" A cosa si riferisce \"it\"? Al trophy (troppo grande per entrare). Ora: \"The trophy didn't fit in the suitcase because it was too small.\" Ora \"it\" si riferisce alla suitcase. Hai risolto questa ambiguità istantaneamente usando comprensione contestuale. L'attention fa la stessa cosa matematicamente: calcola un punteggio tra \"it\" e ogni altra parola, e la parola con il punteggio di attention più alto diventa il riferimento. In una frase vince \"trophy\"; nell'altra vince \"suitcase\".\n\nLa multi-head attention significa che il modello esegue questo processo più volte in parallelo: ogni \"head\" impara tipi diversi di relazioni. Una head può seguire la struttura grammaticale, un'altra il significato semantico, un'altra la co-reference (come nel nostro esempio di \"it\"). La combinazione crea una comprensione ricca e multi-dimensionale del testo.\n",
+      "use_cases": "Capire risoluzione di riferimenti e dipendenze a lungo raggio; interpretare attention map e comportamento dei Transformer.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Clark et al. (2019) - An Analysis of BERT's Attention (arXiv:1906.04341)",
+          "url": "https://arxiv.org/abs/1906.04341",
+          "type": "technical"
+        },
+        {
+          "title": "3Blue1Brown (2024) - Attention in Transformers, visually explained (YouTube)",
+          "url": "https://www.youtube.com/results?search_query=3Blue1Brown+Attention+in+Transformers",
+          "type": "video"
+        }
+      ],
+      "related": [
+        "transformer",
+        "llm",
+        "context-window"
+      ],
+      "id": "attention-mechanism"
+    },
+    {
+      "term": "Benchmark",
+      "aliases": [
+        "AI benchmark"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Un benchmark è un test standardizzato per modelli AI: un set fisso di domande o compiti con risposte corrette note, progettato per misurare capacità specifiche. I benchmark permettono a ricercatori e aziende di confrontare modelli su una classifica comune. Ma sono profondamente imperfetti: i modelli possono essere ottimizzati specificamente per i benchmark, i dati di training possono contenere accidentalmente domande di benchmark e le prestazioni nel mondo reale spesso divergono dai punteggi.\n",
+      "key_intuition": "I benchmark sono come i test standardizzati per l'AI: SAT, GRE, test di QI. Danno un segnale utile, ma tutti sanno che un punteggio alto al SAT non garantisce successo nella vita. Allo stesso modo, un modello che domina MMLU (un enorme test a scelta multipla di conoscenza) può comunque dare pessimi consigli sul tuo specifico problema di business. L'industria AI sta imparando lentamente la stessa lezione che l'educazione ha imparato decenni fa: non puoi ridurre una capacità complessa a un singolo numero.\n",
+      "use_cases": "Confrontare modelli; scegliere modelli per compiti; capire limiti e metric gaming.",
+      "links": [
+        {
+          "title": "Hendrycks et al. (2021) - MMLU (arXiv:2009.03300)",
+          "url": "https://arxiv.org/abs/2009.03300",
+          "type": "technical"
+        },
+        {
+          "title": "Chiang et al. (2024) - Chatbot Arena (arXiv:2403.04132)",
+          "url": "https://arxiv.org/abs/2403.04132",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "overfitting-and-generalization",
+        "rlhf",
+        "reasoning-vs-pattern-matching"
+      ],
+      "id": "benchmark"
+    },
+    {
+      "term": "Chain-of-Thought",
+      "aliases": [
+        "CoT",
+        "Reasoning models"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Chain-of-Thought è una tecnica in cui il modello viene incoraggiato (o addestrato) a mostrare esplicitamente il ragionamento passo-passo prima di dare la risposta finale. Invece di saltare a una conclusione, il modello \"pensa ad alta voce\". Questo migliora drasticamente le prestazioni su compiti complessi: matematica, logica, pianificazione multi-step, debug di codice. I reasoning models (OpenAI o1/o3, extended thinking di Anthropic) spingono oltre, essendo addestrati specificamente a ragionare a lungo prima di rispondere.\n",
+      "key_intuition": "Chiedi a qualcuno \"quanto fa 17 per 24?\" e pretendi una risposta istantanea: probabilmente sbagliera. Ma se dici \"prenditi tempo, mostrami i passaggi\", scrivera \"17 x 24 = 17 x 20 + 17 x 4 = 340 + 68 = 408\" e ci arrivera. Lo stesso vale per gli LLM. Generando passaggi intermedi di ragionamento, il modello si da in pratica un foglio di brutta copia. Ogni passo vincola il successivo, riducendo la probabilità che l'errore si propaghi.\n\nEcco la parte controintuitiva: far produrre al modello PIU token (i passaggi di ragionamento) rende la risposta finale PIU accurata. Stai scambiando token (che costano denaro) per qualità. È un cambio di paradigma: l'intelligenza può migliorare non solo rendendo il modello più grande, ma permettendogli di pensare più a lungo.\n",
+      "use_cases": "Migliorare accuratezza su compiti multi-step; decidere quando spendere token; pattern di prompting per ragionamento.",
+      "links": [
+        {
+          "title": "Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)",
+          "url": "https://arxiv.org/abs/2201.11903",
+          "type": "technical"
+        },
+        {
+          "title": "Lightman et al. (2023) - Let's Verify Step by Step (arXiv:2305.20050)",
+          "url": "https://arxiv.org/abs/2305.20050",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "prompt-engineering",
+        "test-time-compute",
+        "rlhf"
+      ],
+      "id": "chain-of-thought"
+    },
+    {
+      "term": "Context Window",
+      "aliases": [
+        "Finestra di contesto"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "La context window (finestra di contesto) è la quantità massima di testo (misurata in token) che un modello può elaborare in una singola interazione. Include sia l'input (il tuo prompt, la cronologia della conversazione, eventuali documenti che fornisci) sia l'output (la risposta del modello). Quando la finestra e piena, il modello non ha accesso a nulla che stia fuori. I messaggi più vecchi in una conversazione lunga, dal punto di vista del modello, semplicemente scompaiono.\n",
+      "key_intuition": "Pensa alla context window come alla scrivania di lavoro del modello. Tutto ciò che deve consultare mentre risponde deve stare su questa scrivania. Una scrivania piccola (4K token, i primi GPT-3) contiene circa 6 pagine. Una scrivania grande (200K token, Claude) può contenere un intero romanzo. Ma quando qualcosa cade giu dalla scrivania, e andato: il modello non può aprire un cassetto e recuperarlo.\n\nEcco perché l'AI \"dimentica\" le tue istruzioni nelle conversazioni lunghe: il tuo messaggio iniziale viene spinto fuori dalla finestra dai messaggi più recenti. Non è un bug: è un vincolo architetturale fondamentale.\n",
+      "use_cases": "Gestire conversazioni lunghe; scegliere modelli per dimensione del contesto; fare chunking/sintesi di contesto e documenti.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Anthropic - Long Context Prompting Tips",
+          "url": "https://docs.anthropic.com/",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "llm",
+        "token",
+        "prompt",
+        "rag",
+        "transformer"
+      ],
+      "id": "context-window"
+    },
+    {
+      "term": "Distillation",
+      "aliases": [
+        "Knowledge distillation",
+        "Distillazione"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "La distillazione è una tecnica in cui un modello più piccolo (lo \"student\") viene addestrato a replicare il comportamento di un modello più grande (il \"teacher\"). Invece di imparare da dati grezzi (testo da internet), lo student impara dagli output del teacher: le sue distribuzioni di probabilità, i pattern di ragionamento, lo stile di risposta. Il risultato: un modello che cattura l'80-90% della qualità del teacher con una frazione di dimensione, costo e velocità.\n",
+      "key_intuition": "Immagina uno chef maestro che ha passato 30 anni a sviluppare le sue competenze (il modello grande). Ora immagina che scriva non solo le ricette, ma anche il suo processo mentale: perché aggiunge sale in quel momento, come giudica la temperatura dal suono, quando infrange le regole. Un apprendista (il modello piccolo) che studia queste annotazioni impara molto più in fretta di uno che legge semplicemente gli stessi ricettari che il maestro una volta ha letto. Questa e distillazione: imparare da qualcuno che già capisce, invece di capirlo da zero.\n",
+      "use_cases": "Creare modelli più piccoli/veloci; ridurre costi/latenza; deploy on-device; produrre varianti \"mini\".",
+      "links": [
+        {
+          "title": "Hinton et al. (2015) - Distilling the Knowledge in a Neural Network (arXiv:1503.02531)",
+          "url": "https://arxiv.org/abs/1503.02531",
+          "type": "technical"
+        },
+        {
+          "title": "Xu et al. (2024) - Knowledge Distillation of LLMs Survey (arXiv:2402.13116)",
+          "url": "https://arxiv.org/abs/2402.13116",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "quantization",
+        "open-source-vs-closed-source-models"
+      ],
+      "id": "distillation"
+    },
+    {
+      "term": "Embedding",
+      "aliases": [
+        "Vettore di embedding"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Un embedding è una lista di numeri (un vettore) che rappresenta il \"significato\" di un pezzo di testo in un formato che i computer possono gestire matematicamente. La proprietà chiave: testi con significati simili ottengono vettori simili. Questo permette alle macchine di fare una cosa che prima non potevano: cercare per significato invece che per corrispondenza esatta di parole chiave.\n",
+      "key_intuition": "Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. \"Dog\" e \"puppy\" sono vicinissimi. \"Dog\" e \"cat\" sono vicini (entrambi animali domestici). \"Dog\" e \"airplane\" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi \"auto familiare economica\" e il sistema trova un documento su \"veicoli convenienti per famiglie\" anche se nessuna parola coincide, sono gli embedding che lavorano.\n\nIl famoso esempio: nello spazio degli embedding, il vettore per \"king\" meno \"man\" più \"woman\" produce un vettore molto vicino a \"queen\". Il modello ha imparato relazioni di genere puramente dai pattern statistici nel testo.\n",
+      "use_cases": "Ricerca semantica, clustering, raccomandazioni; recupero documenti per RAG; deduplicazione e similarity matching.",
+      "links": [
+        {
+          "title": "Mikolov et al. (2013) - Word2Vec (arXiv:1301.3781)",
+          "url": "https://arxiv.org/abs/1301.3781",
+          "type": "technical"
+        },
+        {
+          "title": "Reimers & Gurevych (2019) - Sentence-BERT (arXiv:1908.10084)",
+          "url": "https://arxiv.org/abs/1908.10084",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "rag",
+        "vector-database",
+        "latent-space"
+      ],
+      "id": "embedding"
+    },
+    {
+      "term": "Fine-tuning",
+      "aliases": [
+        "Finetuning"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Il fine-tuning significa prendere un modello pre-addestrato (che già conosce il linguaggio in modo generale) e addestrarlo ulteriormente su un dataset più piccolo e specializzato. I pesi del modello vengono aggiornati per renderlo migliore in uno specifico dominio o compito, mantenendo le capacità generali. È la differenza tra un medico generico e un cardiologo: stessa università, specializzazione diversa.\n",
+      "key_intuition": "Il pre-training è educazione (costosa, ampia, fatta una volta). Il fine-tuning è formazione sul lavoro (più economica, focalizzata, fatta per un ruolo specifico). Non rimanderesti qualcuno all'università ogni volta che vuoi che impari una nuova abilità - gli daresti una formazione mirata. Stessa logica: non riaddestri GPT-4 da zero per renderlo bravo nell'analisi legale; lo fai fine-tuning su documenti legali.\n",
+      "use_cases": "Adattamento di dominio/stile; migliorare output strutturati; comportamento specializzato quando il prompting non basta.",
+      "links": [
+        {
+          "title": "Howard & Ruder (2018) - ULMFiT (arXiv:1801.06146)",
+          "url": "https://arxiv.org/abs/1801.06146",
+          "type": "technical"
+        },
+        {
+          "title": "Hu et al. (2021) - LoRA (arXiv:2106.09685)",
+          "url": "https://arxiv.org/abs/2106.09685",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "prompt-engineering",
+        "rag",
+        "rlhf",
+        "pre-training-vs-post-training"
+      ],
+      "id": "fine-tuning"
+    },
+    {
+      "term": "Guardrails",
+      "aliases": [
+        "Barriere di sicurezza"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Le guardrails sono livelli di sicurezza e controllo messi attorno a un modello AI per vincolarne il comportamento. Possono filtrare gli input (bloccando prompt pericolosi o fuori tema prima che il modello li veda), filtrare gli output (scansionando la risposta e redigendo o bloccando contenuti dannosi) o imporre regole strutturali (il modello deve rispondere in JSON, non deve citare competitor, deve sempre includere un disclaimer). Sono le cinture di sicurezza e i paraurti dell'AI in produzione.\n",
+      "key_intuition": "Un modello senza guardrails è come uno stagista molto intelligente senza supervisione e senza regole: potrebbe fare un lavoro brillante o potrebbe inviare per errore dati riservati a un cliente, dire qualcosa di problematico legalmente o andare fuori copione. Le guardrails sono le policy, il processo di review e lo strato di compliance che rendono sicuro mettere questo stagista in un business reale. Ogni deployment AI serio le usa.\n",
+      "use_cases": "Controlli di sicurezza e compliance; filtro input/output; enforcement di schemi; mitigazione di jailbreak.",
+      "links": [
+        {
+          "title": "Rebedea et al. (2023) - NeMo Guardrails (arXiv:2310.10501)",
+          "url": "https://arxiv.org/abs/2310.10501",
+          "type": "technical"
+        },
+        {
+          "title": "Dong et al. (2024) - Building Guardrails for LLMs (arXiv:2402.01822)",
+          "url": "https://arxiv.org/abs/2402.01822",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "ai-agent",
+        "prompt-engineering",
+        "mcp",
+        "rlhf"
+      ],
+      "id": "guardrails"
+    },
+    {
+      "term": "Hallucination",
+      "aliases": [
+        "Allucinazione"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Un'allucinazione è quando un'AI genera informazioni false, inventate o senza senso, ma le presenta con lo stesso tono sicuro di informazioni corrette. Il modello non sa di essere nel torto perché non ha un concetto di verità. Sta producendo la sequenza di token statisticamente più probabile e, a volte, quella sequenza è semplicemente sbagliata.\n",
+      "key_intuition": "Immagina di essere a una festa e che qualcuno ti chieda di un libro che non hai letto. Invece di dire \"non lo so\", metti insieme quello che hai sentito dalle recensioni, altre opere dell'autore, le convenzioni del genere e improvvisi una risposta plausibile. Potresti cogliere il senso o potresti inventarti un dettaglio che non esiste. Questa è un'allucinazione. Il modello improvvisa sempre perché non ha mai \"letto il libro\": ha assorbito pattern su come si parla di libri.\n\nPiù l'argomento è specifico e oscuro, più cresce il rischio di allucinazioni. Chiedere della Rivoluzione francese? Rischio basso. Chiedere di uno specifico caso giudiziario del 2019? Rischio alto. Chiedere un URL o una citazione? Rischio altissimo: il modello ama generare URL plausibili che in realtà non esistono.\n",
+      "use_cases": "Sapere quando verificare; ancorare le risposte con RAG/citazioni; progettare UX più sicure in contesti ad alto rischio.",
+      "links": [
+        {
+          "title": "Ji et al. (2023) - Survey of Hallucination in Natural Language Generation",
+          "url": "https://scholar.google.com/scholar?q=Survey+of+Hallucination+in+Natural+Language+Generation+Ji+2023",
+          "type": "technical"
+        },
+        {
+          "title": "Huang et al. (2023) - Survey on Hallucination in LLMs (arXiv:2311.05232)",
+          "url": "https://arxiv.org/abs/2311.05232",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "rag",
+        "prompt-engineering"
+      ],
+      "id": "hallucination"
+    },
+    {
+      "term": "Inference",
+      "aliases": [
+        "Inferenza"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "L'inferenza è il processo di usare un modello addestrato per generare un output. L'addestramento è quando il modello impara (una volta sola, ed è estremamente costoso); l'inferenza è quando applica ciò che ha imparato (ogni singola volta che invii un prompt). Ogni chiamata API, ogni messaggio in chat, ogni email generata dall'AI è un'operazione di inferenza. È questa la fase che costa denaro su larga scala e che determina quanto rapidamente il modello risponde.\n",
+      "key_intuition": "L'addestramento è come scrivere un ricettario: richiede anni di lavoro, test e milioni di dollari. L'inferenza è come cucinare un pasto da quel ricettario: lo fai migliaia di volte al giorno e ogni pasto costa ingredienti ed energia. Quando vedi prezzi tipo \"$3 per milione di token in input\", stai pagando l'inferenza - il calcolo necessario per far passare il tuo testo attraverso i miliardi di parametri del modello.\n",
+      "use_cases": "Ragionare su latenza/costo per richiesta; scalare throughput (batching, caching); selezione e ottimizzazione del modello.",
+      "links": [
+        {
+          "title": "Patterson et al. (2022) - The Carbon Footprint of Machine Learning Training",
+          "url": "https://scholar.google.com/scholar?q=The+Carbon+Footprint+of+Machine+Learning+Training+Patterson+2022",
+          "type": "technical"
+        },
+        {
+          "title": "Kwon et al. (2023) - PagedAttention (arXiv:2309.06180)",
+          "url": "https://arxiv.org/abs/2309.06180",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "api",
+        "test-time-compute",
+        "quantization",
+        "mixture-of-experts"
+      ],
+      "id": "inference"
+    },
+    {
+      "term": "Latent Space",
+      "aliases": [
+        "Spazio latente"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Lo spazio latente è la rappresentazione interna e nascosta che un modello crea del suo input - uno spazio matematico ad alta dimensionalità in cui i concetti sono codificati come punti. Non lo puoi vedere direttamente, ma e dove avviene tutto il \"pensiero\". In questo spazio, concetti simili si raggruppano, relazioni diventano operazioni geometriche è il significato astratto diventa computabile.\n",
+      "key_intuition": "Pensa a una mappa del mondo. Ogni città ha coordinate (latitudine, longitudine). Città vicine hanno coordinate simili. Puoi calcolare la distanza tra due città, trovare cluster (i paesi) o persino fare aritmetica: \"le coordinate di Parigi meno il centro della Francia più il centro della Germania\" ti porta vicino a Berlino. Lo spazio latente è la stessa idea, ma con centinaia o migliaia di dimensioni invece di due e con le \"città\" sostituite da concetti, parole, immagini o qualunque dato che il modello ha imparato a rappresentare.\n\nNella generazione di immagini (Stable Diffusion, DALL-E), lo spazio latente e dove succede la magia. Il modello non genera pixel direttamente - naviga dentro una rappresentazione compressa in cui muoversi in una direzione può portare da \"giorno\" a \"notte\" o da \"foto\" a \"pittura a olio\".\n",
+      "use_cases": "Capire embedding e modelli generativi; interpolare tra concetti; ragionare su representation learning.",
+      "links": [
+        {
+          "title": "Kingma & Welling (2014) - VAE (arXiv:1312.6114)",
+          "url": "https://arxiv.org/abs/1312.6114",
+          "type": "technical"
+        },
+        {
+          "title": "Radford et al. (2016) - DCGAN (arXiv:1511.06434)",
+          "url": "https://arxiv.org/abs/1511.06434",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "embedding",
+        "vector-database",
+        "mixture-of-experts"
+      ],
+      "id": "latent-space"
+    },
+    {
+      "term": "LLM",
+      "aliases": [
+        "Large Language Model",
+        "Modello linguistico di grandi dimensioni"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Un LLM è una rete neurale con miliardi di parametri numerici, addestrata leggendo enormi quantità di testo (libri, siti web, codice, conversazioni). Durante l'addestramento, il modello apprende pattern statistici: quali parole tendono a seguire quali, in quali contesti, attraverso milioni di argomenti diversi. Il risultato è un sistema che può generare testo così fluente da sembrare comprensione, anche se il processo sottostante è una previsione matematica.\n",
+      "key_intuition": "Immagina di aver letto ogni libro nella più grande biblioteca del mondo, ogni articolo di Wikipedia, ogni thread di Reddit, ogni repository su GitHub. Non li hai memorizzati parola per parola, ma hai assorbito dei pattern: come suonano i contratti legali, come è strutturato il codice Python, come un medico spiega una diagnosi, come scorre la poesia italiana. Ora qualcuno ti fa una domanda e tu generi una risposta prevedendo, parola per parola, quale sia la continuazione più plausibile dato tutto ciò che hai assorbito.\n\nEcco cosa fa un LLM. Non sta cercando informazioni. Non ragiona a partire da primi principi. Genera la sequenza di parole statisticamente più probabile dato il tuo input e il suo addestramento. Il miracolo è che questo processo, a sufficiente scala, produce output coerenti, ricchi di conoscenza e spesso davvero utili.\n",
+      "use_cases": "Chatbot e assistenti; riassunti e scrittura; generazione di codice; modello mentale per limiti come le allucinazioni.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Brown et al. (2020) - Language Models are Few-Shot Learners (arXiv:2005.14165)",
+          "url": "https://arxiv.org/abs/2005.14165",
+          "type": "technical"
+        },
+        {
+          "title": "Anthropic - What are large language models?",
+          "url": "https://www.anthropic.com/research",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "token",
+        "prompt",
+        "transformer",
+        "attention-mechanism",
+        "context-window",
+        "inference",
+        "rlhf"
+      ],
+      "id": "llm"
+    },
+    {
+      "term": "MCP",
+      "aliases": [
+        "Model Context Protocol"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "MCP è uno standard aperto (rilasciato da Anthropic a fine 2024) che definisce come i modelli AI si connettono a strumenti esterni e fonti dati. Prima di MCP, ogni integrazione era custom: se volevi che Claude leggesse Google Drive, interrogasse il tuo database e postasse su Slack, ogni connessione richiedeva ingegneria separata. MCP fornisce un formato di \"plug\" universale così che qualunque tool possa connettersi a qualunque modello in modo standardizzato.\n",
+      "key_intuition": "Prima dell'USB, ogni dispositivo aveva un connettore proprietario: stampanti, fotocamere, tastiere - tutti con cavi diversi. USB ha creato uno standard universale. MCP sta facendo lo stesso per l'AI: invece di costruire un'integrazione custom per ogni strumento che l'AI potrebbe usare, MCP offre un unico protocollo universale. Un tool che parla MCP può collegarsi a qualunque modello AI che lo supporta, subito.\n\nQuesto conta perché la vera potenza degli agenti AI dipende da quanti tool possono usare. Senza uno standard, l'ecosistema si frammenta. Con MCP, può crescere esponenzialmente - proprio come USB ha abilitato l'esplosione delle periferiche per computer.\n",
+      "use_cases": "Standardizzare integrazioni tool per agenti; ridurre connettori ad hoc; abilitare un ecosistema plug-and-play.",
+      "links": [
+        {
+          "title": "Anthropic (2024) - Introducing the Model Context Protocol",
+          "url": "https://www.anthropic.com/news/model-context-protocol",
+          "type": "official"
+        },
+        {
+          "title": "MCP Official Documentation & Specification",
+          "url": "https://modelcontextprotocol.io",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "ai-agent",
+        "api",
+        "guardrails"
+      ],
+      "id": "mcp"
+    },
+    {
+      "term": "Mixture of Experts",
+      "aliases": [
+        "MoE"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "MoE è un'architettura in cui il modello contiene più sotto-reti specializzate chiamate \"expert\" e un meccanismo di routing appreso (la \"gating network\") che decide quali expert attivare per ogni input. Un modello MoE può avere 8 expert ma attivarne solo 2 per un dato token. Questo significa che il numero totale di parametri può essere enorme (dando al modello una grande capacità), mentre il costo computazionale per l'inferenza rimane gestibile (perché molti parametri restano inattivi per una query).\n",
+      "key_intuition": "Immagina un ospedale con 8 reparti specialistici. Quando arriva un paziente, il triage (il router) valuta i sintomi e lo manda ai 2 reparti più rilevanti. L'ospedale ha l'esperienza combinata di tutti e 8 i reparti (capacità totale enorme), ma ogni paziente costa solo le risorse di 2 consulti (efficiente per caso). Un modello dense, al contrario, è come costringere ogni paziente a passare da tutti e 8 i reparti ogni volta - accurato ma estremamente costoso.\n",
+      "use_cases": "Scalare capacità senza costi di inferenza proporzionali; varianti veloci tipo Mixtral; capire tradeoff di routing.",
+      "links": [
+        {
+          "title": "Shazeer et al. (2017) - Sparsely-Gated Mixture-of-Experts Layer (arXiv:1701.06538)",
+          "url": "https://arxiv.org/abs/1701.06538",
+          "type": "technical"
+        },
+        {
+          "title": "Jiang et al. (2024) - Mixtral of Experts (arXiv:2401.04088)",
+          "url": "https://arxiv.org/abs/2401.04088",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "transformer",
+        "inference",
+        "quantization",
+        "open-source-vs-closed-source-models"
+      ],
+      "id": "mixture-of-experts"
+    },
+    {
+      "term": "Open Source vs. Closed Source Models",
+      "aliases": [
+        "Modelli open source",
+        "Modelli closed source",
+        "Open weights"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "I modelli closed-source (GPT-4, Claude) sono accessibili solo tramite l'API o l'interfaccia dell'azienda. Puoi usarli ma non puoi vedere la loro architettura, i dati di addestramento o i pesi. I modelli open source (LLaMA, Mistral, Qwen) rilasciano parte o tutto questo, permettendo a chiunque di scaricarli, eseguirli, modificarli e costruirci sopra. Questa distinzione modella l'intero ecosistema AI: chi controlla l'AI, chi può competere e chi può fare audit sulla sicurezza.\n",
+      "key_intuition": "Il closed source è come un ristorante: mangi il cibo, ma non ottieni la ricetta e non puoi modificarla. L'open source è come un ricettario pubblicato: puoi cucinare a casa, cambiare gli ingredienti o aprire il tuo ristorante. Il compromesso? Il ristorante ha chef professionisti e controllo qualità. Il ricettario ti dà libertà ma nessuna garanzia.\n",
+      "use_cases": "Decidere buy vs self-host; auditabilità/compliance; vincoli di deployment/licenza; controllo dei costi.",
+      "links": [
+        {
+          "title": "Groeneveld et al. (2024) - OLMo (arXiv:2402.00838)",
+          "url": "https://arxiv.org/abs/2402.00838",
+          "type": "technical"
+        },
+        {
+          "title": "Eiras et al. (2024) - Open Source Generative AI (arXiv:2404.17047)",
+          "url": "https://arxiv.org/abs/2404.17047",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "quantization",
+        "distillation",
+        "mixture-of-experts"
+      ],
+      "id": "open-source-vs-closed-source-models"
+    },
+    {
+      "term": "Overfitting & Generalization",
+      "aliases": [
+        "Overfitting",
+        "Generalizzazione"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "L'overfitting è quando un modello memorizza i dati di addestramento invece di imparare pattern generalizzabili. Va benissimo su esempi già visti, ma fallisce su quelli nuovi. La generalizzazione è l'opposto: la capacità di performare bene su dati mai visti. Tutta l'arte del machine learning è massimizzare la generalizzazione minimizzando l'overfitting.\n",
+      "key_intuition": "Immagina uno studente che si prepara a un esame. Uno studente in overfitting memorizza le domande e risposte esatte dei test di pratica. Se l'esame reale usa le stesse domande, prende il massimo. Se le domande sono riformulate o compaiono nuovi argomenti, è perso. Uno studente che generalizza capisce i principi sottostanti, quindi gestisce domande nuove che non ha mai visto. Potrebbe andare un po peggio sul test di pratica, ma farà meglio all'esame vero.\n\nEcco perché i benchmark possono essere fuorvianti: un modello addestrato (intenzionalmente o accidentalmente) su domande di benchmark può eccellere nei benchmark ma deludere nel mondo reale. È anche per questo che \"insegnare per il test\" è problematico in AI come lo è in educazione.\n",
+      "use_cases": "Interpretare train vs real-world; evitare over-ottimizzazione sui benchmark e data leakage.",
+      "links": [
+        {
+          "title": "Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 5)",
+          "url": "https://www.deeplearningbook.org/",
+          "type": "reference"
+        },
+        {
+          "title": "Zhang et al. - Rethinking Generalization (arXiv:1611.03530)",
+          "url": "https://arxiv.org/abs/1611.03530",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "benchmark",
+        "synthetic-data-model-collapse"
+      ],
+      "id": "overfitting-and-generalization"
+    },
+    {
+      "term": "Pre-training vs Post-training",
+      "aliases": [
+        "Pretraining",
+        "Post-training"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "I modelli AI moderni sono costruiti in due fasi distinte. Pre-training: il modello legge enormi quantità di testo grezzo da internet, libri, codice - e impara i pattern generali del linguaggio. È estremamente costoso (milioni di dollari di compute) e produce un \"base model\" che può completare testo ma non è particolarmente utile o sicuro. Post-training: il base model viene raffinato tramite tecniche come RLHF, fine-tuning su esempi curati, safety training e instruction-following. Questo è ciò che trasforma un motore di completamento testo in un assistente utile.\n",
+      "key_intuition": "Il pre-training è come un'educazione universitaria: ampia, costosa, fondamentale. Richiede mesi e costa milioni. Il modello impara linguaggio, fatti, pattern di ragionamento e codice da trilioni di token. Ma un neolaureato non è pronto per un lavoro specifico - serve onboarding. Il post-training è quell'onboarding: imparare a seguire istruzioni, essere educato, rifiutare richieste dannose, ragionare passo dopo passo e citare fonti. Il base model può recitare Shakespeare e scrivere Python, ma potrebbe anche generare contenuti tossici o ignorare del tutto la tua domanda. Il post-training corregge questo.\n",
+      "use_cases": "Capire capability vs alignment; scegliere fine-tuning/RLHF vs prompting; ragionare su costi e dati necessari.",
+      "links": [
+        {
+          "title": "Hoffmann et al. (2022) - Chinchilla scaling (arXiv:2203.15556)",
+          "url": "https://arxiv.org/abs/2203.15556",
+          "type": "technical"
+        },
+        {
+          "title": "Ouyang et al. (2022) - InstructGPT (arXiv:2203.02155)",
+          "url": "https://arxiv.org/abs/2203.02155",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "fine-tuning",
+        "rlhf"
+      ],
+      "id": "pre-training-vs-post-training"
+    },
+    {
+      "term": "Prompt Engineering",
+      "aliases": [
+        "System prompt",
+        "Few-shot prompting",
+        "Zero-shot prompting"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "La prompt engineering è l'arte di progettare input che producano in modo consistente output di alta qualità da modelli AI. Non è solo \"chiedere gentilmente\" - è una disciplina strutturata con tecniche specifiche, ciascuna adatta a compiti diversi. I tre concetti più importanti: system prompt (istruzioni nascoste dello sviluppatore), zero-shot (richiesta senza esempi) e few-shot (fornire esempi di ciò che vuoi).\n",
+      "key_intuition": "La prompt engineering è la differenza tra un turista e un locale quando ordinano al ristorante. Il turista dice \"dammi qualcosa di buono\" (zero-shot). Il turista informato dice \"mi piace quello che hai appena servito a quel tavolo, dammi qualcosa di simile\" (few-shot). Il locale dice \"sono un abituale, sai che sono vegetariano, mi piace il piccante e ho fretta\" (system prompt + contesto). Stesso ristorante, esperienza completamente diversa.\n",
+      "use_cases": "Prompt affidabili per estrazione/classificazione/formati; system prompt per comportamento di prodotto; few-shot per casi limite.",
+      "links": [
+        {
+          "title": "Anthropic Prompt Engineering Guide",
+          "url": "https://docs.anthropic.com/",
+          "type": "official"
+        },
+        {
+          "title": "Brown et al. (2020) - In-context learning / few-shot (arXiv:2005.14165)",
+          "url": "https://arxiv.org/abs/2005.14165",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "prompt",
+        "llm",
+        "rag",
+        "context-window",
+        "rlhf"
+      ],
+      "id": "prompt-engineering"
+    },
+    {
+      "term": "Prompt",
+      "aliases": [
+        "Istruzione"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Il prompt è tutto ciò che invii al modello: la tua domanda, le tue istruzioni, qualsiasi contesto tu fornisca. Ma ecco la cosa che molti si perdono: la qualità dell'output dell'AI è determinata in modo schiacciante dalla qualità del prompt. Stesso modello, stessa domanda, formulazione diversa - risultati completamente diversi. Un prompt vago produce una risposta generica. Un prompt strutturato e specifico, con contesto ed esempi, può ottenere output da livello esperto.\n",
+      "key_intuition": "Un prompt è come un brief che dai a un consulente. Se dici \"parlami di marketing\", otterrai una panoramica generica. Se dici \"gestisco una società B2B SaaS con 50 dipendenti, il nostro CAC è aumentato del 40% nel Q3 e mi servono 3 strategie specifiche per ridurlo usando content marketing, con tempi e costi stimati\", otterrai qualcosa di davvero operativo. Il modello non è diventato più intelligente. Gli hai dato vincoli migliori.\n",
+      "use_cases": "Ottenere output migliori aggiungendo contesto, vincoli, esempi e il formato desiderato.",
+      "links": [
+        {
+          "title": "Anthropic Prompt Engineering Guide",
+          "url": "https://docs.anthropic.com/",
+          "type": "official"
+        },
+        {
+          "title": "Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)",
+          "url": "https://arxiv.org/abs/2201.11903",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "token",
+        "prompt-engineering",
+        "context-window",
+        "temperature"
+      ],
+      "id": "prompt"
+    },
+    {
+      "term": "Quantization",
+      "aliases": [
+        "Quantizzazione"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "La quantizzazione è una tecnica di compressione che riduce la precisione numerica dei pesi di un modello. Durante l'addestramento, i pesi sono salvati come numeri ad alta precisione (floating point a 32 bit o 16 bit). La quantizzazione li converte a precisione più bassa (8 bit, 4 bit o anche 2 bit), riducendo drasticamente la memoria necessaria e accelerando l'inferenza. L'intuizione chiave: gran parte di quella precisione è ridondante e puoi eliminarla con una perdita di qualità sorprendentemente piccola.\n",
+      "key_intuition": "Immagina una fotografia. Alla massima risoluzione (32-bit), ogni pixel ha miliardi di colori possibili. Se la riduci a 256 colori (8-bit), perdi qualche gradiente sottile, ma l'immagine è ancora riconoscibile ed è 4x più piccola. Riduci a 16 colori (4-bit)? È più granulosa, ma riesci ancora a capire cos'è ed è 8x più piccola. La quantizzazione fa la stessa cosa ai pesi del modello: ogni numero usa meno bit, il modello si riduce drasticamente e la perdita di qualità è spesso appena percepibile.\n",
+      "use_cases": "Far girare modelli grandi su hardware più piccolo; ridurre memoria/latenza; deployment locale di modelli open.",
+      "links": [
+        {
+          "title": "Dettmers et al. (2022) - LLM.int8() (arXiv:2208.07339)",
+          "url": "https://arxiv.org/abs/2208.07339",
+          "type": "technical"
+        },
+        {
+          "title": "Frantar et al. (2023) - GPTQ (arXiv:2210.17323)",
+          "url": "https://arxiv.org/abs/2210.17323",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "inference",
+        "open-source-vs-closed-source-models",
+        "distillation"
+      ],
+      "id": "quantization"
+    },
+    {
+      "term": "RAG",
+      "aliases": [
+        "Retrieval-Augmented Generation"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "RAG è una tecnica che da a un modello AI accesso a conoscenza esterna al momento della domanda. Invece di rispondere solo con ciò che ha memorizzato durante l'addestramento, il sistema prima cerca in una knowledge base (documenti, database, pagine web) le informazioni rilevanti, poi le passa al modello insieme alla tua domanda. Il modello genera una risposta ancorata alle evidenze recuperate, riducendo drasticamente le allucinazioni.\n",
+      "key_intuition": "Senza RAG, fare una domanda a un LLM è come chiedere a qualcuno di rispondere a memoria in un esame a libro chiuso. Con RAG, è un esame a libro aperto: il modello può consultare informazioni prima di rispondere. La qualità della risposta dipende non solo dall'intelligenza del modello, ma anche dalla qualità del libro (la tua knowledge base) e da quanto bene riesce a trovare la pagina giusta (il sistema di retrieval).\n",
+      "use_cases": "Ancorare risposte a documenti privati/aggiornati; ridurre allucinazioni; aggiungere citazioni; ricerca su knowledge base.",
+      "links": [
+        {
+          "title": "Lewis et al. (2020) - RAG for Knowledge-Intensive NLP (arXiv:2005.11401)",
+          "url": "https://arxiv.org/abs/2005.11401",
+          "type": "technical"
+        },
+        {
+          "title": "Gao et al. (2024) - RAG for LLMs Survey (arXiv:2312.10997)",
+          "url": "https://arxiv.org/abs/2312.10997",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "embedding",
+        "vector-database",
+        "prompt-engineering",
+        "context-window"
+      ],
+      "id": "rag"
+    },
+    {
+      "term": "Reasoning vs Pattern Matching",
+      "aliases": [
+        "Stochastic parrot",
+        "Dibattito sullo stochastic parrot"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Questa è la domanda filosofica e scientifica centrale nell'AI di oggi: quando un LLM risolve un problema di matematica, scrive codice o costruisce un argomento, sta davvero ragionando - oppure sta facendo un pattern matching incredibilmente sofisticato sui dati di training? Il termine \"stochastic parrot\" (coniato da Bender et al., 2021) sostiene la seconda: il modello è un imitatore statistico senza comprensione, solo molto bravo a prevedere cosa scriverebbe una persona che ragiona. Altri sostengono che, a sufficiente scala, pattern matching e ragionamento diventano indistinguibili o che anche il ragionamento umano possa essere una forma di pattern matching.\n",
+      "key_intuition": "Immagina uno studente che ha visto 10 milioni di problemi di matematica risolti. Incontra un problema nuovo che non ha mai visto. Lo risolve correttamente. Sta \"ragionando\" o sta \"riconoscendo un pattern da problemi simili\"? Se chiedi a molti matematici come risolvono problemi, descriveranno pattern recognition: \"questo sembra un problema che ho già visto, quindi provo questo approccio\". Il confine tra ragionamento e pattern matching potrebbe essere più sfumato di quanto pensiamo - sia negli umani che nelle macchine.\n\nQuesto dibattito conta nella pratica: se gli LLM sono \"solo\" pattern matching, ci sono limiti duri a ciò che possono ottenere (falliranno su problemi davvero nuovi). Se stanno sviluppando qualcosa di più simile al ragionamento, il tetto potrebbe essere molto più alto. Le evidenze sono miste: gli LLM generalizzano in modo impressionante su alcuni compiti e falliscono in modo clamoroso su semplici puzzle logici che richiedono ragionamento davvero nuovo.\n",
+      "use_cases": "Impostare aspettative sulla generalizzazione; interpretare fallimenti/benchmark; informare discussioni su valutazione e safety.",
+      "links": [
+        {
+          "title": "Bender et al. (2021) - On the Dangers of Stochastic Parrots",
+          "url": "https://scholar.google.com/scholar?q=On+the+Dangers+of+Stochastic+Parrots+Bender+2021",
+          "type": "technical"
+        },
+        {
+          "title": "Bubeck et al. (2023) - Sparks of AGI (arXiv:2303.12712)",
+          "url": "https://arxiv.org/abs/2303.12712",
+          "type": "technical"
+        },
+        {
+          "title": "Mitchell & Krakauer (2023) - Debate Over Understanding in LLMs (PNAS)",
+          "url": "https://scholar.google.com/scholar?q=Mitchell+Krakauer+2023+Debate+Over+Understanding+in+AI%27s+Large+Language+Models",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "benchmark",
+        "chain-of-thought"
+      ],
+      "id": "reasoning-vs-pattern-matching"
+    },
+    {
+      "term": "RLHF",
+      "aliases": [
+        "Reinforcement Learning from Human Feedback"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "RLHF è la tecnica di addestramento che trasforma un language model grezzo in un assistente conversazionale utile e sicuro. Il processo: valutatori umani confrontano più output del modello e li classificano per qualità. Un \"reward model\" impara da queste preferenze. Poi il language model viene ottimizzato per produrre output che il reward model valuta alti. È uno dei motivi per cui ChatGPT e sembrato una svolta anche se i modelli GPT esistevano già prima.\n",
+      "key_intuition": "Un LLM di base è come una persona brillantissima ma non socializzata: molto competente, ma potrebbe rispondere a \"come risolvo il mio codice?\" continuando il tuo messaggio come se fosse un post su un forum, o generando qualcosa di offensivo, o divagando senza senso. RLHF e addestramento alla socializzazione. Attraverso migliaia di esempi di \"questa risposta e meglio di quella\", il modello impara a essere utile, chiaro, onesto e sicuro. È la lucidatura che rende l'intelligenza grezza utilizzabile.\n",
+      "use_cases": "Allineare assistenti per utilità/sicurezza; modellare tono e rifiuti; migliorare qualità prodotto via preferenze umane.",
+      "links": [
+        {
+          "title": "Ouyang et al. (2022) - InstructGPT / Instruction tuning with human feedback (arXiv:2203.02155)",
+          "url": "https://arxiv.org/abs/2203.02155",
+          "type": "technical"
+        },
+        {
+          "title": "Bai et al. (2022) - Helpful and Harmless Assistant with RLHF (arXiv:2204.05862)",
+          "url": "https://arxiv.org/abs/2204.05862",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "fine-tuning",
+        "prompt-engineering",
+        "benchmark",
+        "pre-training-vs-post-training"
+      ],
+      "id": "rlhf"
+    },
+    {
+      "term": "Synthetic Data & Model Collapse",
+      "aliases": [
+        "Dati sintetici",
+        "Model collapse"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "I dati sintetici sono dati di training generati dagli stessi modelli AI invece che raccolti dal mondo reale. Man mano che i dati di alta qualità prodotti da umani diventano scarsi (stiamo letteralmente finendo internet da \"scrapare\"), i dati sintetici diventano essenziali. Ma c'è un feedback loop pericoloso: se addestri un modello su dati generati da AI e poi usi quel modello per generare ancora più dati di training, la qualità degrada generazione dopo generazione. Questa degradazione ricorsiva si chiama model collapse.\n",
+      "key_intuition": "Immagina di fotocopiare una fotografia. La copia sembra quasi altrettanto buona. Ora fotocopia la copia. Poi fotocopia quella copia. Alla decima generazione, l'immagine è un disastro sfocato e degradato. Il model collapse è lo stesso fenomeno applicato all'AI: ogni generazione di dati sintetici perde qualche sfumatura sottile, amplifica alcuni errori e restringe la distribuzione. Dopo diverse generazioni, il modello perde la capacità di rappresentare tutta la diversità del linguaggio e della conoscenza umana.\n\nQuesto sta già succedendo. Man mano che internet si riempie di contenuti generati da AI, la prossima generazione di modelli inevitabilmente si addestrera anche su parte di essi. Una ricerca pubblicata su Nature (2024) ha mostrato che modelli addestrati ricorsivamente perdono diversità e accuratezza in modo prevedibile. La soluzione? Curare attentamente i dati, mescolare sintetico con dati umani verificati e mantenere fonti di dati \"pulite\".\n",
+      "use_cases": "Progettare pipeline dati; augmentation sintetica; evitare feedback loop; strategie di data curation.",
+      "links": [
+        {
+          "title": "Shumailov et al. (2024) - Model collapse with recursive training data (Nature)",
+          "url": "https://scholar.google.com/scholar?q=AI+models+collapse+when+trained+on+recursively+generated+data+Shumailov+2024",
+          "type": "technical"
+        },
+        {
+          "title": "Long et al. (2024) - Synthetic Data Generation & Evaluation Survey (arXiv:2406.15126)",
+          "url": "https://arxiv.org/abs/2406.15126",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "pre-training-vs-post-training",
+        "benchmark",
+        "overfitting-and-generalization"
+      ],
+      "id": "synthetic-data-model-collapse"
+    },
+    {
+      "term": "Temperature",
+      "aliases": [],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "La temperature è un numero (di solito tra 0 e 2) che controlla quanto l'output del modello sia casuale o deterministico. A ogni passo il modello calcola una distribuzione di probabilità su tutti i possibili prossimi token. La temperature modifica quella distribuzione: una temperature bassa la rende più \"appuntita\" (vince quasi sempre il token più probabile), una temperature alta la appiattisce (token meno probabili hanno una reale possibilità).\n",
+      "key_intuition": "Immagina di scegliere un ristorante. A \"temperature 0\" vai sempre nel tuo preferito. A \"temperature 0.7\" di solito scegli tra i migliori, ma a volte provi quel posto nuovo. A \"temperature 1.5\" potresti scegliere a caso il ristorante fusion strano all'angolo. A \"temperature 2\" potresti finire al distributore di benzina. Più casualità significa più creatività, ma anche più caos.\n",
+      "use_cases": "Regolare creatività vs determinismo (bassa per codice/fatti; più alta per brainstorming/scrittura creativa).",
+      "links": [
+        {
+          "title": "Holtzman et al. (2020) - Neural Text Degeneration (arXiv:1904.09751)",
+          "url": "https://arxiv.org/abs/1904.09751",
+          "type": "technical"
+        },
+        {
+          "title": "Ackley, Hinton & Sejnowski (1985) - Boltzmann Machines (origin of \"temperature\")",
+          "url": "https://scholar.google.com/scholar?q=A+Learning+Algorithm+for+Boltzmann+Machines+Ackley+Hinton+Sejnowski+1985",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "prompt",
+        "inference"
+      ],
+      "id": "temperature"
+    },
+    {
+      "term": "Test-Time Compute",
+      "aliases": [
+        "Inference-time scaling"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Test-time compute è l'idea (che cambia paradigma) che puoi rendere un modello AI \"più intelligente\" non facendolo più grande o addestrandolo più a lungo, ma dandogli più tempo e compute per pensare al momento dell'inferenza (quando sta generando la risposta). Invece di scalare la dimensione del modello (strategia dominante per anni), scali lo sforzo di pensiero per domanda. È il principio dietro i modelli o1/o3 di OpenAI e la funzione di extended thinking di Anthropic.\n",
+      "key_intuition": "Scaling tradizionale: costruire un cervello più grande (più parametri). Test-time compute: lasciare lo stesso cervello pensare più forte e più a lungo. Pensa a un giocatore di scacchi: puoi renderlo migliore insegnandogli più aperture (training). Oppure puoi dargli più tempo per mossa (test-time compute). Un grande maestro con 30 secondi per mossa giocherà peggio dello stesso grande maestro con 30 minuti per mossa. Il test-time compute dà ai modelli AI i loro \"30 minuti\" permettendo di generare catene di ragionamento, esplorare alternative, verificare il lavoro e auto-correggersi prima di consegnare la risposta finale.\n\nQuesto cambia l'economia dell'AI: invece di un costo fisso per query, ora puoi scegliere quanto \"spendere\" su ogni domanda. Domanda semplice? Risposta veloce, costo basso. Dimostrazione matematica complessa? Il modello pensa per 2 minuti, usa internamente 50x token, ma produce una risposta corretta che altrimenti non avrebbe raggiunto.\n",
+      "use_cases": "Scaling in inferenza per domande difficili; tradeoff qualità-costo; impostazioni di reasoning/extended thinking.",
+      "links": [
+        {
+          "title": "Snell et al. (2024) - Scaling LLM Test-Time Compute (arXiv:2408.03314)",
+          "url": "https://arxiv.org/abs/2408.03314",
+          "type": "technical"
+        },
+        {
+          "title": "OpenAI (2024) - Learning to reason with LLMs",
+          "url": "https://openai.com/research/learning-to-reason-with-llms",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "chain-of-thought",
+        "inference",
+        "llm"
+      ],
+      "id": "test-time-compute"
+    },
+    {
+      "term": "Token",
+      "aliases": [
+        "Unità atomica di testo"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Un token è l'unità atomica di testo che un modello elabora. Non è una parola, non è un carattere, ma qualcosa nel mezzo: un frammento di sotto-parola determinato dal tokenizer del modello. Il tokenizer è addestrato a spezzare il testo nei blocchi più efficienti in base a pattern di frequenza nei dati di addestramento. Le parole comuni diventano singoli token; le parole rare vengono spezzate in più pezzi.\n",
+      "key_intuition": "Pensa ai token come a mattoncini LEGO per il linguaggio. La parola \"the\" è così comune da avere un singolo mattoncino tutto per sé. Ma \"cryptocurrency\" potrebbe essere divisa in \"crypt\" + \"ocur\" + \"rency\" - tre mattoncini. Il modello non vede parole; vede questi mattoncini e costruisce la sua comprensione a partire da loro.\n\nQuesto conta nella pratica: quando un modello ha una \"context window\" da 128K, significa 128.000 token, non parole. In inglese sono circa 96.000 parole (circa 300 pagine). Ma in italiano lo stesso testo può usare il 30-40% di token in più perché il tokenizer è stato addestrato principalmente sull'inglese. In giapponese o cinese il rapporto è ancora peggiore.\n",
+      "use_cases": "Stimare limiti di contesto e costi; capire perché un testo viene troncato; confrontare lingue e tokenizer.",
+      "links": [
+        {
+          "title": "Sennrich et al. (2016) - Subword Units / BPE (arXiv:1508.07909)",
+          "url": "https://arxiv.org/abs/1508.07909",
+          "type": "technical"
+        },
+        {
+          "title": "OpenAI Tokenizer (interactive tool)",
+          "url": "https://platform.openai.com/tokenizer",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "llm",
+        "prompt",
+        "context-window"
+      ],
+      "id": "token"
+    },
+    {
+      "term": "Transformer",
+      "aliases": [],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Il Transformer è l'architettura di rete neurale dietro ogni grande modello AI di cui hai sentito parlare: GPT, Claude, Gemini, LLaMA, Mistral, BERT. Pubblicato nel 2017 da ricercatori di Google, ha risolto un problema fondamentale: come processare testo in parallelo (veloce) mantenendo la capacità di capire relazioni tra parole lontane. La sua innovazione centrale, il meccanismo di attention, permette al modello di pesare l'importanza di ogni parola rispetto a tutte le altre simultaneamente.\n",
+      "key_intuition": "Prima dei Transformer, i modelli leggevano il testo come un essere umano che legge un rotolo: una parola alla volta, da sinistra a destra, cercando di ricordare l'inizio mentre legge la fine. I Transformer sono diversi: vedono tutto il testo in una volta, come guardare una pagina stampata, e possono tracciare connessioni tra qualsiasi due parti istantaneamente. La frase \"The animal didn't cross the street because it was too tired\" richiede collegare \"it\" ad \"animal\" (non a \"street\"). L'attention rende questa connessione esplicita e apprendibile.\n",
+      "use_cases": "Modello mentale base per gli LLM moderni; capire attention, scaling e perché funzionano modelli tipo GPT/BERT.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Phuong & Hutter (2022) - Formal Algorithms for Transformers (arXiv:2207.09238)",
+          "url": "https://arxiv.org/abs/2207.09238",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "attention-mechanism",
+        "llm",
+        "token",
+        "context-window"
+      ],
+      "id": "transformer"
+    },
+    {
+      "term": "Vector Database",
+      "aliases": [
+        "Database vettoriale"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Un vector database è un database specializzato progettato per salvare e cercare embedding - rappresentazioni numeriche di significato. A differenza di un database tradizionale che trova match esatti (\"trova tutti i record dove name = 'John'\"), un vector database trova nearest neighbors approssimati: \"trova gli elementi salvati il cui significato è più vicino a questa query\". È il motore di ricerca dietro a ogni sistema RAG.\n",
+      "key_intuition": "Un database tradizionale è come un archivio alfabetico: velocissimo se conosci l'etichetta esatta, inutile se stai cercando per concetto. Un vector database è come un bibliotecario che capisce il significato: dici \"mi serve qualcosa sull'impatto dei social media sulla salute mentale degli adolescenti\" e lui trova documenti rilevanti anche se nessuna di quelle parole appare nel testo. La \"magia\" è che la similarità semantica diventa un calcolo di distanza matematica.\n",
+      "use_cases": "Salvare embedding per ricerca semantica; layer di retrieval per RAG; similarity search su larga scala con filtri.",
+      "links": [
+        {
+          "title": "Johnson et al. (2019) - FAISS / Billion-scale similarity search (arXiv:1702.08734)",
+          "url": "https://arxiv.org/abs/1702.08734",
+          "type": "technical"
+        },
+        {
+          "title": "Pan et al. (2024) - Vector DBMS Survey (arXiv:2310.11703)",
+          "url": "https://arxiv.org/abs/2310.11703",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "embedding",
+        "rag",
+        "latent-space"
+      ],
+      "id": "vector-database"
+    },
+    {
+      "term": "Vibe Coding",
+      "aliases": [
+        "Programmare a sensazione"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Vibe coding è un termine coniato da Andrej Karpathy (co-fondatore di OpenAI, ex direttore AI di Tesla) a inizio 2025 per descrivere un nuovo modo di programmare: descrivi quello che vuoi in linguaggio naturale, l'AI scrive il codice, lo esegui, vedi se funziona e iteri descrivendo cambiamenti. Non leggi mai o non capisci davvero il codice. Programmi \"a vibe\" - a sensazione - descrivendo l'esito desiderato, non ingegnerizzando la soluzione.\n",
+      "key_intuition": "Programmazione tradizionale: sei l'architetto, il costruttore e l'ispettore. Progetti la struttura, scrivi ogni riga, fai debug di ogni errore. Vibe coding: sei il cliente che descrive a un appaltatore AI cosa vuoi costruire. \"Fammi un sito con un form che invia email.\" L'AI scrive il codice. Tu lo testi, dici \"il bottone è troppo piccolo e aggiungi una dark mode\" e l'AI lo rivede. Potresti spedire un prodotto funzionante senza capire una singola riga del codice sottostante.\n",
+      "use_cases": "Prototipazione rapida con AI; accelerare piccoli progetti; capire rischi (sicurezza, manutenibilità) del codice scritto da AI.",
+      "links": [
+        {
+          "title": "Andrej Karpathy (2025) - Original post coining \"vibe coding\"",
+          "url": "https://x.com/karpathy",
+          "type": "reference"
+        },
+        {
+          "title": "Simon Willison (2025) - Not all AI-assisted programming is vibe coding",
+          "url": "https://simonwillison.net/",
+          "type": "explainer"
+        }
+      ],
+      "related": [
+        "llm",
+        "api",
+        "ai-agent"
+      ],
+      "id": "vibe-coding"
+    }
+  ]
+}

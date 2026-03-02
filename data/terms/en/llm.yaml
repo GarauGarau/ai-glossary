@@ -1,0 +1,33 @@
+term: LLM
+aliases:
+  - Large Language Model
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  An LLM is a neural network with billions of numerical parameters, trained by reading enormous quantities of text (books, websites, code, conversations). During training, the model learns statistical patterns: which words tend to follow which, in what contexts, across millions of different topics. The result is a system that can generate text so fluent it feels like understanding, even though the underlying process is mathematical prediction.
+key_intuition: |
+  Imagine you've read every book in the largest library on Earth, every Wikipedia article, every Reddit thread, every GitHub repository. You didn't memorize them word for word, but you absorbed patterns: how legal contracts sound, how Python code is structured, how a doctor explains a diagnosis, how Italian poetry flows. Now someone asks you a question, and you generate an answer by predicting, word by word, what the most plausible continuation would be given everything you've absorbed.
+
+  That's what an LLM does. It's not looking anything up. It's not reasoning from first principles. It's generating the statistically most likely sequence of words given your input and its training. The miracle is that this process, at sufficient scale, produces outputs that are coherent, knowledgeable, and often genuinely useful.
+use_cases: Chatbots and assistants; summarization and writing; code generation; mental model for limitations like hallucinations.
+links:
+  - title: Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)
+    url: https://arxiv.org/abs/1706.03762
+    type: technical
+  - title: Brown et al. (2020) - Language Models are Few-Shot Learners (arXiv:2005.14165)
+    url: https://arxiv.org/abs/2005.14165
+    type: technical
+  - title: Anthropic - What are large language models?
+    url: https://www.anthropic.com/research
+    type: official
+related:
+  - token
+  - prompt
+  - transformer
+  - attention-mechanism
+  - context-window
+  - inference
+  - rlhf

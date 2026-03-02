@@ -1,0 +1,26 @@
+term: Test-Time Compute
+aliases:
+  - Inference-time scaling
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  Test-time compute is the paradigm-shifting idea that you can make an AI model "smarter" not by making it bigger or training it longer, but by giving it more time and compute to think at inference time (when it's generating your answer). Instead of scaling the model's size (which has been the dominant strategy for years), you scale the thinking effort per question. This is the principle behind OpenAI's o1/o3 models and Anthropic's extended thinking feature.
+key_intuition: |
+  Traditional scaling: build a bigger brain (more parameters). Test-time compute: let the same brain think harder and longer. Consider a chess player: you can make them better by teaching them more openings (training). Or you can give them more time per move (test-time compute). A grandmaster with 30 seconds per move will play worse than the same grandmaster with 30 minutes per move. Test-time compute gives AI models their "30 minutes" by letting them generate chains of reasoning, explore alternatives, verify their work, and self-correct before delivering a final answer.
+
+  This changes the economics of AI: instead of a fixed cost per query, you can now choose how much to "spend" on each question. Simple question? Quick answer, low cost. Complex math proof? The model thinks for 2 minutes, uses 50x more tokens internally, but produces a correct answer it couldn't have reached otherwise.
+use_cases: Inference-time scaling for harder questions; quality-cost tradeoffs; reasoning model settings like extended thinking.
+links:
+  - title: Snell et al. (2024) - Scaling LLM Test-Time Compute (arXiv:2408.03314)
+    url: https://arxiv.org/abs/2408.03314
+    type: technical
+  - title: OpenAI (2024) - Learning to reason with LLMs
+    url: https://openai.com/research/learning-to-reason-with-llms
+    type: official
+related:
+  - chain-of-thought
+  - inference
+  - llm

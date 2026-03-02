@@ -1,0 +1,26 @@
+term: Prompt
+aliases:
+  - Istruzione
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Il prompt è tutto ciò che invii al modello: la tua domanda, le tue istruzioni, qualsiasi contesto tu fornisca. Ma ecco la cosa che molti si perdono: la qualità dell'output dell'AI è determinata in modo schiacciante dalla qualità del prompt. Stesso modello, stessa domanda, formulazione diversa - risultati completamente diversi. Un prompt vago produce una risposta generica. Un prompt strutturato e specifico, con contesto ed esempi, può ottenere output da livello esperto.
+key_intuition: |
+  Un prompt è come un brief che dai a un consulente. Se dici "parlami di marketing", otterrai una panoramica generica. Se dici "gestisco una società B2B SaaS con 50 dipendenti, il nostro CAC è aumentato del 40% nel Q3 e mi servono 3 strategie specifiche per ridurlo usando content marketing, con tempi e costi stimati", otterrai qualcosa di davvero operativo. Il modello non è diventato più intelligente. Gli hai dato vincoli migliori.
+use_cases: Ottenere output migliori aggiungendo contesto, vincoli, esempi e il formato desiderato.
+links:
+  - title: Anthropic Prompt Engineering Guide
+    url: https://docs.anthropic.com/
+    type: official
+  - title: Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)
+    url: https://arxiv.org/abs/2201.11903
+    type: technical
+related:
+  - llm
+  - token
+  - prompt-engineering
+  - context-window
+  - temperature

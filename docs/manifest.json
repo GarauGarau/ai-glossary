@@ -1,0 +1,16 @@
+{
+  "version": "1.0.0-beta",
+  "active_languages": [
+    "en",
+    "it"
+  ],
+  "counts": {
+    "en": 32,
+    "it": 32
+  },
+  "files": {
+    "en": "glossary.en.json",
+    "it": "glossary.it.json"
+  },
+  "issue_base_url": ""
+}

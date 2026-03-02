@@ -1,0 +1,25 @@
+term: Pre-training vs Post-training
+aliases:
+  - Pretraining
+  - Post-training
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  Modern AI models are built in two distinct phases. Pre-training: the model reads massive amounts of raw text from the internet, books, code - and learns the general patterns of language. This is extremely expensive (millions of dollars in compute) and produces a "base model" that can complete text but isn't particularly helpful or safe. Post-training: the base model is refined through techniques like RLHF, fine-tuning on curated examples, safety training, and instruction-following. This is what turns a text-completion engine into a useful assistant.
+key_intuition: |
+  Pre-training is a university education: broad, expensive, foundational. It takes months and costs millions. The model learns language, facts, reasoning patterns, and code from trillions of tokens. But a fresh graduate isn't ready for a specific job - they need onboarding. Post-training is that onboarding: learning to follow instructions, be polite, refuse harmful requests, reason step by step, and cite sources. The base model can recite Shakespeare and write Python, but it might also generate toxic content or ignore your question entirely. Post-training fixes this.
+use_cases: Understanding capability vs alignment; choosing fine-tuning/RLHF vs prompting; reasoning about cost and data requirements.
+links:
+  - title: Hoffmann et al. (2022) - Chinchilla scaling (arXiv:2203.15556)
+    url: https://arxiv.org/abs/2203.15556
+    type: technical
+  - title: Ouyang et al. (2022) - InstructGPT (arXiv:2203.02155)
+    url: https://arxiv.org/abs/2203.02155
+    type: technical
+related:
+  - llm
+  - fine-tuning
+  - rlhf

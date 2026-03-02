@@ -1,0 +1,34 @@
+term: LLM
+aliases:
+  - Large Language Model
+  - Modello linguistico di grandi dimensioni
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Un LLM è una rete neurale con miliardi di parametri numerici, addestrata leggendo enormi quantità di testo (libri, siti web, codice, conversazioni). Durante l'addestramento, il modello apprende pattern statistici: quali parole tendono a seguire quali, in quali contesti, attraverso milioni di argomenti diversi. Il risultato è un sistema che può generare testo così fluente da sembrare comprensione, anche se il processo sottostante è una previsione matematica.
+key_intuition: |
+  Immagina di aver letto ogni libro nella più grande biblioteca del mondo, ogni articolo di Wikipedia, ogni thread di Reddit, ogni repository su GitHub. Non li hai memorizzati parola per parola, ma hai assorbito dei pattern: come suonano i contratti legali, come è strutturato il codice Python, come un medico spiega una diagnosi, come scorre la poesia italiana. Ora qualcuno ti fa una domanda e tu generi una risposta prevedendo, parola per parola, quale sia la continuazione più plausibile dato tutto ciò che hai assorbito.
+
+  Ecco cosa fa un LLM. Non sta cercando informazioni. Non ragiona a partire da primi principi. Genera la sequenza di parole statisticamente più probabile dato il tuo input e il suo addestramento. Il miracolo è che questo processo, a sufficiente scala, produce output coerenti, ricchi di conoscenza e spesso davvero utili.
+use_cases: Chatbot e assistenti; riassunti e scrittura; generazione di codice; modello mentale per limiti come le allucinazioni.
+links:
+  - title: Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)
+    url: https://arxiv.org/abs/1706.03762
+    type: technical
+  - title: Brown et al. (2020) - Language Models are Few-Shot Learners (arXiv:2005.14165)
+    url: https://arxiv.org/abs/2005.14165
+    type: technical
+  - title: Anthropic - What are large language models?
+    url: https://www.anthropic.com/research
+    type: official
+related:
+  - token
+  - prompt
+  - transformer
+  - attention-mechanism
+  - context-window
+  - inference
+  - rlhf

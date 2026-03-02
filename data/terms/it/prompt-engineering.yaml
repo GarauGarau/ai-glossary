@@ -1,0 +1,27 @@
+term: Prompt Engineering
+aliases:
+  - System prompt
+  - Few-shot prompting
+  - Zero-shot prompting
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  La prompt engineering è l'arte di progettare input che producano in modo consistente output di alta qualità da modelli AI. Non è solo "chiedere gentilmente" - è una disciplina strutturata con tecniche specifiche, ciascuna adatta a compiti diversi. I tre concetti più importanti: system prompt (istruzioni nascoste dello sviluppatore), zero-shot (richiesta senza esempi) e few-shot (fornire esempi di ciò che vuoi).
+key_intuition: |
+  La prompt engineering è la differenza tra un turista e un locale quando ordinano al ristorante. Il turista dice "dammi qualcosa di buono" (zero-shot). Il turista informato dice "mi piace quello che hai appena servito a quel tavolo, dammi qualcosa di simile" (few-shot). Il locale dice "sono un abituale, sai che sono vegetariano, mi piace il piccante e ho fretta" (system prompt + contesto). Stesso ristorante, esperienza completamente diversa.
+use_cases: Prompt affidabili per estrazione/classificazione/formati; system prompt per comportamento di prodotto; few-shot per casi limite.
+links:
+  - title: Anthropic Prompt Engineering Guide
+    url: https://docs.anthropic.com/
+    type: official
+  - title: Brown et al. (2020) - In-context learning / few-shot (arXiv:2005.14165)
+    url: https://arxiv.org/abs/2005.14165
+    type: technical
+related:
+  - prompt
+  - llm
+  - rag
+  - context-window
+  - rlhf

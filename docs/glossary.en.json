@@ -1,0 +1,1089 @@
+{
+  "lang": "en",
+  "terms": [
+    {
+      "term": "AI Agent",
+      "aliases": [
+        "Agentic AI",
+        "AI agent"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "An AI agent is a system that goes beyond responding to single prompts: it can plan multi-step tasks, use external tools (search engines, APIs, code interpreters, databases), execute actions, observe results, and adapt its approach. Instead of \"answer my question,\" you give it a goal like \"research competitors and produce a report,\" and it autonomously figures out the steps to get there.\n",
+      "key_intuition": "A chatbot is like a librarian who answers questions from behind a desk. An agent is like a research assistant who leaves the desk: they search multiple databases, cross-reference sources, take notes, draft a report, realize they need more data, go find it, and come back with a finished product. The LLM is the brain, but the agent framework adds hands, eyes, and the ability to move.\n",
+      "use_cases": "Automating multi-step workflows with tools; research assistants; code execution; planning/execution loops.",
+      "links": [
+        {
+          "title": "Yao et al. (2023) - ReAct (arXiv:2210.03629)",
+          "url": "https://arxiv.org/abs/2210.03629",
+          "type": "technical"
+        },
+        {
+          "title": "Wang et al. (2024) - Survey on LLM-based Autonomous Agents (arXiv:2308.11432)",
+          "url": "https://arxiv.org/abs/2308.11432",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "api",
+        "rag",
+        "mcp",
+        "guardrails",
+        "prompt-engineering"
+      ],
+      "id": "ai-agent"
+    },
+    {
+      "term": "API",
+      "aliases": [
+        "Application Programming Interface"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "In the AI context, an API is how developers interact with AI models programmatically, through code, rather than through a chat interface like ChatGPT or Claude.ai. When someone says \"I use the OpenAI API\" or \"we integrated Claude via API,\" they mean their software sends text to the model and receives text back, automatically, without a human typing in a chat window.\n",
+      "key_intuition": "Think of a restaurant. The chat interface (ChatGPT, Claude.ai) is like sitting at a table: you talk to the waiter, order one dish at a time, eat it. The API is like the kitchen's delivery entrance: you can send in 10,000 orders at once, specify exactly how each should be prepared, get them back in bulk, and serve them to your own customers. Same food, radically different access.\n",
+      "use_cases": "Integrating models into products; automating high-volume requests; controlling cost/latency via settings and batching.",
+      "links": [
+        {
+          "title": "Anthropic API Documentation",
+          "url": "https://docs.anthropic.com/api",
+          "type": "official"
+        },
+        {
+          "title": "OpenAI API Reference",
+          "url": "https://platform.openai.com/docs",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "llm",
+        "inference",
+        "temperature",
+        "context-window"
+      ],
+      "id": "api"
+    },
+    {
+      "term": "Attention Mechanism",
+      "aliases": [
+        "Attention"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "The attention mechanism is the mathematical operation at the heart of Transformers. For each token in the input, attention computes a relevance score against every other token, creating a weighted map of \"what should I focus on to understand this word in context?\" It's what allows the model to resolve ambiguity, track references, and understand long-range dependencies in text.\n",
+      "key_intuition": "Read this sentence: \"The trophy didn't fit in the suitcase because it was too big.\" What does \"it\" refer to? The trophy (too big to fit). Now: \"The trophy didn't fit in the suitcase because it was too small.\" Now \"it\" refers to the suitcase. You resolved this ambiguity instantly using contextual understanding. Attention does the same thing mathematically: it computes a score between \"it\" and every other word, and the word with the highest attention score becomes the reference. In one sentence \"trophy\" wins; in the other, \"suitcase\" wins.\n\nMulti-head attention means the model runs this process multiple times in parallel, each \"head\" learning different types of relationships: one head might track grammatical structure, another tracks semantic meaning, another tracks co-reference (like our \"it\" example). The combination creates a rich, multi-dimensional understanding of the text.\n",
+      "use_cases": "Understanding reference resolution and long-range dependencies; interpreting attention maps and transformer behavior.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Clark et al. (2019) - An Analysis of BERT's Attention (arXiv:1906.04341)",
+          "url": "https://arxiv.org/abs/1906.04341",
+          "type": "technical"
+        },
+        {
+          "title": "3Blue1Brown (2024) - Attention in Transformers, visually explained (YouTube)",
+          "url": "https://www.youtube.com/results?search_query=3Blue1Brown+Attention+in+Transformers",
+          "type": "video"
+        }
+      ],
+      "related": [
+        "transformer",
+        "llm",
+        "context-window"
+      ],
+      "id": "attention-mechanism"
+    },
+    {
+      "term": "Benchmark",
+      "aliases": [
+        "AI benchmark"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "A benchmark is a standardized test for AI models: a fixed set of questions or tasks with known correct answers, designed to measure specific capabilities. Benchmarks let researchers and companies compare models on a common scoreboard. But they're deeply imperfect: models can be optimized specifically for benchmarks, training data can accidentally contain benchmark questions, and real-world performance often diverges from scores.\n",
+      "key_intuition": "Benchmarks are like standardized tests for AI: SATs, GREs, IQ tests. They provide a useful signal, but everyone knows a high SAT score doesn't guarantee success in life. Similarly, a model that tops MMLU (a massive multiple-choice knowledge test) might still give terrible advice on your specific business problem. The AI industry is slowly learning the same lesson education learned decades ago: you can't reduce complex capability to a single number.\n",
+      "use_cases": "Comparing models; selecting models for tasks; understanding limitations and metric gaming.",
+      "links": [
+        {
+          "title": "Hendrycks et al. (2021) - MMLU (arXiv:2009.03300)",
+          "url": "https://arxiv.org/abs/2009.03300",
+          "type": "technical"
+        },
+        {
+          "title": "Chiang et al. (2024) - Chatbot Arena (arXiv:2403.04132)",
+          "url": "https://arxiv.org/abs/2403.04132",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "overfitting-and-generalization",
+        "rlhf",
+        "reasoning-vs-pattern-matching"
+      ],
+      "id": "benchmark"
+    },
+    {
+      "term": "Chain-of-Thought",
+      "aliases": [
+        "CoT",
+        "Reasoning models"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Chain-of-Thought is a technique where the model is encouraged (or trained) to explicitly show its step-by-step reasoning before giving a final answer. Instead of jumping to a conclusion, the model \"thinks out loud.\" This dramatically improves performance on complex tasks: math, logic, multi-step planning, code debugging. Reasoning models (OpenAI's o1/o3, Anthropic's extended thinking) take this further by being specifically trained to reason at length before answering.\n",
+      "key_intuition": "Ask someone \"what's 17 times 24?\" and demand an instant answer - they'll likely get it wrong. But if you say \"take your time, show your work,\" they'll write \"17 x 24 = 17 x 20 + 17 x 4 = 340 + 68 = 408\" and get it right. The same applies to LLMs. By generating intermediate reasoning steps, the model essentially gives itself scratch paper. Each step constrains the next, reducing the chance of error propagating.\n\nHere's the counterintuitive part: making the model produce MORE tokens (the reasoning steps) actually makes the final answer MORE accurate. You're trading tokens (which cost money) for quality. This is a paradigm shift: intelligence can be improved not just by making the model bigger, but by letting it think longer.\n",
+      "use_cases": "Improving accuracy on multi-step tasks; deciding when to spend tokens; prompting patterns for reasoning.",
+      "links": [
+        {
+          "title": "Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)",
+          "url": "https://arxiv.org/abs/2201.11903",
+          "type": "technical"
+        },
+        {
+          "title": "Lightman et al. (2023) - Let's Verify Step by Step (arXiv:2305.20050)",
+          "url": "https://arxiv.org/abs/2305.20050",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "prompt-engineering",
+        "test-time-compute",
+        "rlhf"
+      ],
+      "id": "chain-of-thought"
+    },
+    {
+      "term": "Context Window",
+      "aliases": [
+        "Context length"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "The context window is the maximum amount of text (measured in tokens) that a model can process in a single interaction. It includes both the input (your prompt, the conversation history, any documents you provide) and the output (the model's response). Once the window is full, the model has no access to anything outside it. Older messages in a long conversation simply vanish from the model's perspective.\n",
+      "key_intuition": "Think of the context window as the model's working desk. Everything it needs to reference while answering must fit on this desk. A small desk (4K tokens, early GPT-3) can hold about 6 pages. A large desk (200K tokens, Claude) can hold an entire novel. But once something falls off the desk, it's gone - the model can't reach into a drawer to retrieve it.\n\nThis is why AI \"forgets\" your instructions in long conversations: your initial message got pushed out of the window by newer messages. It's not a bug - it's a fundamental architectural constraint.\n",
+      "use_cases": "Managing long conversations; choosing models by window size; chunking/summarizing context and documents.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Anthropic - Long Context Prompting Tips",
+          "url": "https://docs.anthropic.com/",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "llm",
+        "token",
+        "prompt",
+        "rag",
+        "transformer"
+      ],
+      "id": "context-window"
+    },
+    {
+      "term": "Distillation",
+      "aliases": [
+        "Knowledge distillation"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Distillation is a technique where a smaller \"student\" model is trained to replicate the behavior of a larger \"teacher\" model. Instead of learning from raw data (text from the internet), the student learns from the teacher's outputs - its probability distributions, its reasoning patterns, its response style. The result: a model that captures 80-90% of the teacher's quality at a fraction of the size, cost, and speed.\n",
+      "key_intuition": "Imagine a master chef who spent 30 years developing their skills (the large model). Now imagine they write down not just their recipes, but their thought process: why they add salt at this moment, how they judge temperature by sound, when to break the rules. An apprentice (the small model) who studies these annotations learns far more efficiently than one who just reads the same cookbooks the master once read. That's distillation: learning from someone who already understands, rather than figuring it out from scratch.\n",
+      "use_cases": "Creating smaller/faster models; reducing cost/latency; deploying on-device; producing \"mini\" variants from a frontier model.",
+      "links": [
+        {
+          "title": "Hinton et al. (2015) - Distilling the Knowledge in a Neural Network (arXiv:1503.02531)",
+          "url": "https://arxiv.org/abs/1503.02531",
+          "type": "technical"
+        },
+        {
+          "title": "Xu et al. (2024) - Knowledge Distillation of LLMs Survey (arXiv:2402.13116)",
+          "url": "https://arxiv.org/abs/2402.13116",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "quantization",
+        "open-source-vs-closed-source-models"
+      ],
+      "id": "distillation"
+    },
+    {
+      "term": "Embedding",
+      "aliases": [
+        "Embedding vector"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "An embedding is a list of numbers (a vector) that represents the \"meaning\" of a piece of text in a format that computers can work with mathematically. The key property: texts with similar meanings get similar vectors. This allows machines to do something they couldn't before - search by meaning rather than by exact keyword match.\n",
+      "key_intuition": "Imagine a massive map where every concept in human language has a location. \"Dog\" and \"puppy\" are right next to each other. \"Dog\" and \"cat\" are nearby (both pets). \"Dog\" and \"airplane\" are far apart. An embedding is the GPS coordinates of a concept on this map. When you search for \"affordable family car\" and the system finds a document about \"budget-friendly vehicles for families\" even though no words match exactly, that's embeddings at work.\n\nThe famous example: in embedding space, the vector for \"king\" minus \"man\" plus \"woman\" produces a vector very close to \"queen.\" The model learned gender relationships purely from statistical patterns in text.\n",
+      "use_cases": "Semantic search, clustering, recommendations; retrieval for RAG; deduplication and similarity matching.",
+      "links": [
+        {
+          "title": "Mikolov et al. (2013) - Word2Vec (arXiv:1301.3781)",
+          "url": "https://arxiv.org/abs/1301.3781",
+          "type": "technical"
+        },
+        {
+          "title": "Reimers & Gurevych (2019) - Sentence-BERT (arXiv:1908.10084)",
+          "url": "https://arxiv.org/abs/1908.10084",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "rag",
+        "vector-database",
+        "latent-space"
+      ],
+      "id": "embedding"
+    },
+    {
+      "term": "Fine-tuning",
+      "aliases": [
+        "Finetuning"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Fine-tuning means taking a pre-trained model (one that already knows language broadly) and training it further on a smaller, specialized dataset. The model's weights are updated to make it better at a specific domain or task, while retaining its general capabilities. It's the difference between a general-purpose doctor and a cardiologist: same medical school, different specialization.\n",
+      "key_intuition": "Pre-training is education (expensive, broad, done once). Fine-tuning is job training (cheaper, focused, done for a specific role). You wouldn't send someone to university again every time you want them to learn a new skill - you'd give them targeted training. Same logic: you don't retrain GPT-4 from scratch to make it good at legal analysis; you fine-tune it on legal documents.\n",
+      "use_cases": "Domain/style adaptation; improving structured outputs; specialized behavior when prompting alone isn't enough.",
+      "links": [
+        {
+          "title": "Howard & Ruder (2018) - ULMFiT (arXiv:1801.06146)",
+          "url": "https://arxiv.org/abs/1801.06146",
+          "type": "technical"
+        },
+        {
+          "title": "Hu et al. (2021) - LoRA (arXiv:2106.09685)",
+          "url": "https://arxiv.org/abs/2106.09685",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "prompt-engineering",
+        "rag",
+        "rlhf",
+        "pre-training-vs-post-training"
+      ],
+      "id": "fine-tuning"
+    },
+    {
+      "term": "Guardrails",
+      "aliases": [],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Guardrails are safety and control layers placed around an AI model to constrain its behavior. They can filter inputs (blocking dangerous or off-topic prompts before the model sees them), filter outputs (scanning the model's response and redacting or blocking harmful content), or enforce structural rules (the model must respond in JSON, must not mention competitors, must always include a disclaimer). They're the seatbelts and bumpers of production AI.\n",
+      "key_intuition": "A model without guardrails is like a very smart intern with no supervision and no rules: they might do brilliant work, or they might accidentally email confidential data to a client, say something legally problematic, or go off-script. Guardrails are the policies, the review process, and the compliance layer that make it safe to deploy this intern in a real business. Every serious AI deployment has them.\n",
+      "use_cases": "Safety controls and compliance; input/output filtering; enforcing output schemas; mitigating jailbreak attempts.",
+      "links": [
+        {
+          "title": "Rebedea et al. (2023) - NeMo Guardrails (arXiv:2310.10501)",
+          "url": "https://arxiv.org/abs/2310.10501",
+          "type": "technical"
+        },
+        {
+          "title": "Dong et al. (2024) - Building Guardrails for LLMs (arXiv:2402.01822)",
+          "url": "https://arxiv.org/abs/2402.01822",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "ai-agent",
+        "prompt-engineering",
+        "mcp",
+        "rlhf"
+      ],
+      "id": "guardrails"
+    },
+    {
+      "term": "Hallucination",
+      "aliases": [
+        "Model hallucination"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "A hallucination is when an AI generates information that is factually wrong, fabricated, or nonsensical, but presents it with the same confident tone as accurate information. The model doesn't \"know\" it's wrong because it doesn't have a concept of truth. It's producing the most statistically likely sequence of tokens, and sometimes that sequence happens to be false.\n",
+      "key_intuition": "Imagine you're at a party and someone asks you about a book you haven't read. Instead of saying \"I don't know,\" you piece together what you've heard from reviews, the author's other work, the genre conventions, and you improvise a plausible-sounding answer. You might get the gist right, or you might invent a plot point that doesn't exist. That's hallucination. The model is always \"improvising\" because it never \"read the book\" - it absorbed patterns about books.\n\nThe more specific and obscure the topic, the higher the hallucination risk. Asking about the French Revolution? Low risk. Asking about a specific court case from 2019? High risk. Asking for a URL or citation? Very high risk - the model loves to generate plausible-looking URLs that don't exist.\n",
+      "use_cases": "Knowing when to verify; grounding answers with RAG/citations; designing safer UX in high-stakes domains.",
+      "links": [
+        {
+          "title": "Ji et al. (2023) - Survey of Hallucination in Natural Language Generation",
+          "url": "https://scholar.google.com/scholar?q=Survey+of+Hallucination+in+Natural+Language+Generation+Ji+2023",
+          "type": "technical"
+        },
+        {
+          "title": "Huang et al. (2023) - Survey on Hallucination in LLMs (arXiv:2311.05232)",
+          "url": "https://arxiv.org/abs/2311.05232",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "rag",
+        "prompt-engineering"
+      ],
+      "id": "hallucination"
+    },
+    {
+      "term": "Inference",
+      "aliases": [
+        "Generation"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Inference is the process of using a trained model to generate an output. Training is when the model learns (once, extremely expensive); inference is when it applies what it learned (every single time you send a prompt). Every API call, every chat message, every AI-generated email is an inference operation. This is the phase that costs money at scale and determines how fast the model responds.\n",
+      "key_intuition": "Training is like writing a cookbook: it takes years of effort, testing, and millions of dollars. Inference is like cooking a meal from that cookbook: you do it thousands of times a day, and each meal costs ingredients and gas. When you see AI pricing like \"$3 per million input tokens,\" you're paying for inference - the compute required to run your text through the model's billions of parameters.\n",
+      "use_cases": "Reasoning about latency/cost per request; scaling throughput (batching, caching); model selection and optimization.",
+      "links": [
+        {
+          "title": "Patterson et al. (2022) - The Carbon Footprint of Machine Learning Training",
+          "url": "https://scholar.google.com/scholar?q=The+Carbon+Footprint+of+Machine+Learning+Training+Patterson+2022",
+          "type": "technical"
+        },
+        {
+          "title": "Kwon et al. (2023) - PagedAttention (arXiv:2309.06180)",
+          "url": "https://arxiv.org/abs/2309.06180",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "api",
+        "test-time-compute",
+        "quantization",
+        "mixture-of-experts"
+      ],
+      "id": "inference"
+    },
+    {
+      "term": "Latent Space",
+      "aliases": [
+        "Latent representation"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Latent space is the internal, hidden representation that a model creates of its input - a high-dimensional mathematical space where concepts are encoded as points. You can't see it directly, but it's where all the \"thinking\" happens. In this space, similar concepts cluster together, relationships become geometric operations, and abstract meaning becomes computable.\n",
+      "key_intuition": "Think of a world map. Every city has coordinates (latitude, longitude). Close cities have similar coordinates. You can compute the distance between any two cities, find clusters (countries), or even do arithmetic: \"Paris's coordinates minus France's center plus Germany's center\" lands you near Berlin. Latent space is the same idea, but with hundreds or thousands of dimensions instead of two, and \"cities\" are replaced by concepts, words, images, or any data the model has learned to represent.\n\nIn image generation (Stable Diffusion, DALL-E), the latent space is where the magic happens. The model doesn't generate pixels directly - it navigates through a compressed representation where moving smoothly in one direction might transition from \"daytime\" to \"nighttime,\" or from \"photo\" to \"oil painting.\"\n",
+      "use_cases": "Understanding embeddings and generative models; interpolation between concepts; reasoning about representation learning.",
+      "links": [
+        {
+          "title": "Kingma & Welling (2014) - VAE (arXiv:1312.6114)",
+          "url": "https://arxiv.org/abs/1312.6114",
+          "type": "technical"
+        },
+        {
+          "title": "Radford et al. (2016) - DCGAN (arXiv:1511.06434)",
+          "url": "https://arxiv.org/abs/1511.06434",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "embedding",
+        "vector-database",
+        "mixture-of-experts"
+      ],
+      "id": "latent-space"
+    },
+    {
+      "term": "LLM",
+      "aliases": [
+        "Large Language Model"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "An LLM is a neural network with billions of numerical parameters, trained by reading enormous quantities of text (books, websites, code, conversations). During training, the model learns statistical patterns: which words tend to follow which, in what contexts, across millions of different topics. The result is a system that can generate text so fluent it feels like understanding, even though the underlying process is mathematical prediction.\n",
+      "key_intuition": "Imagine you've read every book in the largest library on Earth, every Wikipedia article, every Reddit thread, every GitHub repository. You didn't memorize them word for word, but you absorbed patterns: how legal contracts sound, how Python code is structured, how a doctor explains a diagnosis, how Italian poetry flows. Now someone asks you a question, and you generate an answer by predicting, word by word, what the most plausible continuation would be given everything you've absorbed.\n\nThat's what an LLM does. It's not looking anything up. It's not reasoning from first principles. It's generating the statistically most likely sequence of words given your input and its training. The miracle is that this process, at sufficient scale, produces outputs that are coherent, knowledgeable, and often genuinely useful.\n",
+      "use_cases": "Chatbots and assistants; summarization and writing; code generation; mental model for limitations like hallucinations.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Brown et al. (2020) - Language Models are Few-Shot Learners (arXiv:2005.14165)",
+          "url": "https://arxiv.org/abs/2005.14165",
+          "type": "technical"
+        },
+        {
+          "title": "Anthropic - What are large language models?",
+          "url": "https://www.anthropic.com/research",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "token",
+        "prompt",
+        "transformer",
+        "attention-mechanism",
+        "context-window",
+        "inference",
+        "rlhf"
+      ],
+      "id": "llm"
+    },
+    {
+      "term": "MCP",
+      "aliases": [
+        "Model Context Protocol"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "MCP is an open standard (released by Anthropic in late 2024) that defines how AI models connect to external tools and data sources. Before MCP, every integration was custom: if you wanted Claude to read your Google Drive, query your database, and post to Slack, each connection required separate engineering. MCP provides a universal \"plug\" format so any tool can connect to any model in a standardized way.\n",
+      "key_intuition": "Before USB, every device had its own proprietary connector: printers, cameras, keyboards all needed different cables. USB created one universal standard. MCP is doing the same thing for AI: instead of building a custom integration for every tool the AI might need, MCP provides one universal protocol. A tool that speaks MCP can plug into any AI model that supports it, instantly.\n\nThis matters because the real power of AI agents depends on how many tools they can use. Without a standard, the ecosystem fragments. With MCP, it can grow exponentially - just like USB enabled the explosion of computer peripherals.\n",
+      "use_cases": "Standardizing tool integrations for agents; reducing one-off connectors; enabling a plug-and-play tool ecosystem.",
+      "links": [
+        {
+          "title": "Anthropic (2024) - Introducing the Model Context Protocol",
+          "url": "https://www.anthropic.com/news/model-context-protocol",
+          "type": "official"
+        },
+        {
+          "title": "MCP Official Documentation & Specification",
+          "url": "https://modelcontextprotocol.io",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "ai-agent",
+        "api",
+        "guardrails"
+      ],
+      "id": "mcp"
+    },
+    {
+      "term": "Mixture of Experts",
+      "aliases": [
+        "MoE"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "MoE is an architecture where the model contains multiple specialized sub-networks called \"experts\" and a learned routing mechanism (the \"gating network\") that decides which experts to activate for each input. A MoE model might have 8 experts but only activate 2 for any given token. This means the total parameter count can be enormous (giving the model broad knowledge) while the compute cost per inference stays manageable (because most parameters are idle for any given query).\n",
+      "key_intuition": "Imagine a hospital with 8 specialist departments. When a patient arrives, triage (the router) evaluates their symptoms and sends them to the 2 most relevant departments. The hospital has the combined expertise of all 8 departments (huge total capacity), but each patient only costs the resources of 2 consultations (efficient per-case). A dense model, by contrast, is like forcing every patient through all 8 departments every time - thorough but extremely expensive.\n",
+      "use_cases": "Scaling capacity without proportional inference cost; faster variants like Mixtral; understanding routing tradeoffs.",
+      "links": [
+        {
+          "title": "Shazeer et al. (2017) - Sparsely-Gated Mixture-of-Experts Layer (arXiv:1701.06538)",
+          "url": "https://arxiv.org/abs/1701.06538",
+          "type": "technical"
+        },
+        {
+          "title": "Jiang et al. (2024) - Mixtral of Experts (arXiv:2401.04088)",
+          "url": "https://arxiv.org/abs/2401.04088",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "transformer",
+        "inference",
+        "quantization",
+        "open-source-vs-closed-source-models"
+      ],
+      "id": "mixture-of-experts"
+    },
+    {
+      "term": "Open Source vs. Closed Source Models",
+      "aliases": [
+        "Open-source models",
+        "Closed-source models",
+        "Open weights"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Closed-source models (GPT-4, Claude) are accessible only through the company's API or interface. You can use them but can't see their architecture, training data, or weights. Open-source models (LLaMA, Mistral, Qwen) release some or all of this, letting anyone download, run, modify, and build on them. This distinction shapes the entire AI ecosystem: who controls AI, who can compete, and who can audit safety.\n",
+      "key_intuition": "Closed source is like a restaurant: you eat the food, but you don't get the recipe and you can't modify it. Open source is like a published cookbook: you can cook at home, change ingredients, or open your own restaurant with it. The tradeoff? The restaurant has professional chefs and quality control. The cookbook gives you freedom but no guarantees.\n",
+      "use_cases": "Deciding buy vs self-host; auditability/compliance; deployment and licensing constraints; cost control.",
+      "links": [
+        {
+          "title": "Groeneveld et al. (2024) - OLMo (arXiv:2402.00838)",
+          "url": "https://arxiv.org/abs/2402.00838",
+          "type": "technical"
+        },
+        {
+          "title": "Eiras et al. (2024) - Open Source Generative AI (arXiv:2404.17047)",
+          "url": "https://arxiv.org/abs/2404.17047",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "quantization",
+        "distillation",
+        "mixture-of-experts"
+      ],
+      "id": "open-source-vs-closed-source-models"
+    },
+    {
+      "term": "Overfitting & Generalization",
+      "aliases": [
+        "Overfitting",
+        "Generalization"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Overfitting is when a model memorizes its training data instead of learning generalizable patterns. It performs brilliantly on examples it has seen, but fails on anything new. Generalization is the opposite: the ability to perform well on data it has never encountered. The entire art of machine learning is maximizing generalization while minimizing overfitting.\n",
+      "key_intuition": "Imagine a student preparing for an exam. An overfitting student memorizes the exact questions and answers from practice exams. If the real exam uses the same questions, they ace it. If the questions are rephrased or new topics appear, they're lost. A generalizing student understands the underlying principles, so they can handle novel questions they've never seen. They might score slightly lower on the practice test, but they'll perform better on the real one.\n\nThis is why benchmarks can be misleading: a model that has been trained (intentionally or accidentally) on benchmark questions will ace those benchmarks but may disappoint in real-world use. It's also why \"teaching to the test\" is as problematic in AI as it is in education.\n",
+      "use_cases": "Interpreting train vs real-world performance; avoiding benchmark over-optimization and data leakage.",
+      "links": [
+        {
+          "title": "Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 5)",
+          "url": "https://www.deeplearningbook.org/",
+          "type": "reference"
+        },
+        {
+          "title": "Zhang et al. - Rethinking Generalization (arXiv:1611.03530)",
+          "url": "https://arxiv.org/abs/1611.03530",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "benchmark",
+        "synthetic-data-model-collapse"
+      ],
+      "id": "overfitting-and-generalization"
+    },
+    {
+      "term": "Pre-training vs Post-training",
+      "aliases": [
+        "Pretraining",
+        "Post-training"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Modern AI models are built in two distinct phases. Pre-training: the model reads massive amounts of raw text from the internet, books, code - and learns the general patterns of language. This is extremely expensive (millions of dollars in compute) and produces a \"base model\" that can complete text but isn't particularly helpful or safe. Post-training: the base model is refined through techniques like RLHF, fine-tuning on curated examples, safety training, and instruction-following. This is what turns a text-completion engine into a useful assistant.\n",
+      "key_intuition": "Pre-training is a university education: broad, expensive, foundational. It takes months and costs millions. The model learns language, facts, reasoning patterns, and code from trillions of tokens. But a fresh graduate isn't ready for a specific job - they need onboarding. Post-training is that onboarding: learning to follow instructions, be polite, refuse harmful requests, reason step by step, and cite sources. The base model can recite Shakespeare and write Python, but it might also generate toxic content or ignore your question entirely. Post-training fixes this.\n",
+      "use_cases": "Understanding capability vs alignment; choosing fine-tuning/RLHF vs prompting; reasoning about cost and data requirements.",
+      "links": [
+        {
+          "title": "Hoffmann et al. (2022) - Chinchilla scaling (arXiv:2203.15556)",
+          "url": "https://arxiv.org/abs/2203.15556",
+          "type": "technical"
+        },
+        {
+          "title": "Ouyang et al. (2022) - InstructGPT (arXiv:2203.02155)",
+          "url": "https://arxiv.org/abs/2203.02155",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "fine-tuning",
+        "rlhf"
+      ],
+      "id": "pre-training-vs-post-training"
+    },
+    {
+      "term": "Prompt Engineering",
+      "aliases": [
+        "System prompt",
+        "Few-shot prompting",
+        "Zero-shot prompting"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Prompt engineering is the craft of designing inputs that consistently produce high-quality outputs from AI models. It's not just \"asking nicely\" - it's a structured discipline with specific techniques, each suited to different tasks. The three most important concepts: system prompts (hidden developer instructions), zero-shot (asking with no examples), and few-shot (providing examples of what you want).\n",
+      "key_intuition": "Prompt engineering is the difference between a tourist and a local when ordering at a restaurant. The tourist says \"give me something good\" (zero-shot). The informed tourist says \"I like what you just served that table, give me something like that\" (few-shot). The local says \"I'm a regular, you know I'm vegetarian, I like spicy food, and I'm in a hurry\" (system prompt + context). Same restaurant, wildly different experience.\n",
+      "use_cases": "Reliable prompting for extraction/classification/formatting; system prompts for product behavior; few-shot for edge cases.",
+      "links": [
+        {
+          "title": "Anthropic Prompt Engineering Guide",
+          "url": "https://docs.anthropic.com/",
+          "type": "official"
+        },
+        {
+          "title": "Brown et al. (2020) - In-context learning / few-shot (arXiv:2005.14165)",
+          "url": "https://arxiv.org/abs/2005.14165",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "prompt",
+        "llm",
+        "rag",
+        "context-window",
+        "rlhf"
+      ],
+      "id": "prompt-engineering"
+    },
+    {
+      "term": "Prompt",
+      "aliases": [
+        "User prompt"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "The prompt is everything you send to the model: your question, your instructions, any context you provide. But here's the thing most people miss: the quality of AI output is overwhelmingly determined by the quality of the prompt. Same model, same question, different phrasing - wildly different results. A vague prompt gets a generic answer. A structured, specific prompt with context and examples can get expert-level output.\n",
+      "key_intuition": "A prompt is like a brief you give to a consultant. If you say \"tell me about marketing,\" you'll get a generic overview. If you say \"I run a B2B SaaS company with 50 employees, our CAC has increased 40% in Q3, and I need 3 specific strategies to reduce it using content marketing, with estimated timelines and costs,\" you'll get something genuinely actionable. The model didn't get smarter. You gave it better constraints.\n",
+      "use_cases": "Getting higher-quality outputs by adding context, constraints, examples, and desired format.",
+      "links": [
+        {
+          "title": "Anthropic Prompt Engineering Guide",
+          "url": "https://docs.anthropic.com/",
+          "type": "official"
+        },
+        {
+          "title": "Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)",
+          "url": "https://arxiv.org/abs/2201.11903",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "token",
+        "prompt-engineering",
+        "context-window",
+        "temperature"
+      ],
+      "id": "prompt"
+    },
+    {
+      "term": "Quantization",
+      "aliases": [
+        "Quantisation"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Quantization is a compression technique that reduces the numerical precision of a model's weights. During training, weights are stored as high-precision numbers (32-bit or 16-bit floating point). Quantization converts these to lower precision (8-bit, 4-bit, or even 2-bit), dramatically reducing the model's memory footprint and speeding up inference. The key insight: most of that precision is redundant, and you can throw it away with surprisingly little quality loss.\n",
+      "key_intuition": "Imagine a photograph. At full resolution (32-bit), every pixel has billions of possible colors. If you reduce it to 256 colors (8-bit), you lose some subtle gradients, but the image is still clearly recognizable and 4x smaller. Reduce to 16 colors (4-bit)? It's grainier, but you can still tell what it is and it's 8x smaller. Quantization does the same thing to model weights: each number gets fewer bits, the model shrinks dramatically, and the quality loss is often barely noticeable.\n",
+      "use_cases": "Running large models on smaller hardware; reducing memory/latency; local deployment of open models.",
+      "links": [
+        {
+          "title": "Dettmers et al. (2022) - LLM.int8() (arXiv:2208.07339)",
+          "url": "https://arxiv.org/abs/2208.07339",
+          "type": "technical"
+        },
+        {
+          "title": "Frantar et al. (2023) - GPTQ (arXiv:2210.17323)",
+          "url": "https://arxiv.org/abs/2210.17323",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "inference",
+        "open-source-vs-closed-source-models",
+        "distillation"
+      ],
+      "id": "quantization"
+    },
+    {
+      "term": "RAG",
+      "aliases": [
+        "Retrieval-Augmented Generation"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "RAG is a technique that gives an AI model access to external knowledge at query time. Instead of answering purely from what it memorized during training, the system first searches a knowledge base (documents, databases, web pages) for relevant information, then feeds that information to the model alongside your question. The model generates its answer grounded in retrieved evidence, dramatically reducing hallucinations.\n",
+      "key_intuition": "Without RAG, asking an LLM a question is like asking someone to answer from memory in a closed-book exam. With RAG, it's an open-book exam: the model can look up information before answering. The quality of the answer now depends not just on the model's intelligence, but also on the quality of the book (your knowledge base) and how well it can find the right page (the retrieval system).\n",
+      "use_cases": "Grounding answers in private/up-to-date docs; reducing hallucinations; adding citations; enterprise search over knowledge bases.",
+      "links": [
+        {
+          "title": "Lewis et al. (2020) - RAG for Knowledge-Intensive NLP (arXiv:2005.11401)",
+          "url": "https://arxiv.org/abs/2005.11401",
+          "type": "technical"
+        },
+        {
+          "title": "Gao et al. (2024) - RAG for LLMs Survey (arXiv:2312.10997)",
+          "url": "https://arxiv.org/abs/2312.10997",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "embedding",
+        "vector-database",
+        "prompt-engineering",
+        "context-window"
+      ],
+      "id": "rag"
+    },
+    {
+      "term": "Reasoning vs Pattern Matching",
+      "aliases": [
+        "Stochastic parrot",
+        "Stochastic Parrot debate"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "This is the central philosophical and scientific question in AI today: when an LLM solves a math problem, writes code, or constructs an argument, is it genuinely reasoning - or is it performing incredibly sophisticated pattern matching on training data? The term \"stochastic parrot\" (coined by Bender et al., 2021) argues it's the latter: the model is a statistical mimic with no understanding, just very good at predicting what a reasoning person would write. Others argue that at sufficient scale, pattern matching and reasoning become indistinguishable, or that human reasoning itself might be a form of pattern matching.\n",
+      "key_intuition": "Imagine a student who has seen 10 million solved math problems. They encounter a new problem they've never seen. They solve it correctly. Are they \"reasoning\" or \"recognizing a pattern from similar problems\"? If you ask most mathematicians how they solve problems, they'll describe pattern recognition: \"this looks like a problem I've seen before, so I'll try this approach.\" The boundary between reasoning and pattern matching might be blurrier than we think - both in humans and machines.\n\nThis debate matters practically: if LLMs are \"just\" pattern matching, there are hard limits to what they can achieve (they'll fail on truly novel problems). If they're developing something closer to reasoning, the ceiling might be much higher. The evidence is mixed: LLMs can generalize impressively on some tasks and fail spectacularly on simple logic puzzles that require genuine novel reasoning.\n",
+      "use_cases": "Setting expectations for generalization; interpreting failures and benchmarks; informing evaluation and safety discussions.",
+      "links": [
+        {
+          "title": "Bender et al. (2021) - On the Dangers of Stochastic Parrots",
+          "url": "https://scholar.google.com/scholar?q=On+the+Dangers+of+Stochastic+Parrots+Bender+2021",
+          "type": "technical"
+        },
+        {
+          "title": "Bubeck et al. (2023) - Sparks of AGI (arXiv:2303.12712)",
+          "url": "https://arxiv.org/abs/2303.12712",
+          "type": "technical"
+        },
+        {
+          "title": "Mitchell & Krakauer (2023) - Debate Over Understanding in LLMs (PNAS)",
+          "url": "https://scholar.google.com/scholar?q=Mitchell+Krakauer+2023+Debate+Over+Understanding+in+AI%27s+Large+Language+Models",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "benchmark",
+        "chain-of-thought"
+      ],
+      "id": "reasoning-vs-pattern-matching"
+    },
+    {
+      "term": "RLHF",
+      "aliases": [
+        "Reinforcement Learning from Human Feedback"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "RLHF is the training technique that turns a raw language model into a helpful, safe, conversational assistant. The process: human evaluators compare multiple model outputs and rank them by quality. A \"reward model\" learns from these preferences. Then the language model is optimized to produce outputs that the reward model scores highly. It's the reason ChatGPT felt like a breakthrough even though the underlying GPT models existed before.\n",
+      "key_intuition": "A base LLM is like a brilliant but unsocialized person: incredibly knowledgeable, but might respond to \"how do I fix my code?\" by continuing your message as if it were a forum post, or by generating something offensive, or by rambling incoherently. RLHF is socialization training. Through thousands of examples of \"this response is better than that one,\" the model learns to be helpful, clear, honest, and safe. It's the polish that makes raw intelligence usable.\n",
+      "use_cases": "Aligning assistants to be helpful/safe; shaping tone and refusals; improving product quality via human preference.",
+      "links": [
+        {
+          "title": "Ouyang et al. (2022) - InstructGPT / Instruction tuning with human feedback (arXiv:2203.02155)",
+          "url": "https://arxiv.org/abs/2203.02155",
+          "type": "technical"
+        },
+        {
+          "title": "Bai et al. (2022) - Helpful and Harmless Assistant with RLHF (arXiv:2204.05862)",
+          "url": "https://arxiv.org/abs/2204.05862",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "fine-tuning",
+        "prompt-engineering",
+        "benchmark",
+        "pre-training-vs-post-training"
+      ],
+      "id": "rlhf"
+    },
+    {
+      "term": "Synthetic Data & Model Collapse",
+      "aliases": [
+        "Synthetic data",
+        "Model collapse"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Synthetic data is training data generated by AI models themselves rather than collected from the real world. As high-quality human-generated training data becomes scarce (we're literally running out of internet to scrape), synthetic data is becoming essential. But there's a dangerous feedback loop: if you train a model on AI-generated data, and then use that model to generate more training data, quality degrades over generations. This recursive degradation is called model collapse.\n",
+      "key_intuition": "Imagine you photocopy a photograph. The copy looks almost as good. Now photocopy the copy. Then photocopy that copy. By the 10th generation, the image is a blurry, degraded mess. Model collapse is the same phenomenon applied to AI: each generation of synthetic data loses some subtle nuance, amplifies some errors, and narrows the distribution. After several generations, the model loses the ability to represent the full diversity of human language and knowledge.\n\nThis is already happening. As the internet fills up with AI-generated content, the next generation of models will inevitably train on some of it. Research published in Nature (2024) showed that recursively trained models lose diversity and accuracy predictably. The solution? Careful data curation, mixing synthetic with verified human data, and maintaining \"clean\" data sources.\n",
+      "use_cases": "Designing training data pipelines; synthetic augmentation; avoiding feedback loops; data curation strategies.",
+      "links": [
+        {
+          "title": "Shumailov et al. (2024) - Model collapse with recursive training data (Nature)",
+          "url": "https://scholar.google.com/scholar?q=AI+models+collapse+when+trained+on+recursively+generated+data+Shumailov+2024",
+          "type": "technical"
+        },
+        {
+          "title": "Long et al. (2024) - Synthetic Data Generation & Evaluation Survey (arXiv:2406.15126)",
+          "url": "https://arxiv.org/abs/2406.15126",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "pre-training-vs-post-training",
+        "benchmark",
+        "overfitting-and-generalization"
+      ],
+      "id": "synthetic-data-model-collapse"
+    },
+    {
+      "term": "Temperature",
+      "aliases": [],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Temperature is a number (typically between 0 and 2) that controls how random or deterministic the model's output is. At each step, the model calculates a probability distribution over all possible next tokens. Temperature modifies that distribution: low temperature sharpens it (the most probable token almost always wins), high temperature flattens it (less probable tokens get a real chance).\n",
+      "key_intuition": "Imagine you're choosing a restaurant. At \"temperature 0,\" you always go to your absolute favorite. At \"temperature 0.7,\" you usually pick a top choice but sometimes try that new place. At \"temperature 1.5,\" you might randomly pick the weird fusion restaurant on the corner. At \"temperature 2,\" you might end up at a gas station. More randomness means more creativity, but also more chaos.\n",
+      "use_cases": "Tuning creativity vs determinism (low for code/facts; higher for brainstorming/creative writing).",
+      "links": [
+        {
+          "title": "Holtzman et al. (2020) - Neural Text Degeneration (arXiv:1904.09751)",
+          "url": "https://arxiv.org/abs/1904.09751",
+          "type": "technical"
+        },
+        {
+          "title": "Ackley, Hinton & Sejnowski (1985) - Boltzmann Machines (origin of \"temperature\")",
+          "url": "https://scholar.google.com/scholar?q=A+Learning+Algorithm+for+Boltzmann+Machines+Ackley+Hinton+Sejnowski+1985",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "prompt",
+        "inference"
+      ],
+      "id": "temperature"
+    },
+    {
+      "term": "Test-Time Compute",
+      "aliases": [
+        "Inference-time scaling"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Test-time compute is the paradigm-shifting idea that you can make an AI model \"smarter\" not by making it bigger or training it longer, but by giving it more time and compute to think at inference time (when it's generating your answer). Instead of scaling the model's size (which has been the dominant strategy for years), you scale the thinking effort per question. This is the principle behind OpenAI's o1/o3 models and Anthropic's extended thinking feature.\n",
+      "key_intuition": "Traditional scaling: build a bigger brain (more parameters). Test-time compute: let the same brain think harder and longer. Consider a chess player: you can make them better by teaching them more openings (training). Or you can give them more time per move (test-time compute). A grandmaster with 30 seconds per move will play worse than the same grandmaster with 30 minutes per move. Test-time compute gives AI models their \"30 minutes\" by letting them generate chains of reasoning, explore alternatives, verify their work, and self-correct before delivering a final answer.\n\nThis changes the economics of AI: instead of a fixed cost per query, you can now choose how much to \"spend\" on each question. Simple question? Quick answer, low cost. Complex math proof? The model thinks for 2 minutes, uses 50x more tokens internally, but produces a correct answer it couldn't have reached otherwise.\n",
+      "use_cases": "Inference-time scaling for harder questions; quality-cost tradeoffs; reasoning model settings like extended thinking.",
+      "links": [
+        {
+          "title": "Snell et al. (2024) - Scaling LLM Test-Time Compute (arXiv:2408.03314)",
+          "url": "https://arxiv.org/abs/2408.03314",
+          "type": "technical"
+        },
+        {
+          "title": "OpenAI (2024) - Learning to reason with LLMs",
+          "url": "https://openai.com/research/learning-to-reason-with-llms",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "chain-of-thought",
+        "inference",
+        "llm"
+      ],
+      "id": "test-time-compute"
+    },
+    {
+      "term": "Token",
+      "aliases": [
+        "Tokens"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "A token is the atomic unit of text that a model processes. It's not a word, not a character, but something in between: a subword fragment determined by the model's tokenizer. The tokenizer is trained to split text into the most efficient chunks based on frequency patterns in the training data. Common words become single tokens; rare words get split into pieces.\n",
+      "key_intuition": "Think of tokens like LEGO bricks for language. The word \"the\" is so common it gets its own single brick. But \"cryptocurrency\" might be split into \"crypt\" + \"ocur\" + \"rency\" - three bricks. The model doesn't see words; it sees these bricks, and it builds its understanding from them.\n\nThis matters practically: when a model has a \"128K context window,\" that means 128,000 tokens, not words. In English, that's roughly 96,000 words (about 300 pages). But in Italian, the same text might use 30-40% more tokens because the tokenizer was trained primarily on English. In Japanese or Chinese, the ratio is even worse.\n",
+      "use_cases": "Estimating context limits and cost; debugging truncation; comparing languages and tokenizers.",
+      "links": [
+        {
+          "title": "Sennrich et al. (2016) - Subword Units / BPE (arXiv:1508.07909)",
+          "url": "https://arxiv.org/abs/1508.07909",
+          "type": "technical"
+        },
+        {
+          "title": "OpenAI Tokenizer (interactive tool)",
+          "url": "https://platform.openai.com/tokenizer",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "llm",
+        "prompt",
+        "context-window"
+      ],
+      "id": "token"
+    },
+    {
+      "term": "Transformer",
+      "aliases": [],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "The Transformer is the neural network architecture behind every major AI model you've heard of: GPT, Claude, Gemini, LLaMA, Mistral, BERT. Published in 2017 by Google researchers, it solved a fundamental problem: how to process text in parallel (fast) while still understanding relationships between distant words. Its core innovation, the attention mechanism, lets the model weigh the importance of every word relative to every other word simultaneously.\n",
+      "key_intuition": "Before Transformers, models read text like a human reads a scroll: one word at a time, left to right, trying to remember the beginning while reading the end. Transformers are different: they see the entire text at once, like looking at a printed page, and they can draw connections between any two parts instantly. The sentence \"The animal didn't cross the street because it was too tired\" requires connecting \"it\" to \"animal\" (not \"street\"). Attention makes this connection explicit and learnable.\n",
+      "use_cases": "Core mental model for modern LLMs; understanding attention, scaling, and why GPT/BERT-like models work.",
+      "links": [
+        {
+          "title": "Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)",
+          "url": "https://arxiv.org/abs/1706.03762",
+          "type": "technical"
+        },
+        {
+          "title": "Phuong & Hutter (2022) - Formal Algorithms for Transformers (arXiv:2207.09238)",
+          "url": "https://arxiv.org/abs/2207.09238",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "attention-mechanism",
+        "llm",
+        "token",
+        "context-window"
+      ],
+      "id": "transformer"
+    },
+    {
+      "term": "Vector Database",
+      "aliases": [],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "A vector database is a specialized database designed to store and search embeddings - those numerical representations of meaning we discussed in Video 1. Unlike a traditional database that finds exact matches (\"find all records where name = 'John'\"), a vector database finds approximate nearest neighbors: \"find the stored items whose meaning is closest to this query.\" This is the search engine behind every RAG system.\n",
+      "key_intuition": "A traditional database is like an alphabetical filing cabinet: incredibly fast at finding things if you know the exact label, useless if you're searching by concept. A vector database is like a librarian who understands meaning: you say \"I need something about the impact of social media on teenage mental health\" and they find relevant documents even if none of those exact words appear in the text. The \"magic\" is that semantic similarity becomes a mathematical distance calculation.\n",
+      "use_cases": "Storing embeddings for semantic search; retrieval layer for RAG; similarity search at scale with filtering.",
+      "links": [
+        {
+          "title": "Johnson et al. (2019) - FAISS / Billion-scale similarity search (arXiv:1702.08734)",
+          "url": "https://arxiv.org/abs/1702.08734",
+          "type": "technical"
+        },
+        {
+          "title": "Pan et al. (2024) - Vector DBMS Survey (arXiv:2310.11703)",
+          "url": "https://arxiv.org/abs/2310.11703",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "embedding",
+        "rag",
+        "latent-space"
+      ],
+      "id": "vector-database"
+    },
+    {
+      "term": "Vibe Coding",
+      "aliases": [],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Vibe coding is a term coined by Andrej Karpathy (co-founder of OpenAI, former AI director at Tesla) in early 2025 to describe a new way of programming: you describe what you want in natural language, the AI writes the code, you run it, see if it works, and iterate by describing changes. You never read or fully understand the code yourself. You code by \"vibes\" - by feel, by describing the desired outcome, not by engineering the solution.\n",
+      "key_intuition": "Traditional programming: you are the architect, the builder, and the inspector. You design the structure, write every line, debug every error. Vibe coding: you are the client, describing to an AI contractor what you want built. \"Make me a website with a form that sends emails.\" The AI writes the code. You test it, say \"the button is too small and add a dark mode,\" and the AI revises. You might ship a working product without understanding a single line of the underlying code.\n",
+      "use_cases": "Rapid prototyping with AI; accelerating delivery for small projects; understanding risks (security, maintainability) of AI-written code.",
+      "links": [
+        {
+          "title": "Andrej Karpathy (2025) - Original post coining \"vibe coding\"",
+          "url": "https://x.com/karpathy",
+          "type": "reference"
+        },
+        {
+          "title": "Simon Willison (2025) - Not all AI-assisted programming is vibe coding",
+          "url": "https://simonwillison.net/",
+          "type": "explainer"
+        }
+      ],
+      "related": [
+        "llm",
+        "api",
+        "ai-agent"
+      ],
+      "id": "vibe-coding"
+    }
+  ]
+}

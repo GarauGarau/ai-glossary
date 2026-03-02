@@ -1,0 +1,24 @@
+term: Benchmark
+aliases:
+  - AI benchmark
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  A benchmark is a standardized test for AI models: a fixed set of questions or tasks with known correct answers, designed to measure specific capabilities. Benchmarks let researchers and companies compare models on a common scoreboard. But they're deeply imperfect: models can be optimized specifically for benchmarks, training data can accidentally contain benchmark questions, and real-world performance often diverges from scores.
+key_intuition: |
+  Benchmarks are like standardized tests for AI: SATs, GREs, IQ tests. They provide a useful signal, but everyone knows a high SAT score doesn't guarantee success in life. Similarly, a model that tops MMLU (a massive multiple-choice knowledge test) might still give terrible advice on your specific business problem. The AI industry is slowly learning the same lesson education learned decades ago: you can't reduce complex capability to a single number.
+use_cases: Comparing models; selecting models for tasks; understanding limitations and metric gaming.
+links:
+  - title: Hendrycks et al. (2021) - MMLU (arXiv:2009.03300)
+    url: https://arxiv.org/abs/2009.03300
+    type: technical
+  - title: Chiang et al. (2024) - Chatbot Arena (arXiv:2403.04132)
+    url: https://arxiv.org/abs/2403.04132
+    type: technical
+related:
+  - overfitting-and-generalization
+  - rlhf
+  - reasoning-vs-pattern-matching

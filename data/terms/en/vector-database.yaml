@@ -1,0 +1,22 @@
+term: Vector Database
+aliases: []
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  A vector database is a specialized database designed to store and search embeddings - those numerical representations of meaning we discussed in Video 1. Unlike a traditional database that finds exact matches ("find all records where name = 'John'"), a vector database finds approximate nearest neighbors: "find the stored items whose meaning is closest to this query." This is the search engine behind every RAG system.
+key_intuition: |
+  A traditional database is like an alphabetical filing cabinet: incredibly fast at finding things if you know the exact label, useless if you're searching by concept. A vector database is like a librarian who understands meaning: you say "I need something about the impact of social media on teenage mental health" and they find relevant documents even if none of those exact words appear in the text. The "magic" is that semantic similarity becomes a mathematical distance calculation.
+use_cases: Storing embeddings for semantic search; retrieval layer for RAG; similarity search at scale with filtering.
+links:
+  - title: Johnson et al. (2019) - FAISS / Billion-scale similarity search (arXiv:1702.08734)
+    url: https://arxiv.org/abs/1702.08734
+    type: technical
+  - title: Pan et al. (2024) - Vector DBMS Survey (arXiv:2310.11703)
+    url: https://arxiv.org/abs/2310.11703
+    type: technical
+related:
+  - embedding
+  - rag
+  - latent-space

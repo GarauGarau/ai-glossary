@@ -1,0 +1,26 @@
+term: API
+aliases:
+  - Application Programming Interface
+  - Interfaccia di programmazione delle applicazioni
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Nel contesto AI, un'API è il modo in cui gli sviluppatori interagiscono con i modelli in modo programmatico, tramite codice, invece che tramite un'interfaccia chat come ChatGPT o Claude.ai. Quando qualcuno dice "uso l'API di OpenAI" o "abbiamo integrato Claude via API", significa che il loro software invia testo al modello e riceve testo in risposta automaticamente, senza che una persona debba digitare in una finestra di chat.
+key_intuition: |
+  Pensa a un ristorante. L'interfaccia chat (ChatGPT, Claude.ai) è come sedersi al tavolo: parli con il cameriere, ordini un piatto alla volta, lo consumi. L'API è come l'ingresso di servizio della cucina: puoi inviare 10.000 ordini in una volta, specificare esattamente come preparare ciascuno, riceverli in blocco e servirli ai tuoi clienti. Stesso cibo, accesso radicalmente diverso.
+use_cases: Integrare modelli in prodotti; automatizzare richieste ad alto volume; controllare costi/latenza con impostazioni e batching.
+links:
+  - title: Anthropic API Documentation
+    url: https://docs.anthropic.com/api
+    type: official
+  - title: OpenAI API Reference
+    url: https://platform.openai.com/docs
+    type: official
+related:
+  - llm
+  - inference
+  - temperature
+  - context-window

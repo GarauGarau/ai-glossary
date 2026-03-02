@@ -1,0 +1,27 @@
+term: AI Agent
+aliases:
+  - Agentic AI
+  - AI agent
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  An AI agent is a system that goes beyond responding to single prompts: it can plan multi-step tasks, use external tools (search engines, APIs, code interpreters, databases), execute actions, observe results, and adapt its approach. Instead of "answer my question," you give it a goal like "research competitors and produce a report," and it autonomously figures out the steps to get there.
+key_intuition: |
+  A chatbot is like a librarian who answers questions from behind a desk. An agent is like a research assistant who leaves the desk: they search multiple databases, cross-reference sources, take notes, draft a report, realize they need more data, go find it, and come back with a finished product. The LLM is the brain, but the agent framework adds hands, eyes, and the ability to move.
+use_cases: Automating multi-step workflows with tools; research assistants; code execution; planning/execution loops.
+links:
+  - title: Yao et al. (2023) - ReAct (arXiv:2210.03629)
+    url: https://arxiv.org/abs/2210.03629
+    type: technical
+  - title: Wang et al. (2024) - Survey on LLM-based Autonomous Agents (arXiv:2308.11432)
+    url: https://arxiv.org/abs/2308.11432
+    type: technical
+related:
+  - llm
+  - api
+  - rag
+  - mcp
+  - guardrails
+  - prompt-engineering

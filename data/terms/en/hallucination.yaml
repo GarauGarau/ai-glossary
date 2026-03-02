@@ -1,0 +1,26 @@
+term: Hallucination
+aliases:
+  - Model hallucination
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  A hallucination is when an AI generates information that is factually wrong, fabricated, or nonsensical, but presents it with the same confident tone as accurate information. The model doesn't "know" it's wrong because it doesn't have a concept of truth. It's producing the most statistically likely sequence of tokens, and sometimes that sequence happens to be false.
+key_intuition: |
+  Imagine you're at a party and someone asks you about a book you haven't read. Instead of saying "I don't know," you piece together what you've heard from reviews, the author's other work, the genre conventions, and you improvise a plausible-sounding answer. You might get the gist right, or you might invent a plot point that doesn't exist. That's hallucination. The model is always "improvising" because it never "read the book" - it absorbed patterns about books.
+
+  The more specific and obscure the topic, the higher the hallucination risk. Asking about the French Revolution? Low risk. Asking about a specific court case from 2019? High risk. Asking for a URL or citation? Very high risk - the model loves to generate plausible-looking URLs that don't exist.
+use_cases: Knowing when to verify; grounding answers with RAG/citations; designing safer UX in high-stakes domains.
+links:
+  - title: Ji et al. (2023) - Survey of Hallucination in Natural Language Generation
+    url: https://scholar.google.com/scholar?q=Survey+of+Hallucination+in+Natural+Language+Generation+Ji+2023
+    type: technical
+  - title: Huang et al. (2023) - Survey on Hallucination in LLMs (arXiv:2311.05232)
+    url: https://arxiv.org/abs/2311.05232
+    type: technical
+related:
+  - llm
+  - rag
+  - prompt-engineering

@@ -1,0 +1,25 @@
+term: Latent Space
+aliases:
+  - Latent representation
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Latent space is the internal, hidden representation that a model creates of its input - a high-dimensional mathematical space where concepts are encoded as points. You can't see it directly, but it's where all the "thinking" happens. In this space, similar concepts cluster together, relationships become geometric operations, and abstract meaning becomes computable.
+key_intuition: |
+  Think of a world map. Every city has coordinates (latitude, longitude). Close cities have similar coordinates. You can compute the distance between any two cities, find clusters (countries), or even do arithmetic: "Paris's coordinates minus France's center plus Germany's center" lands you near Berlin. Latent space is the same idea, but with hundreds or thousands of dimensions instead of two, and "cities" are replaced by concepts, words, images, or any data the model has learned to represent.
+
+  In image generation (Stable Diffusion, DALL-E), the latent space is where the magic happens. The model doesn't generate pixels directly - it navigates through a compressed representation where moving smoothly in one direction might transition from "daytime" to "nighttime," or from "photo" to "oil painting."
+use_cases: Understanding embeddings and generative models; interpolation between concepts; reasoning about representation learning.
+links:
+  - title: Kingma & Welling (2014) - VAE (arXiv:1312.6114)
+    url: https://arxiv.org/abs/1312.6114
+    type: technical
+  - title: Radford et al. (2016) - DCGAN (arXiv:1511.06434)
+    url: https://arxiv.org/abs/1511.06434
+    type: technical
+related:
+  - embedding
+  - vector-database
+  - mixture-of-experts

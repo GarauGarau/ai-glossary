@@ -1,0 +1,25 @@
+term: MCP
+aliases:
+  - Model Context Protocol
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  MCP è uno standard aperto (rilasciato da Anthropic a fine 2024) che definisce come i modelli AI si connettono a strumenti esterni e fonti dati. Prima di MCP, ogni integrazione era custom: se volevi che Claude leggesse Google Drive, interrogasse il tuo database e postasse su Slack, ogni connessione richiedeva ingegneria separata. MCP fornisce un formato di "plug" universale così che qualunque tool possa connettersi a qualunque modello in modo standardizzato.
+key_intuition: |
+  Prima dell'USB, ogni dispositivo aveva un connettore proprietario: stampanti, fotocamere, tastiere - tutti con cavi diversi. USB ha creato uno standard universale. MCP sta facendo lo stesso per l'AI: invece di costruire un'integrazione custom per ogni strumento che l'AI potrebbe usare, MCP offre un unico protocollo universale. Un tool che parla MCP può collegarsi a qualunque modello AI che lo supporta, subito.
+
+  Questo conta perché la vera potenza degli agenti AI dipende da quanti tool possono usare. Senza uno standard, l'ecosistema si frammenta. Con MCP, può crescere esponenzialmente - proprio come USB ha abilitato l'esplosione delle periferiche per computer.
+use_cases: Standardizzare integrazioni tool per agenti; ridurre connettori ad hoc; abilitare un ecosistema plug-and-play.
+links:
+  - title: Anthropic (2024) - Introducing the Model Context Protocol
+    url: https://www.anthropic.com/news/model-context-protocol
+    type: official
+  - title: MCP Official Documentation & Specification
+    url: https://modelcontextprotocol.io
+    type: official
+related:
+  - ai-agent
+  - api
+  - guardrails

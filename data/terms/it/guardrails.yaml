@@ -1,0 +1,24 @@
+term: Guardrails
+aliases:
+  - Barriere di sicurezza
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Le guardrails sono livelli di sicurezza e controllo messi attorno a un modello AI per vincolarne il comportamento. Possono filtrare gli input (bloccando prompt pericolosi o fuori tema prima che il modello li veda), filtrare gli output (scansionando la risposta e redigendo o bloccando contenuti dannosi) o imporre regole strutturali (il modello deve rispondere in JSON, non deve citare competitor, deve sempre includere un disclaimer). Sono le cinture di sicurezza e i paraurti dell'AI in produzione.
+key_intuition: |
+  Un modello senza guardrails è come uno stagista molto intelligente senza supervisione e senza regole: potrebbe fare un lavoro brillante o potrebbe inviare per errore dati riservati a un cliente, dire qualcosa di problematico legalmente o andare fuori copione. Le guardrails sono le policy, il processo di review e lo strato di compliance che rendono sicuro mettere questo stagista in un business reale. Ogni deployment AI serio le usa.
+use_cases: Controlli di sicurezza e compliance; filtro input/output; enforcement di schemi; mitigazione di jailbreak.
+links:
+  - title: Rebedea et al. (2023) - NeMo Guardrails (arXiv:2310.10501)
+    url: https://arxiv.org/abs/2310.10501
+    type: technical
+  - title: Dong et al. (2024) - Building Guardrails for LLMs (arXiv:2402.01822)
+    url: https://arxiv.org/abs/2402.01822
+    type: technical
+related:
+  - ai-agent
+  - prompt-engineering
+  - mcp
+  - rlhf

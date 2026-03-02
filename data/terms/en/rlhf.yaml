@@ -1,0 +1,25 @@
+term: RLHF
+aliases:
+  - Reinforcement Learning from Human Feedback
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  RLHF is the training technique that turns a raw language model into a helpful, safe, conversational assistant. The process: human evaluators compare multiple model outputs and rank them by quality. A "reward model" learns from these preferences. Then the language model is optimized to produce outputs that the reward model scores highly. It's the reason ChatGPT felt like a breakthrough even though the underlying GPT models existed before.
+key_intuition: |
+  A base LLM is like a brilliant but unsocialized person: incredibly knowledgeable, but might respond to "how do I fix my code?" by continuing your message as if it were a forum post, or by generating something offensive, or by rambling incoherently. RLHF is socialization training. Through thousands of examples of "this response is better than that one," the model learns to be helpful, clear, honest, and safe. It's the polish that makes raw intelligence usable.
+use_cases: Aligning assistants to be helpful/safe; shaping tone and refusals; improving product quality via human preference.
+links:
+  - title: Ouyang et al. (2022) - InstructGPT / Instruction tuning with human feedback (arXiv:2203.02155)
+    url: https://arxiv.org/abs/2203.02155
+    type: technical
+  - title: Bai et al. (2022) - Helpful and Harmless Assistant with RLHF (arXiv:2204.05862)
+    url: https://arxiv.org/abs/2204.05862
+    type: technical
+related:
+  - llm
+  - fine-tuning
+  - prompt-engineering
+  - benchmark
+  - pre-training-vs-post-training

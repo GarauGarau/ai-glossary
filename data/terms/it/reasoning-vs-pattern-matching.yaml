@@ -1,0 +1,30 @@
+term: Reasoning vs Pattern Matching
+aliases:
+  - Stochastic parrot
+  - Dibattito sullo stochastic parrot
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  Questa è la domanda filosofica e scientifica centrale nell'AI di oggi: quando un LLM risolve un problema di matematica, scrive codice o costruisce un argomento, sta davvero ragionando - oppure sta facendo un pattern matching incredibilmente sofisticato sui dati di training? Il termine "stochastic parrot" (coniato da Bender et al., 2021) sostiene la seconda: il modello è un imitatore statistico senza comprensione, solo molto bravo a prevedere cosa scriverebbe una persona che ragiona. Altri sostengono che, a sufficiente scala, pattern matching e ragionamento diventano indistinguibili o che anche il ragionamento umano possa essere una forma di pattern matching.
+key_intuition: |
+  Immagina uno studente che ha visto 10 milioni di problemi di matematica risolti. Incontra un problema nuovo che non ha mai visto. Lo risolve correttamente. Sta "ragionando" o sta "riconoscendo un pattern da problemi simili"? Se chiedi a molti matematici come risolvono problemi, descriveranno pattern recognition: "questo sembra un problema che ho già visto, quindi provo questo approccio". Il confine tra ragionamento e pattern matching potrebbe essere più sfumato di quanto pensiamo - sia negli umani che nelle macchine.
+
+  Questo dibattito conta nella pratica: se gli LLM sono "solo" pattern matching, ci sono limiti duri a ciò che possono ottenere (falliranno su problemi davvero nuovi). Se stanno sviluppando qualcosa di più simile al ragionamento, il tetto potrebbe essere molto più alto. Le evidenze sono miste: gli LLM generalizzano in modo impressionante su alcuni compiti e falliscono in modo clamoroso su semplici puzzle logici che richiedono ragionamento davvero nuovo.
+use_cases: Impostare aspettative sulla generalizzazione; interpretare fallimenti/benchmark; informare discussioni su valutazione e safety.
+links:
+  - title: Bender et al. (2021) - On the Dangers of Stochastic Parrots
+    url: https://scholar.google.com/scholar?q=On+the+Dangers+of+Stochastic+Parrots+Bender+2021
+    type: technical
+  - title: Bubeck et al. (2023) - Sparks of AGI (arXiv:2303.12712)
+    url: https://arxiv.org/abs/2303.12712
+    type: technical
+  - title: Mitchell & Krakauer (2023) - Debate Over Understanding in LLMs (PNAS)
+    url: https://scholar.google.com/scholar?q=Mitchell+Krakauer+2023+Debate+Over+Understanding+in+AI%27s+Large+Language+Models
+    type: technical
+related:
+  - llm
+  - benchmark
+  - chain-of-thought

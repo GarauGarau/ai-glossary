@@ -1,0 +1,26 @@
+term: Open Source vs. Closed Source Models
+aliases:
+  - Open-source models
+  - Closed-source models
+  - Open weights
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Closed-source models (GPT-4, Claude) are accessible only through the company's API or interface. You can use them but can't see their architecture, training data, or weights. Open-source models (LLaMA, Mistral, Qwen) release some or all of this, letting anyone download, run, modify, and build on them. This distinction shapes the entire AI ecosystem: who controls AI, who can compete, and who can audit safety.
+key_intuition: |
+  Closed source is like a restaurant: you eat the food, but you don't get the recipe and you can't modify it. Open source is like a published cookbook: you can cook at home, change ingredients, or open your own restaurant with it. The tradeoff? The restaurant has professional chefs and quality control. The cookbook gives you freedom but no guarantees.
+use_cases: Deciding buy vs self-host; auditability/compliance; deployment and licensing constraints; cost control.
+links:
+  - title: Groeneveld et al. (2024) - OLMo (arXiv:2402.00838)
+    url: https://arxiv.org/abs/2402.00838
+    type: technical
+  - title: Eiras et al. (2024) - Open Source Generative AI (arXiv:2404.17047)
+    url: https://arxiv.org/abs/2404.17047
+    type: technical
+related:
+  - quantization
+  - distillation
+  - mixture-of-experts

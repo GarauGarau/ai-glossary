@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+.pytest_cache/
+
+# Virtual environments
+.venv/
+venv/
+
+# Local state
+.env
+tmp/
+
+# Editors / OS
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store
+
+# Agent tooling
+.agents/
+
+# SQLite (only used if backend is run locally)
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm

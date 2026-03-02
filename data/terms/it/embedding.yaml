@@ -1,0 +1,26 @@
+term: Embedding
+aliases:
+  - Vettore di embedding
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Un embedding è una lista di numeri (un vettore) che rappresenta il "significato" di un pezzo di testo in un formato che i computer possono gestire matematicamente. La proprietà chiave: testi con significati simili ottengono vettori simili. Questo permette alle macchine di fare una cosa che prima non potevano: cercare per significato invece che per corrispondenza esatta di parole chiave.
+key_intuition: |
+  Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. "Dog" e "puppy" sono vicinissimi. "Dog" e "cat" sono vicini (entrambi animali domestici). "Dog" e "airplane" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi "auto familiare economica" e il sistema trova un documento su "veicoli convenienti per famiglie" anche se nessuna parola coincide, sono gli embedding che lavorano.
+
+  Il famoso esempio: nello spazio degli embedding, il vettore per "king" meno "man" più "woman" produce un vettore molto vicino a "queen". Il modello ha imparato relazioni di genere puramente dai pattern statistici nel testo.
+use_cases: Ricerca semantica, clustering, raccomandazioni; recupero documenti per RAG; deduplicazione e similarity matching.
+links:
+  - title: Mikolov et al. (2013) - Word2Vec (arXiv:1301.3781)
+    url: https://arxiv.org/abs/1301.3781
+    type: technical
+  - title: Reimers & Gurevych (2019) - Sentence-BERT (arXiv:1908.10084)
+    url: https://arxiv.org/abs/1908.10084
+    type: technical
+related:
+  - rag
+  - vector-database
+  - latent-space

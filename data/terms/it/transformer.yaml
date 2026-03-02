@@ -1,0 +1,23 @@
+term: Transformer
+aliases: []
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Il Transformer è l'architettura di rete neurale dietro ogni grande modello AI di cui hai sentito parlare: GPT, Claude, Gemini, LLaMA, Mistral, BERT. Pubblicato nel 2017 da ricercatori di Google, ha risolto un problema fondamentale: come processare testo in parallelo (veloce) mantenendo la capacità di capire relazioni tra parole lontane. La sua innovazione centrale, il meccanismo di attention, permette al modello di pesare l'importanza di ogni parola rispetto a tutte le altre simultaneamente.
+key_intuition: |
+  Prima dei Transformer, i modelli leggevano il testo come un essere umano che legge un rotolo: una parola alla volta, da sinistra a destra, cercando di ricordare l'inizio mentre legge la fine. I Transformer sono diversi: vedono tutto il testo in una volta, come guardare una pagina stampata, e possono tracciare connessioni tra qualsiasi due parti istantaneamente. La frase "The animal didn't cross the street because it was too tired" richiede collegare "it" ad "animal" (non a "street"). L'attention rende questa connessione esplicita e apprendibile.
+use_cases: Modello mentale base per gli LLM moderni; capire attention, scaling e perché funzionano modelli tipo GPT/BERT.
+links:
+  - title: Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)
+    url: https://arxiv.org/abs/1706.03762
+    type: technical
+  - title: Phuong & Hutter (2022) - Formal Algorithms for Transformers (arXiv:2207.09238)
+    url: https://arxiv.org/abs/2207.09238
+    type: technical
+related:
+  - attention-mechanism
+  - llm
+  - token
+  - context-window

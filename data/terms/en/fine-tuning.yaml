@@ -1,0 +1,26 @@
+term: Fine-tuning
+aliases:
+  - Finetuning
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Fine-tuning means taking a pre-trained model (one that already knows language broadly) and training it further on a smaller, specialized dataset. The model's weights are updated to make it better at a specific domain or task, while retaining its general capabilities. It's the difference between a general-purpose doctor and a cardiologist: same medical school, different specialization.
+key_intuition: |
+  Pre-training is education (expensive, broad, done once). Fine-tuning is job training (cheaper, focused, done for a specific role). You wouldn't send someone to university again every time you want them to learn a new skill - you'd give them targeted training. Same logic: you don't retrain GPT-4 from scratch to make it good at legal analysis; you fine-tune it on legal documents.
+use_cases: Domain/style adaptation; improving structured outputs; specialized behavior when prompting alone isn't enough.
+links:
+  - title: Howard & Ruder (2018) - ULMFiT (arXiv:1801.06146)
+    url: https://arxiv.org/abs/1801.06146
+    type: technical
+  - title: Hu et al. (2021) - LoRA (arXiv:2106.09685)
+    url: https://arxiv.org/abs/2106.09685
+    type: technical
+related:
+  - llm
+  - prompt-engineering
+  - rag
+  - rlhf
+  - pre-training-vs-post-training

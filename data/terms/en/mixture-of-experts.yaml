@@ -1,0 +1,25 @@
+term: Mixture of Experts
+aliases:
+  - MoE
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  MoE is an architecture where the model contains multiple specialized sub-networks called "experts" and a learned routing mechanism (the "gating network") that decides which experts to activate for each input. A MoE model might have 8 experts but only activate 2 for any given token. This means the total parameter count can be enormous (giving the model broad knowledge) while the compute cost per inference stays manageable (because most parameters are idle for any given query).
+key_intuition: |
+  Imagine a hospital with 8 specialist departments. When a patient arrives, triage (the router) evaluates their symptoms and sends them to the 2 most relevant departments. The hospital has the combined expertise of all 8 departments (huge total capacity), but each patient only costs the resources of 2 consultations (efficient per-case). A dense model, by contrast, is like forcing every patient through all 8 departments every time - thorough but extremely expensive.
+use_cases: Scaling capacity without proportional inference cost; faster variants like Mixtral; understanding routing tradeoffs.
+links:
+  - title: Shazeer et al. (2017) - Sparsely-Gated Mixture-of-Experts Layer (arXiv:1701.06538)
+    url: https://arxiv.org/abs/1701.06538
+    type: technical
+  - title: Jiang et al. (2024) - Mixtral of Experts (arXiv:2401.04088)
+    url: https://arxiv.org/abs/2401.04088
+    type: technical
+related:
+  - transformer
+  - inference
+  - quantization
+  - open-source-vs-closed-source-models

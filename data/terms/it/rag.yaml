@@ -1,0 +1,25 @@
+term: RAG
+aliases:
+  - Retrieval-Augmented Generation
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  RAG è una tecnica che da a un modello AI accesso a conoscenza esterna al momento della domanda. Invece di rispondere solo con ciò che ha memorizzato durante l'addestramento, il sistema prima cerca in una knowledge base (documenti, database, pagine web) le informazioni rilevanti, poi le passa al modello insieme alla tua domanda. Il modello genera una risposta ancorata alle evidenze recuperate, riducendo drasticamente le allucinazioni.
+key_intuition: |
+  Senza RAG, fare una domanda a un LLM è come chiedere a qualcuno di rispondere a memoria in un esame a libro chiuso. Con RAG, è un esame a libro aperto: il modello può consultare informazioni prima di rispondere. La qualità della risposta dipende non solo dall'intelligenza del modello, ma anche dalla qualità del libro (la tua knowledge base) e da quanto bene riesce a trovare la pagina giusta (il sistema di retrieval).
+use_cases: Ancorare risposte a documenti privati/aggiornati; ridurre allucinazioni; aggiungere citazioni; ricerca su knowledge base.
+links:
+  - title: Lewis et al. (2020) - RAG for Knowledge-Intensive NLP (arXiv:2005.11401)
+    url: https://arxiv.org/abs/2005.11401
+    type: technical
+  - title: Gao et al. (2024) - RAG for LLMs Survey (arXiv:2312.10997)
+    url: https://arxiv.org/abs/2312.10997
+    type: technical
+related:
+  - llm
+  - embedding
+  - vector-database
+  - prompt-engineering
+  - context-window

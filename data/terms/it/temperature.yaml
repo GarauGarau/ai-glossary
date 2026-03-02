@@ -1,0 +1,23 @@
+term: Temperature
+aliases: []
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  La temperature è un numero (di solito tra 0 e 2) che controlla quanto l'output del modello sia casuale o deterministico. A ogni passo il modello calcola una distribuzione di probabilità su tutti i possibili prossimi token. La temperature modifica quella distribuzione: una temperature bassa la rende più "appuntita" (vince quasi sempre il token più probabile), una temperature alta la appiattisce (token meno probabili hanno una reale possibilità).
+key_intuition: |
+  Immagina di scegliere un ristorante. A "temperature 0" vai sempre nel tuo preferito. A "temperature 0.7" di solito scegli tra i migliori, ma a volte provi quel posto nuovo. A "temperature 1.5" potresti scegliere a caso il ristorante fusion strano all'angolo. A "temperature 2" potresti finire al distributore di benzina. Più casualità significa più creatività, ma anche più caos.
+use_cases: Regolare creatività vs determinismo (bassa per codice/fatti; più alta per brainstorming/scrittura creativa).
+links:
+  - title: Holtzman et al. (2020) - Neural Text Degeneration (arXiv:1904.09751)
+    url: https://arxiv.org/abs/1904.09751
+    type: technical
+  - title: Ackley, Hinton & Sejnowski (1985) - Boltzmann Machines (origin of "temperature")
+    url: https://scholar.google.com/scholar?q=A+Learning+Algorithm+for+Boltzmann+Machines+Ackley+Hinton+Sejnowski+1985
+    type: technical
+related:
+  - llm
+  - prompt
+  - inference

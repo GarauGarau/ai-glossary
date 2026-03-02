@@ -1,0 +1,28 @@
+term: Context Window
+aliases:
+  - Context length
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  The context window is the maximum amount of text (measured in tokens) that a model can process in a single interaction. It includes both the input (your prompt, the conversation history, any documents you provide) and the output (the model's response). Once the window is full, the model has no access to anything outside it. Older messages in a long conversation simply vanish from the model's perspective.
+key_intuition: |
+  Think of the context window as the model's working desk. Everything it needs to reference while answering must fit on this desk. A small desk (4K tokens, early GPT-3) can hold about 6 pages. A large desk (200K tokens, Claude) can hold an entire novel. But once something falls off the desk, it's gone - the model can't reach into a drawer to retrieve it.
+
+  This is why AI "forgets" your instructions in long conversations: your initial message got pushed out of the window by newer messages. It's not a bug - it's a fundamental architectural constraint.
+use_cases: Managing long conversations; choosing models by window size; chunking/summarizing context and documents.
+links:
+  - title: Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)
+    url: https://arxiv.org/abs/1706.03762
+    type: technical
+  - title: Anthropic - Long Context Prompting Tips
+    url: https://docs.anthropic.com/
+    type: official
+related:
+  - llm
+  - token
+  - prompt
+  - rag
+  - transformer

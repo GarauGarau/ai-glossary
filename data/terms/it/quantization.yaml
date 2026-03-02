@@ -1,0 +1,24 @@
+term: Quantization
+aliases:
+  - Quantizzazione
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  La quantizzazione è una tecnica di compressione che riduce la precisione numerica dei pesi di un modello. Durante l'addestramento, i pesi sono salvati come numeri ad alta precisione (floating point a 32 bit o 16 bit). La quantizzazione li converte a precisione più bassa (8 bit, 4 bit o anche 2 bit), riducendo drasticamente la memoria necessaria e accelerando l'inferenza. L'intuizione chiave: gran parte di quella precisione è ridondante e puoi eliminarla con una perdita di qualità sorprendentemente piccola.
+key_intuition: |
+  Immagina una fotografia. Alla massima risoluzione (32-bit), ogni pixel ha miliardi di colori possibili. Se la riduci a 256 colori (8-bit), perdi qualche gradiente sottile, ma l'immagine è ancora riconoscibile ed è 4x più piccola. Riduci a 16 colori (4-bit)? È più granulosa, ma riesci ancora a capire cos'è ed è 8x più piccola. La quantizzazione fa la stessa cosa ai pesi del modello: ogni numero usa meno bit, il modello si riduce drasticamente e la perdita di qualità è spesso appena percepibile.
+use_cases: Far girare modelli grandi su hardware più piccolo; ridurre memoria/latenza; deployment locale di modelli open.
+links:
+  - title: Dettmers et al. (2022) - LLM.int8() (arXiv:2208.07339)
+    url: https://arxiv.org/abs/2208.07339
+    type: technical
+  - title: Frantar et al. (2023) - GPTQ (arXiv:2210.17323)
+    url: https://arxiv.org/abs/2210.17323
+    type: technical
+related:
+  - inference
+  - open-source-vs-closed-source-models
+  - distillation

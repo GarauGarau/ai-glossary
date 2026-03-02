@@ -1,0 +1,22 @@
+term: Vibe Coding
+aliases: []
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Vibe coding is a term coined by Andrej Karpathy (co-founder of OpenAI, former AI director at Tesla) in early 2025 to describe a new way of programming: you describe what you want in natural language, the AI writes the code, you run it, see if it works, and iterate by describing changes. You never read or fully understand the code yourself. You code by "vibes" - by feel, by describing the desired outcome, not by engineering the solution.
+key_intuition: |
+  Traditional programming: you are the architect, the builder, and the inspector. You design the structure, write every line, debug every error. Vibe coding: you are the client, describing to an AI contractor what you want built. "Make me a website with a form that sends emails." The AI writes the code. You test it, say "the button is too small and add a dark mode," and the AI revises. You might ship a working product without understanding a single line of the underlying code.
+use_cases: Rapid prototyping with AI; accelerating delivery for small projects; understanding risks (security, maintainability) of AI-written code.
+links:
+  - title: Andrej Karpathy (2025) - Original post coining "vibe coding"
+    url: https://x.com/karpathy
+    type: reference
+  - title: Simon Willison (2025) - Not all AI-assisted programming is vibe coding
+    url: https://simonwillison.net/
+    type: explainer
+related:
+  - llm
+  - api
+  - ai-agent

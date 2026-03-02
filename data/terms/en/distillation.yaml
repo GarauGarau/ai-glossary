@@ -1,0 +1,23 @@
+term: Distillation
+aliases:
+  - Knowledge distillation
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Distillation is a technique where a smaller "student" model is trained to replicate the behavior of a larger "teacher" model. Instead of learning from raw data (text from the internet), the student learns from the teacher's outputs - its probability distributions, its reasoning patterns, its response style. The result: a model that captures 80-90% of the teacher's quality at a fraction of the size, cost, and speed.
+key_intuition: |
+  Imagine a master chef who spent 30 years developing their skills (the large model). Now imagine they write down not just their recipes, but their thought process: why they add salt at this moment, how they judge temperature by sound, when to break the rules. An apprentice (the small model) who studies these annotations learns far more efficiently than one who just reads the same cookbooks the master once read. That's distillation: learning from someone who already understands, rather than figuring it out from scratch.
+use_cases: Creating smaller/faster models; reducing cost/latency; deploying on-device; producing "mini" variants from a frontier model.
+links:
+  - title: Hinton et al. (2015) - Distilling the Knowledge in a Neural Network (arXiv:1503.02531)
+    url: https://arxiv.org/abs/1503.02531
+    type: technical
+  - title: Xu et al. (2024) - Knowledge Distillation of LLMs Survey (arXiv:2402.13116)
+    url: https://arxiv.org/abs/2402.13116
+    type: technical
+related:
+  - llm
+  - quantization
+  - open-source-vs-closed-source-models
