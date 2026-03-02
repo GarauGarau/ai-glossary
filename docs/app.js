@@ -108,6 +108,35 @@ function clampRange(min, max, lower, upper) {
 }
 
 
+function buildSpatialNeighborLookup(items, ids, k = 3) {
+  const lookup = new Map();
+  const count = Math.max(1, Math.floor(k));
+  for (const id of ids) {
+    const p = items[id];
+    if (!p || typeof p._nx !== "number" || typeof p._ny !== "number") {
+      lookup.set(id, []);
+      continue;
+    }
+    const ranked = [];
+    for (const otherId of ids) {
+      if (otherId === id) {
+        continue;
+      }
+      const q = items[otherId];
+      if (!q || typeof q._nx !== "number" || typeof q._ny !== "number") {
+        continue;
+      }
+      const dx = q._nx - p._nx;
+      const dy = q._ny - p._ny;
+      ranked.push({ id: otherId, d2: dx * dx + dy * dy });
+    }
+    ranked.sort((a, b) => a.d2 - b.d2);
+    lookup.set(id, ranked.slice(0, count).map((row) => row.id));
+  }
+  return lookup;
+}
+
+
 function scheduleMapFrame() {
   if (state.mapViewRaf) {
     return;
@@ -282,10 +311,6 @@ function renderThemeToggle() {
 
 
 function renderControlCopy() {
-  document.querySelectorAll("[data-shortcuts]").forEach((node) => {
-    node.hidden = node.dataset.shortcuts !== state.lang;
-  });
-
   document.querySelectorAll("[data-map-lang]").forEach((node) => {
     node.hidden = node.dataset.mapLang !== state.lang;
   });
@@ -344,19 +369,24 @@ function getSelectedTermId(terms) {
   if (!terms.length) {
     return "";
   }
+
+  const q = normalize(state.query.trim());
+  const exact = terms.find((term) => {
+    if (normalize(term.term) === q) {
+      return true;
+    }
+    return term.aliases.some((alias) => normalize(alias) === q);
+  });
+  if (exact) {
+    return exact.id;
+  }
+
+  const startsWith = terms.find((term) => normalize(term.term).startsWith(q));
+  if (startsWith) {
+    return startsWith.id;
+  }
+
   return terms[0].id;
-}
-
-
-function getMapNeighbors(termId) {
-  if (!termId || !state.termMap || !state.termMap.items) {
-    return [];
-  }
-  const neighbors = state.termMap.neighbors?.[termId];
-  if (!Array.isArray(neighbors)) {
-    return [];
-  }
-  return neighbors.filter((id) => typeof id === "string" && id in state.termMap.items);
 }
 
 
@@ -567,27 +597,36 @@ function renderTermMap(selectedId) {
   }
 
   const fullView = { x0: 0, x1: 1, y0: 0, y1: 1 };
+  const spatialNeighbors = buildSpatialNeighborLookup(items, validIds, 3);
+  const mapNeighbors = (termId) => spatialNeighbors.get(termId) || [];
+
   const targetView = (() => {
     if (!selectedId || !items[selectedId] || typeof items[selectedId]._nx !== "number" || typeof items[selectedId]._ny !== "number") {
       return fullView;
     }
 
     const focus = new Set();
+    const sx = items[selectedId]._nx;
+    const sy = items[selectedId]._ny;
+    const maxFocusDistance = 0.28;
+    const distanceToSelected = (id) => {
+      const p = items[id];
+      if (!p || typeof p._nx !== "number" || typeof p._ny !== "number") {
+        return Infinity;
+      }
+      return Math.hypot(p._nx - sx, p._ny - sy);
+    };
+
     focus.add(selectedId);
-    const firstRing = getMapNeighbors(selectedId);
+    const firstRing = mapNeighbors(selectedId);
     for (const id of firstRing) {
-      focus.add(id);
-    }
-    for (const id of firstRing) {
-      for (const id2 of getMapNeighbors(id)) {
-        focus.add(id2);
+      if (distanceToSelected(id) <= maxFocusDistance) {
+        focus.add(id);
       }
     }
 
-    const desiredCount = 12;
+    const desiredCount = 9;
     if (focus.size < desiredCount) {
-      const sx = items[selectedId]._nx;
-      const sy = items[selectedId]._ny;
       const scored = [];
       for (const id of validIds) {
         if (focus.has(id) || id === selectedId) {
@@ -597,10 +636,13 @@ function renderTermMap(selectedId) {
         if (!p || typeof p._nx !== "number" || typeof p._ny !== "number") {
           continue;
         }
-        scored.push({ id, d: Math.hypot(p._nx - sx, p._ny - sy) });
+        scored.push({ id, d: distanceToSelected(id) });
       }
       scored.sort((a, b) => a.d - b.d);
       for (let i = 0; i < scored.length && focus.size < desiredCount; i += 1) {
+        if (scored[i].d > maxFocusDistance) {
+          break;
+        }
         focus.add(scored[i].id);
       }
     }
@@ -625,14 +667,14 @@ function renderTermMap(selectedId) {
 
     const spanX = Math.max(1e-9, vx1 - vx0);
     const spanY = Math.max(1e-9, vy1 - vy0);
-    const padX = Math.max(0.05, spanX * 0.45);
-    const padY = Math.max(0.05, spanY * 0.45);
+    const padX = Math.max(0.04, spanX * 0.28);
+    const padY = Math.max(0.04, spanY * 0.28);
     vx0 -= padX;
     vx1 += padX;
     vy0 -= padY;
     vy1 += padY;
 
-    const minSpan = 0.22;
+    const minSpan = 0.16;
     const cx = (vx0 + vx1) / 2;
     const cy = (vy0 + vy1) / 2;
     if (vx1 - vx0 < minSpan) {
@@ -719,7 +761,7 @@ function renderTermMap(selectedId) {
   const edgePairs = [];
   const edgeSeen = new Set();
   for (const id of drawIds) {
-    for (const neighborId of getMapNeighbors(id)) {
+    for (const neighborId of mapNeighbors(id)) {
       if (!drawSet.has(neighborId)) {
         continue;
       }
@@ -755,7 +797,7 @@ function renderTermMap(selectedId) {
   }
 
   const activeId = state.mapHoverId || selectedId || "";
-  const activeNeighbors = new Set(getMapNeighbors(activeId));
+  const activeNeighbors = new Set(mapNeighbors(activeId));
 
   if (activeId && items[activeId]) {
     const source = items[activeId];
@@ -875,7 +917,7 @@ function renderTermMap(selectedId) {
 
   const labelAnchorId = activeId;
   if (labelAnchorId && items[labelAnchorId]) {
-    const neighborIds = getMapNeighbors(labelAnchorId).filter((id) => drawSet.has(id)).slice(0, 3);
+    const neighborIds = mapNeighbors(labelAnchorId).filter((id) => drawSet.has(id)).slice(0, 3);
     const labels = neighborIds.length ? neighborIds : fallbackNeighbors(labelAnchorId, 3);
     if (labels.length) {
       ctx.font = "12px " + monoFont;
