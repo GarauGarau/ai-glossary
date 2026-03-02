@@ -1,8 +1,8 @@
 # AI Glossary
 
-Minimal, open-source AI terminology glossary (English + Italian) built for fast lookup: definition, key intuition, and sources.
+Minimal AI terminology glossary (English + Italian) built for fast lookup: definition, key intuition, and sources.
 
-This project is fully static (no backend required) and is designed to run for free on GitHub Pages.
+This project is fully static (no backend required) and is designed, at the moment, to run for free on GitHub Pages.
 
 ## Local preview
 
