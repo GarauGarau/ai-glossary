@@ -8,12 +8,12 @@ tags:
   - deep-dive
   - advanced
 definition: |
-  Chain-of-Thought è una tecnica in cui il modello viene incoraggiato (o addestrato) a mostrare esplicitamente il ragionamento passo-passo prima di dare la risposta finale. Invece di saltare a una conclusione, il modello "pensa ad alta voce". Questo migliora drasticamente le prestazioni su compiti complessi: matematica, logica, pianificazione multi-step, debug di codice. I reasoning models (OpenAI o1/o3, extended thinking di Anthropic) spingono oltre, essendo addestrati specificamente a ragionare a lungo prima di rispondere.
+  Chain-of-Thought (CoT) è una tecnica in cui il modello viene incoraggiato (o addestrato) a esplicitare i passaggi di ragionamento prima di dare la risposta finale. Invece di saltare subito a una conclusione, il modello "ragiona per step". Questo può migliorare molto le prestazioni su compiti complessi: matematica, logica, pianificazione in più passaggi, debug di codice. I cosiddetti reasoning models (OpenAI o1/o3, "extended thinking" di Anthropic) spingono questo approccio: sono addestrati a investire più tempo di calcolo nel ragionamento prima di rispondere.
 key_intuition: |
-  Chiedi a qualcuno "quanto fa 17 per 24?" e pretendi una risposta istantanea: probabilmente sbagliera. Ma se dici "prenditi tempo, mostrami i passaggi", scrivera "17 x 24 = 17 x 20 + 17 x 4 = 340 + 68 = 408" e ci arrivera. Lo stesso vale per gli LLM. Generando passaggi intermedi di ragionamento, il modello si da in pratica un foglio di brutta copia. Ogni passo vincola il successivo, riducendo la probabilità che l'errore si propaghi.
+  Chiedi a qualcuno: "quanto fa 17 per 24?" e pretendi una risposta istantanea: probabilmente sbaglierà. Ma se dici "prenditi tempo e mostrami i passaggi", scriverà "17 x 24 = 17 x 20 + 17 x 4 = 340 + 68 = 408" e ci arriverà. Lo stesso vale per molti LLM: generare passaggi intermedi è come dargli un foglio di brutta copia. Ogni passo vincola il successivo e riduce la probabilità che un errore si propaghi.
 
-  Ecco la parte controintuitiva: far produrre al modello PIU token (i passaggi di ragionamento) rende la risposta finale PIU accurata. Stai scambiando token (che costano denaro) per qualità. È un cambio di paradigma: l'intelligenza può migliorare non solo rendendo il modello più grande, ma permettendogli di pensare più a lungo.
-use_cases: Migliorare accuratezza su compiti multi-step; decidere quando spendere token; pattern di prompting per ragionamento.
+  La parte controintuitiva è che far produrre al modello più token (cioè i passaggi) può rendere la risposta finale più accurata. In pratica stai scambiando costo (token/compute) con qualità: decidi quando vale la pena farlo "pensare" più a lungo.
+use_cases: Migliorare accuratezza su compiti in più passaggi; decidere quando spendere token; pattern di prompting per ragionamento.
 links:
   - title: Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)
     url: https://arxiv.org/abs/2201.11903

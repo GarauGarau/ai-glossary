@@ -6,9 +6,9 @@ difficulty: intermediate
 tags:
   - intermediate
 definition: |
-  RAG è una tecnica che da a un modello AI accesso a conoscenza esterna al momento della domanda. Invece di rispondere solo con ciò che ha memorizzato durante l'addestramento, il sistema prima cerca in una knowledge base (documenti, database, pagine web) le informazioni rilevanti, poi le passa al modello insieme alla tua domanda. Il modello genera una risposta ancorata alle evidenze recuperate, riducendo drasticamente le allucinazioni.
+  RAG è una tecnica che dà a un modello AI accesso a conoscenza esterna nel momento della domanda. Invece di rispondere solo con ciò che ha appreso durante l'addestramento, il sistema prima cerca in una base di conoscenza (documenti, database, pagine web) le informazioni rilevanti e poi le passa al modello insieme alla domanda. Il modello genera una risposta ancorata alle evidenze recuperate, riducendo drasticamente le allucinazioni.
 key_intuition: |
-  Senza RAG, fare una domanda a un LLM è come chiedere a qualcuno di rispondere a memoria in un esame a libro chiuso. Con RAG, è un esame a libro aperto: il modello può consultare informazioni prima di rispondere. La qualità della risposta dipende non solo dall'intelligenza del modello, ma anche dalla qualità del libro (la tua knowledge base) e da quanto bene riesce a trovare la pagina giusta (il sistema di retrieval).
+  Senza RAG, fare una domanda a un LLM è come chiedere a qualcuno di rispondere a memoria in un esame a libro chiuso. Con RAG è un esame a libro aperto: il modello può consultare informazioni prima di rispondere. La qualità della risposta dipende non solo dal modello, ma anche dalla qualità del "libro" (la tua base di conoscenza) e da quanto bene riesce a trovare la pagina giusta (il sistema di recupero/retrieval).
 use_cases: Ancorare risposte a documenti privati/aggiornati; ridurre allucinazioni; aggiungere citazioni; ricerca su knowledge base.
 links:
   - title: Lewis et al. (2020) - RAG for Knowledge-Intensive NLP (arXiv:2005.11401)

@@ -7,7 +7,7 @@ tags:
   - essentials
   - beginner
 definition: |
-  Il prompt è tutto ciò che invii al modello: la tua domanda, le tue istruzioni, qualsiasi contesto tu fornisca. Ma ecco la cosa che molti si perdono: la qualità dell'output dell'AI è determinata in modo schiacciante dalla qualità del prompt. Stesso modello, stessa domanda, formulazione diversa - risultati completamente diversi. Un prompt vago produce una risposta generica. Un prompt strutturato e specifico, con contesto ed esempi, può ottenere output da livello esperto.
+  Il prompt è tutto ciò che invii al modello: domanda, istruzioni e contesto. Spesso però si sottovaluta un fatto: la qualità dell'output dipende in gran parte dalla qualità del prompt. A parità di modello, una stessa richiesta formulata in modo diverso può produrre risultati completamente diversi. Un prompt vago tende a generare risposte generiche; un prompt specifico e strutturato, con contesto ed esempi, può portare a output di livello molto alto.
 key_intuition: |
   Un prompt è come un brief che dai a un consulente. Se dici "parlami di marketing", otterrai una panoramica generica. Se dici "gestisco una società B2B SaaS con 50 dipendenti, il nostro CAC è aumentato del 40% nel Q3 e mi servono 3 strategie specifiche per ridurlo usando content marketing, con tempi e costi stimati", otterrai qualcosa di davvero operativo. Il modello non è diventato più intelligente. Gli hai dato vincoli migliori.
 use_cases: Ottenere output migliori aggiungendo contesto, vincoli, esempi e il formato desiderato.

@@ -9,7 +9,7 @@ tags:
 definition: |
   MoE è un'architettura in cui il modello contiene più sotto-reti specializzate chiamate "expert" e un meccanismo di routing appreso (la "gating network") che decide quali expert attivare per ogni input. Un modello MoE può avere 8 expert ma attivarne solo 2 per un dato token. Questo significa che il numero totale di parametri può essere enorme (dando al modello una grande capacità), mentre il costo computazionale per l'inferenza rimane gestibile (perché molti parametri restano inattivi per una query).
 key_intuition: |
-  Immagina un ospedale con 8 reparti specialistici. Quando arriva un paziente, il triage (il router) valuta i sintomi e lo manda ai 2 reparti più rilevanti. L'ospedale ha l'esperienza combinata di tutti e 8 i reparti (capacità totale enorme), ma ogni paziente costa solo le risorse di 2 consulti (efficiente per caso). Un modello dense, al contrario, è come costringere ogni paziente a passare da tutti e 8 i reparti ogni volta - accurato ma estremamente costoso.
+  Immagina un ospedale con 8 reparti specialistici. Quando arriva un paziente, il triage (il router) valuta i sintomi e lo manda ai 2 reparti più rilevanti. L'ospedale ha l'esperienza combinata di tutti e 8 i reparti (capacità totale enorme), ma ogni paziente costa solo le risorse di 2 consulti (efficiente per caso). Un modello denso (dense), al contrario, è come costringere ogni paziente a passare da tutti e 8 i reparti ogni volta: accurato ma estremamente costoso.
 use_cases: Scalare capacità senza costi di inferenza proporzionali; varianti veloci tipo Mixtral; capire tradeoff di routing.
 links:
   - title: Shazeer et al. (2017) - Sparsely-Gated Mixture-of-Experts Layer (arXiv:1701.06538)

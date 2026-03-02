@@ -6,7 +6,7 @@ difficulty: intermediate
 tags:
   - intermediate
 definition: |
-  Un vector database è un database specializzato progettato per salvare e cercare embedding - rappresentazioni numeriche di significato. A differenza di un database tradizionale che trova match esatti ("trova tutti i record dove name = 'John'"), un vector database trova nearest neighbors approssimati: "trova gli elementi salvati il cui significato è più vicino a questa query". È il motore di ricerca dietro a ogni sistema RAG.
+  Un database vettoriale (vector database) è un database progettato per salvare e cercare embedding, cioè rappresentazioni numeriche del significato. A differenza di un database tradizionale che trova corrispondenze esatte ("trova tutti i record dove name = 'John'"), un database vettoriale fa una ricerca per similarità: trova gli elementi salvati il cui significato è più vicino a quello della query (spesso con algoritmi approssimati per scalare). È uno dei componenti chiave di un sistema RAG.
 key_intuition: |
   Un database tradizionale è come un archivio alfabetico: velocissimo se conosci l'etichetta esatta, inutile se stai cercando per concetto. Un vector database è come un bibliotecario che capisce il significato: dici "mi serve qualcosa sull'impatto dei social media sulla salute mentale degli adolescenti" e lui trova documenti rilevanti anche se nessuna di quelle parole appare nel testo. La "magia" è che la similarità semantica diventa un calcolo di distanza matematica.
 use_cases: Salvare embedding per ricerca semantica; layer di retrieval per RAG; similarity search su larga scala con filtri.

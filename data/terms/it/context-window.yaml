@@ -7,9 +7,9 @@ tags:
   - essentials
   - beginner
 definition: |
-  La context window (finestra di contesto) è la quantità massima di testo (misurata in token) che un modello può elaborare in una singola interazione. Include sia l'input (il tuo prompt, la cronologia della conversazione, eventuali documenti che fornisci) sia l'output (la risposta del modello). Quando la finestra e piena, il modello non ha accesso a nulla che stia fuori. I messaggi più vecchi in una conversazione lunga, dal punto di vista del modello, semplicemente scompaiono.
+  La context window (o finestra di contesto) è la quantità massima di testo (misurata in token) che un modello può considerare in una singola interazione. Include sia l'input (il tuo prompt, la cronologia della conversazione, eventuali documenti che fornisci) sia l'output (la risposta del modello). Quando la finestra è piena, tutto ciò che sta fuori non è più accessibile: in una conversazione lunga, dal punto di vista del modello, i messaggi più vecchi semplicemente scompaiono.
 key_intuition: |
-  Pensa alla context window come alla scrivania di lavoro del modello. Tutto ciò che deve consultare mentre risponde deve stare su questa scrivania. Una scrivania piccola (4K token, i primi GPT-3) contiene circa 6 pagine. Una scrivania grande (200K token, Claude) può contenere un intero romanzo. Ma quando qualcosa cade giu dalla scrivania, e andato: il modello non può aprire un cassetto e recuperarlo.
+  Pensa alla context window come alla scrivania di lavoro del modello. Tutto ciò che deve consultare mentre risponde deve stare su questa scrivania. Una scrivania piccola (4K token, i primi GPT-3) contiene circa 6 pagine. Una scrivania grande (200K token, Claude) può contenere un intero romanzo. Ma quando qualcosa cade giù dalla scrivania, è andato: il modello non può aprire un cassetto e recuperarlo.
 
   Ecco perché l'AI "dimentica" le tue istruzioni nelle conversazioni lunghe: il tuo messaggio iniziale viene spinto fuori dalla finestra dai messaggi più recenti. Non è un bug: è un vincolo architetturale fondamentale.
 use_cases: Gestire conversazioni lunghe; scegliere modelli per dimensione del contesto; fare chunking/sintesi di contesto e documenti.

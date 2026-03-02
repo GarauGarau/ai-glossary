@@ -9,10 +9,10 @@ tags:
   - essentials
   - beginner
 definition: |
-  I modelli closed-source (GPT-4, Claude) sono accessibili solo tramite l'API o l'interfaccia dell'azienda. Puoi usarli ma non puoi vedere la loro architettura, i dati di addestramento o i pesi. I modelli open source (LLaMA, Mistral, Qwen) rilasciano parte o tutto questo, permettendo a chiunque di scaricarli, eseguirli, modificarli e costruirci sopra. Questa distinzione modella l'intero ecosistema AI: chi controlla l'AI, chi può competere e chi può fare audit sulla sicurezza.
+  I modelli closed source (GPT-4, Claude) sono accessibili solo tramite l'API o l'interfaccia dell'azienda: puoi usarli, ma non puoi vedere architettura, dati di addestramento o pesi. I modelli open source (LLaMA, Mistral, Qwen) rilasciano parte o tutto questo, permettendo a chiunque di scaricarli, eseguirli, modificarli e costruirci sopra. Questa distinzione plasma l'intero ecosistema AI: chi controlla i modelli, chi può competere e chi può fare audit sulla sicurezza.
 key_intuition: |
   Il closed source è come un ristorante: mangi il cibo, ma non ottieni la ricetta e non puoi modificarla. L'open source è come un ricettario pubblicato: puoi cucinare a casa, cambiare gli ingredienti o aprire il tuo ristorante. Il compromesso? Il ristorante ha chef professionisti e controllo qualità. Il ricettario ti dà libertà ma nessuna garanzia.
-use_cases: Decidere buy vs self-host; auditabilità/compliance; vincoli di deployment/licenza; controllo dei costi.
+use_cases: Decidere tra servizio gestito e self-hosting; auditabilità e compliance; vincoli di licenza e messa in produzione; controllo dei costi.
 links:
   - title: Groeneveld et al. (2024) - OLMo (arXiv:2402.00838)
     url: https://arxiv.org/abs/2402.00838

@@ -8,11 +8,11 @@ tags:
   - deep-dive
   - advanced
 definition: |
-  I dati sintetici sono dati di training generati dagli stessi modelli AI invece che raccolti dal mondo reale. Man mano che i dati di alta qualità prodotti da umani diventano scarsi (stiamo letteralmente finendo internet da "scrapare"), i dati sintetici diventano essenziali. Ma c'è un feedback loop pericoloso: se addestri un modello su dati generati da AI e poi usi quel modello per generare ancora più dati di training, la qualità degrada generazione dopo generazione. Questa degradazione ricorsiva si chiama model collapse.
+  I dati sintetici sono dati di training generati da modelli AI invece che raccolti dal mondo reale. Man mano che i dati di alta qualità prodotti da umani diventano più rari (e sempre più contenuti online sono generati da AI), i dati sintetici diventano utili per aumentare e diversificare i dataset. Ma c'è un feedback loop pericoloso: se addestri un modello su dati generati da AI e poi usi quel modello per generare altri dati di training, la qualità può degradare generazione dopo generazione. Questa degradazione ricorsiva si chiama model collapse.
 key_intuition: |
   Immagina di fotocopiare una fotografia. La copia sembra quasi altrettanto buona. Ora fotocopia la copia. Poi fotocopia quella copia. Alla decima generazione, l'immagine è un disastro sfocato e degradato. Il model collapse è lo stesso fenomeno applicato all'AI: ogni generazione di dati sintetici perde qualche sfumatura sottile, amplifica alcuni errori e restringe la distribuzione. Dopo diverse generazioni, il modello perde la capacità di rappresentare tutta la diversità del linguaggio e della conoscenza umana.
 
-  Questo sta già succedendo. Man mano che internet si riempie di contenuti generati da AI, la prossima generazione di modelli inevitabilmente si addestrera anche su parte di essi. Una ricerca pubblicata su Nature (2024) ha mostrato che modelli addestrati ricorsivamente perdono diversità e accuratezza in modo prevedibile. La soluzione? Curare attentamente i dati, mescolare sintetico con dati umani verificati e mantenere fonti di dati "pulite".
+  Questo sta già succedendo. Man mano che internet si riempie di contenuti generati da AI, la prossima generazione di modelli inevitabilmente si addestrerà anche su parte di essi. Una ricerca pubblicata su Nature (2024) ha mostrato che modelli addestrati ricorsivamente perdono diversità e accuratezza in modo prevedibile. La soluzione? Curare attentamente i dati, mescolare dati sintetici con dati umani verificati e mantenere fonti "pulite".
 use_cases: Progettare pipeline dati; augmentation sintetica; evitare feedback loop; strategie di data curation.
 links:
   - title: Shumailov et al. (2024) - Model collapse with recursive training data (Nature)

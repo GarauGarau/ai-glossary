@@ -146,9 +146,23 @@ code {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
   justify-content: flex-end;
   margin-left: auto;
   align-self: flex-start;
+}
+
+.top-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.top-prefs {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .layout {

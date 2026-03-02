@@ -7,12 +7,12 @@ tags:
   - essentials
   - beginner
 definition: |
-  Un embedding è una lista di numeri (un vettore) che rappresenta il "significato" di un pezzo di testo in un formato che i computer possono gestire matematicamente. La proprietà chiave: testi con significati simili ottengono vettori simili. Questo permette alle macchine di fare una cosa che prima non potevano: cercare per significato invece che per corrispondenza esatta di parole chiave.
+  Un embedding è una lista di numeri (un vettore) che rappresenta il "significato" di un pezzo di testo in una forma su cui i computer possono fare calcoli. La proprietà chiave è che testi con significati simili producono vettori simili. Questo permette alle macchine di fare una cosa che prima era difficile: cercare per significato invece che per corrispondenza esatta di parole chiave.
 key_intuition: |
-  Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. "Dog" e "puppy" sono vicinissimi. "Dog" e "cat" sono vicini (entrambi animali domestici). "Dog" e "airplane" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi "auto familiare economica" e il sistema trova un documento su "veicoli convenienti per famiglie" anche se nessuna parola coincide, sono gli embedding che lavorano.
+  Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. "cane" e "cucciolo" sono vicinissimi. "cane" e "gatto" sono vicini (entrambi animali domestici). "cane" e "aereo" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi "auto familiare economica" e il sistema trova un documento su "veicoli convenienti per famiglie" anche se nessuna parola coincide, sono gli embedding che lavorano.
 
-  Il famoso esempio: nello spazio degli embedding, il vettore per "king" meno "man" più "woman" produce un vettore molto vicino a "queen". Il modello ha imparato relazioni di genere puramente dai pattern statistici nel testo.
-use_cases: Ricerca semantica, clustering, raccomandazioni; recupero documenti per RAG; deduplicazione e similarity matching.
+  Il classico esempio: nello spazio degli embedding, il vettore per "king" meno "man" più "woman" produce un vettore molto vicino a "queen". Il modello ha imparato relazioni (in questo caso legate al genere) puramente dai pattern statistici nel testo.
+use_cases: Ricerca semantica, clustering, raccomandazioni; recupero documenti per RAG; deduplicazione e matching di similarità.
 links:
   - title: Mikolov et al. (2013) - Word2Vec (arXiv:1301.3781)
     url: https://arxiv.org/abs/1301.3781

@@ -9,6 +9,11 @@ const state = {
   mapHoverPos: null,
   mapSelectedId: "",
   mapReady: false,
+  mapView: null,
+  mapViewTarget: null,
+  mapViewFrom: null,
+  mapViewStartedAt: 0,
+  mapViewRaf: 0,
 };
 
 const searchEl = document.getElementById("search");
@@ -47,6 +52,70 @@ function rgba(rgb, a) {
 
 function clamp(value, min, max) {
   return Math.max(min, Math.min(max, value));
+}
+
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+
+function easeOutCubic(t) {
+  const tt = clamp(t, 0, 1);
+  return 1 - (1 - tt) ** 3;
+}
+
+
+function rectClose(a, b, eps = 1e-4) {
+  if (!a || !b) {
+    return false;
+  }
+  return Math.abs(a.x0 - b.x0) <= eps &&
+    Math.abs(a.x1 - b.x1) <= eps &&
+    Math.abs(a.y0 - b.y0) <= eps &&
+    Math.abs(a.y1 - b.y1) <= eps;
+}
+
+
+function clampRange(min, max, lower, upper) {
+  let lo = min;
+  let hi = max;
+  const span = hi - lo;
+  const full = upper - lower;
+
+  if (!Number.isFinite(span) || span <= 0) {
+    return { min: lower, max: upper };
+  }
+  if (span >= full) {
+    return { min: lower, max: upper };
+  }
+
+  if (lo < lower) {
+    hi += lower - lo;
+    lo = lower;
+  }
+  if (hi > upper) {
+    lo -= hi - upper;
+    hi = upper;
+  }
+
+  lo = clamp(lo, lower, upper);
+  hi = clamp(hi, lower, upper);
+  if (hi - lo <= 1e-9) {
+    return { min: lower, max: upper };
+  }
+  return { min: lo, max: hi };
+}
+
+
+function scheduleMapFrame() {
+  if (state.mapViewRaf) {
+    return;
+  }
+  state.mapViewRaf = window.requestAnimationFrame(() => {
+    state.mapViewRaf = 0;
+    renderTermMap(state.mapSelectedId);
+  });
 }
 
 
@@ -169,7 +238,7 @@ function renderListAllButton() {
     return;
   }
   if (state.lang === "it") {
-    listAllEl.textContent = state.listAll ? "Cerca" : "Tutti";
+    listAllEl.textContent = state.listAll ? "Cerca" : "Tutti i termini";
     return;
   }
   listAllEl.textContent = state.listAll ? "Search" : "All terms";
@@ -222,13 +291,31 @@ function renderControlCopy() {
   });
 
   if (state.lang === "it") {
-    searchEl.placeholder = "Cerca termini, alias, definizioni...";
+    searchEl.placeholder = "Cerca termini, sinonimi, definizioni...";
     randomTermEl.textContent = "Casuale";
   } else {
     searchEl.placeholder = "Search terms, aliases, definitions...";
     randomTermEl.textContent = "Random";
   }
   renderThemeToggle();
+}
+
+
+function formatDifficultyLabel(value) {
+  const v = String(value || "").trim();
+  const map = {
+    en: {
+      beginner: "Beginner",
+      intermediate: "Intermediate",
+      advanced: "Advanced",
+    },
+    it: {
+      beginner: "Base",
+      intermediate: "Intermedio",
+      advanced: "Avanzato",
+    },
+  };
+  return map[state.lang]?.[v] || v;
 }
 
 
@@ -314,6 +401,9 @@ function setupTermMap() {
       const px = p._px;
       const py = p._py;
       if (typeof px !== "number" || typeof py !== "number") {
+        continue;
+      }
+      if (px < -24 || px > rect.width + 24 || py < -24 || py > rect.height + 24) {
         continue;
       }
       const dx = mx - px;
@@ -465,16 +555,154 @@ function renderTermMap(selectedId) {
     if (!Number.isFinite(xRaw) || !Number.isFinite(yRaw)) {
       delete p._px;
       delete p._py;
+      delete p._nx;
+      delete p._ny;
       continue;
     }
     const xNorm = needsNormalization ? (xRaw - xMin) / spanX : xRaw;
     const yNorm = needsNormalization ? (yRaw - yMin) / spanY : yRaw;
-    const x = clamp(xNorm, 0, 1);
-    const y = clamp(yNorm, 0, 1);
-    p._px = margin + clamp(x, 0, 1) * innerW;
-    p._py = margin + (1 - clamp(y, 0, 1)) * innerH;
+    p._nx = clamp(xNorm, 0, 1);
+    p._ny = clamp(yNorm, 0, 1);
     validIds.push(id);
   }
+
+  const fullView = { x0: 0, x1: 1, y0: 0, y1: 1 };
+  const targetView = (() => {
+    if (!selectedId || !items[selectedId] || typeof items[selectedId]._nx !== "number" || typeof items[selectedId]._ny !== "number") {
+      return fullView;
+    }
+
+    const focus = new Set();
+    focus.add(selectedId);
+    const firstRing = getMapNeighbors(selectedId);
+    for (const id of firstRing) {
+      focus.add(id);
+    }
+    for (const id of firstRing) {
+      for (const id2 of getMapNeighbors(id)) {
+        focus.add(id2);
+      }
+    }
+
+    const desiredCount = 12;
+    if (focus.size < desiredCount) {
+      const sx = items[selectedId]._nx;
+      const sy = items[selectedId]._ny;
+      const scored = [];
+      for (const id of validIds) {
+        if (focus.has(id) || id === selectedId) {
+          continue;
+        }
+        const p = items[id];
+        if (!p || typeof p._nx !== "number" || typeof p._ny !== "number") {
+          continue;
+        }
+        scored.push({ id, d: Math.hypot(p._nx - sx, p._ny - sy) });
+      }
+      scored.sort((a, b) => a.d - b.d);
+      for (let i = 0; i < scored.length && focus.size < desiredCount; i += 1) {
+        focus.add(scored[i].id);
+      }
+    }
+
+    let vx0 = Infinity;
+    let vx1 = -Infinity;
+    let vy0 = Infinity;
+    let vy1 = -Infinity;
+    for (const id of focus) {
+      const p = items[id];
+      if (!p || typeof p._nx !== "number" || typeof p._ny !== "number") {
+        continue;
+      }
+      vx0 = Math.min(vx0, p._nx);
+      vx1 = Math.max(vx1, p._nx);
+      vy0 = Math.min(vy0, p._ny);
+      vy1 = Math.max(vy1, p._ny);
+    }
+    if (!Number.isFinite(vx0) || !Number.isFinite(vy0)) {
+      return fullView;
+    }
+
+    const spanX = Math.max(1e-9, vx1 - vx0);
+    const spanY = Math.max(1e-9, vy1 - vy0);
+    const padX = Math.max(0.05, spanX * 0.45);
+    const padY = Math.max(0.05, spanY * 0.45);
+    vx0 -= padX;
+    vx1 += padX;
+    vy0 -= padY;
+    vy1 += padY;
+
+    const minSpan = 0.22;
+    const cx = (vx0 + vx1) / 2;
+    const cy = (vy0 + vy1) / 2;
+    if (vx1 - vx0 < minSpan) {
+      vx0 = cx - minSpan / 2;
+      vx1 = cx + minSpan / 2;
+    }
+    if (vy1 - vy0 < minSpan) {
+      vy0 = cy - minSpan / 2;
+      vy1 = cy + minSpan / 2;
+    }
+
+    const xr = clampRange(vx0, vx1, 0, 1);
+    const yr = clampRange(vy0, vy1, 0, 1);
+    return { x0: xr.min, x1: xr.max, y0: yr.min, y1: yr.max };
+  })();
+
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const now = (typeof performance !== "undefined" && performance.now) ? performance.now() : Date.now();
+
+  if (!state.mapView || !state.mapViewTarget || !state.mapViewFrom) {
+    state.mapView = targetView;
+    state.mapViewTarget = targetView;
+    state.mapViewFrom = targetView;
+    state.mapViewStartedAt = now;
+  }
+
+  if (!rectClose(state.mapViewTarget, targetView)) {
+    state.mapViewFrom = state.mapView || targetView;
+    state.mapViewTarget = targetView;
+    state.mapViewStartedAt = now;
+  }
+
+  let view = state.mapViewTarget || targetView;
+  const viewHasDelta = state.mapViewFrom && state.mapViewTarget && !rectClose(state.mapViewFrom, state.mapViewTarget);
+  if (!reduceMotion && viewHasDelta) {
+    const durationMs = 420;
+    const t = clamp((now - (state.mapViewStartedAt || now)) / durationMs, 0, 1);
+    const eased = easeOutCubic(t);
+    view = {
+      x0: lerp(state.mapViewFrom.x0, state.mapViewTarget.x0, eased),
+      x1: lerp(state.mapViewFrom.x1, state.mapViewTarget.x1, eased),
+      y0: lerp(state.mapViewFrom.y0, state.mapViewTarget.y0, eased),
+      y1: lerp(state.mapViewFrom.y1, state.mapViewTarget.y1, eased),
+    };
+    state.mapView = view;
+    if (t < 1) {
+      scheduleMapFrame();
+    }
+  } else {
+    state.mapView = view;
+    state.mapViewTarget = view;
+    state.mapViewFrom = view;
+  }
+
+  const spanViewX = Math.max(1e-9, view.x1 - view.x0);
+  const spanViewY = Math.max(1e-9, view.y1 - view.y0);
+  for (const id of validIds) {
+    const p = items[id];
+    const x = (p._nx - view.x0) / spanViewX;
+    const y = (p._ny - view.y0) / spanViewY;
+    p._px = margin + x * innerW;
+    p._py = margin + (1 - y) * innerH;
+  }
+
+  const drawIds = validIds.filter((id) => {
+    const p = items[id];
+    return typeof p._px === "number" && typeof p._py === "number" &&
+      p._px >= -40 && p._px <= cssW + 40 && p._py >= -40 && p._py <= cssH + 40;
+  });
+  const drawSet = new Set(drawIds);
 
   const ambientA = ctx.createRadialGradient(cssW * 0.08, cssH * 0.10, 0, cssW * 0.08, cssH * 0.10, cssW * 0.88);
   ambientA.addColorStop(0, rgba(accent, isDark ? 0.16 : 0.10));
@@ -490,8 +718,11 @@ function renderTermMap(selectedId) {
 
   const edgePairs = [];
   const edgeSeen = new Set();
-  for (const id of validIds) {
+  for (const id of drawIds) {
     for (const neighborId of getMapNeighbors(id)) {
+      if (!drawSet.has(neighborId)) {
+        continue;
+      }
       const from = items[id];
       const to = items[neighborId];
       if (!from || !to || typeof to._px !== "number" || typeof to._py !== "number") {
@@ -535,6 +766,9 @@ function renderTermMap(selectedId) {
     ctx.shadowBlur = 8;
     ctx.beginPath();
     for (const neighborId of activeNeighbors) {
+      if (!drawSet.has(neighborId)) {
+        continue;
+      }
       const target = items[neighborId];
       if (!target || typeof target._px !== "number" || typeof target._py !== "number") {
         continue;
@@ -548,7 +782,7 @@ function renderTermMap(selectedId) {
 
   ctx.fillStyle = nodeMuted;
   const r = 2.3;
-  for (const id of validIds) {
+  for (const id of drawIds) {
     const p = items[id];
     ctx.beginPath();
     ctx.arc(p._px, p._py, r, 0, Math.PI * 2);
@@ -558,6 +792,9 @@ function renderTermMap(selectedId) {
   if (activeNeighbors.size) {
     ctx.fillStyle = neighborFill;
     for (const neighborId of activeNeighbors) {
+      if (!drawSet.has(neighborId)) {
+        continue;
+      }
       const p = items[neighborId];
       if (!p || typeof p._px !== "number" || typeof p._py !== "number") {
         continue;
@@ -569,7 +806,7 @@ function renderTermMap(selectedId) {
   }
 
   ctx.fillStyle = nodeFill;
-  for (const id of validIds) {
+  for (const id of drawIds) {
     const p = items[id];
     ctx.beginPath();
     ctx.arc(p._px, p._py, 1.55, 0, Math.PI * 2);
@@ -622,7 +859,7 @@ function renderTermMap(selectedId) {
     if (!center) {
       return [];
     }
-    return validIds
+    return drawIds
       .filter((id) => id !== anchorId)
       .map((id) => {
         const item = items[id];
@@ -638,7 +875,7 @@ function renderTermMap(selectedId) {
 
   const labelAnchorId = activeId;
   if (labelAnchorId && items[labelAnchorId]) {
-    const neighborIds = getMapNeighbors(labelAnchorId).slice(0, 3);
+    const neighborIds = getMapNeighbors(labelAnchorId).filter((id) => drawSet.has(id)).slice(0, 3);
     const labels = neighborIds.length ? neighborIds : fallbackNeighbors(labelAnchorId, 3);
     if (labels.length) {
       ctx.font = "12px " + monoFont;
@@ -803,7 +1040,7 @@ function renderCards(terms) {
     node.dataset.difficulty = term.difficulty;
     node.style.setProperty("--stagger", String(idx));
     node.querySelector(".term").textContent = term.term;
-    node.querySelector(".difficulty").textContent = term.difficulty;
+    node.querySelector(".difficulty").textContent = formatDifficultyLabel(term.difficulty);
     node.querySelector(".definition").textContent = term.definition;
 
     const tagsEl = node.querySelector(".tags");
@@ -827,13 +1064,29 @@ function renderCards(terms) {
     const intuitionDetailsEl = node.querySelector(".intuition-details");
     const intuitionEl = node.querySelector(".key-intuition");
     if (term.key_intuition && term.key_intuition.trim()) {
+      const summaryEl = intuitionDetailsEl.querySelector("summary");
+      if (summaryEl) {
+        summaryEl.textContent = state.lang === "it" ? "Intuizione chiave" : "Key intuition";
+      }
       intuitionEl.textContent = term.key_intuition;
     } else {
       intuitionDetailsEl.hidden = true;
     }
 
-    node.querySelector(".use-cases").textContent = `Use cases: ${term.use_cases}`;
+    const useCasesEl = node.querySelector(".use-cases");
+    const useCases = String(term.use_cases || "").trim();
+    if (useCases) {
+      useCasesEl.hidden = false;
+      useCasesEl.textContent = state.lang === "it"
+        ? `Casi d'uso: ${useCases}`
+        : `Use cases: ${useCases}`;
+    } else {
+      useCasesEl.textContent = "";
+      useCasesEl.hidden = true;
+    }
+
     const reportEl = node.querySelector(".report");
+    reportEl.textContent = state.lang === "it" ? "Segnala un problema" : "Report a problem";
     const reportUrl = buildReportUrl(term);
     if (reportUrl) {
       reportEl.href = reportUrl;
@@ -862,7 +1115,7 @@ function renderCards(terms) {
         relatedEl.appendChild(b);
       }
     } else {
-      relatedEl.textContent = "No related terms.";
+      relatedEl.textContent = state.lang === "it" ? "Nessun termine correlato." : "No related terms.";
     }
 
     fragment.appendChild(node);
@@ -906,8 +1159,8 @@ function render() {
   if (state.listAll) {
     const total = dataset ? dataset.terms.length : terms.length;
     updateMeta(state.lang === "it"
-      ? `${total} termini (ordinati per difficoltà)`
-      : `${total} terms (sorted by difficulty)`);
+      ? `${total} ${total === 1 ? "termine" : "termini"} (ordinati per difficoltà)`
+      : `${total} ${total === 1 ? "term" : "terms"} (sorted by difficulty)`);
     return;
   }
 
@@ -917,8 +1170,8 @@ function render() {
   }
 
   updateMeta(state.lang === "it"
-    ? `${terms.length} risultati`
-    : `${terms.length} result(s)`);
+    ? `${terms.length} ${terms.length === 1 ? "risultato" : "risultati"}`
+    : `${terms.length} ${terms.length === 1 ? "result" : "results"}`);
 }
 
 

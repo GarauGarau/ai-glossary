@@ -6,9 +6,9 @@ difficulty: intermediate
 tags:
   - intermediate
 definition: |
-  Vibe coding è un termine coniato da Andrej Karpathy (co-fondatore di OpenAI, ex direttore AI di Tesla) a inizio 2025 per descrivere un nuovo modo di programmare: descrivi quello che vuoi in linguaggio naturale, l'AI scrive il codice, lo esegui, vedi se funziona e iteri descrivendo cambiamenti. Non leggi mai o non capisci davvero il codice. Programmi "a vibe" - a sensazione - descrivendo l'esito desiderato, non ingegnerizzando la soluzione.
+  Vibe coding è un termine coniato da Andrej Karpathy (co-fondatore di OpenAI, ex direttore AI di Tesla) a inizio 2025 per descrivere un modo di programmare guidato dall'AI: descrivi l'obiettivo in linguaggio naturale, l'AI scrive il codice, tu lo esegui, vedi cosa succede e iteri. In questo flusso spesso non leggi (o non capisci a fondo) il codice: lavori per tentativi e aggiustamenti, descrivendo l'esito desiderato più che progettando la soluzione riga per riga.
 key_intuition: |
-  Programmazione tradizionale: sei l'architetto, il costruttore e l'ispettore. Progetti la struttura, scrivi ogni riga, fai debug di ogni errore. Vibe coding: sei il cliente che descrive a un appaltatore AI cosa vuoi costruire. "Fammi un sito con un form che invia email." L'AI scrive il codice. Tu lo testi, dici "il bottone è troppo piccolo e aggiungi una dark mode" e l'AI lo rivede. Potresti spedire un prodotto funzionante senza capire una singola riga del codice sottostante.
+  Programmazione tradizionale: sei l'architetto, il costruttore e l'ispettore. Progetti la struttura, scrivi ogni riga, fai debug di ogni errore. Vibe coding: sei il cliente che descrive a un appaltatore AI cosa vuoi costruire. "Fammi un sito con un form che invia email." L'AI scrive il codice. Tu lo testi e dici: "il bottone è troppo piccolo", "aggiungi una dark mode" o "questa validazione non funziona", e l'AI lo rivede. Puoi arrivare a un prodotto funzionante senza conoscere davvero il dettaglio del codice sottostante, ma ti assumi rischi su sicurezza, qualità e manutenibilità.
 use_cases: Prototipazione rapida con AI; accelerare piccoli progetti; capire rischi (sicurezza, manutenibilità) del codice scritto da AI.
 links:
   - title: Andrej Karpathy (2025) - Original post coining "vibe coding"

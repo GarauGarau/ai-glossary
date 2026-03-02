@@ -10,7 +10,7 @@ definition: |
   Un benchmark è un test standardizzato per modelli AI: un set fisso di domande o compiti con risposte corrette note, progettato per misurare capacità specifiche. I benchmark permettono a ricercatori e aziende di confrontare modelli su una classifica comune. Ma sono profondamente imperfetti: i modelli possono essere ottimizzati specificamente per i benchmark, i dati di training possono contenere accidentalmente domande di benchmark e le prestazioni nel mondo reale spesso divergono dai punteggi.
 key_intuition: |
   I benchmark sono come i test standardizzati per l'AI: SAT, GRE, test di QI. Danno un segnale utile, ma tutti sanno che un punteggio alto al SAT non garantisce successo nella vita. Allo stesso modo, un modello che domina MMLU (un enorme test a scelta multipla di conoscenza) può comunque dare pessimi consigli sul tuo specifico problema di business. L'industria AI sta imparando lentamente la stessa lezione che l'educazione ha imparato decenni fa: non puoi ridurre una capacità complessa a un singolo numero.
-use_cases: Confrontare modelli; scegliere modelli per compiti; capire limiti e metric gaming.
+use_cases: Confrontare modelli; scegliere modelli per compiti; capire limiti e gaming delle metriche.
 links:
   - title: Hendrycks et al. (2021) - MMLU (arXiv:2009.03300)
     url: https://arxiv.org/abs/2009.03300

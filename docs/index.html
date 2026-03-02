@@ -19,8 +19,14 @@
         </div>
 
         <div class="top-controls" aria-label="Top controls">
-          <nav id="lang-switch" class="lang-switch" aria-label="Language selector"></nav>
-          <button id="theme-toggle" type="button" class="ghost icon-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">☾</button>
+          <div class="top-actions" aria-label="Quick actions">
+            <button id="random-term" type="button" class="ghost">Random</button>
+            <button id="list-all" type="button" class="ghost">All terms</button>
+          </div>
+          <div class="top-prefs" aria-label="Preferences">
+            <nav id="lang-switch" class="lang-switch" aria-label="Language selector"></nav>
+            <button id="theme-toggle" type="button" class="ghost icon-toggle" aria-label="Switch to dark theme" title="Switch to dark theme">☾</button>
+          </div>
         </div>
       </header>
 
@@ -34,27 +40,18 @@
           <div class="meta" aria-live="polite">
             <span id="meta-status">Loading...</span>
           </div>
-          <div class="shortcuts" aria-label="Keyboard shortcuts">
-            <span data-shortcuts="en">Shortcuts: <span class="kbd">/</span> jump to search, <span class="kbd">Esc</span> clear.</span>
-            <span data-shortcuts="it" hidden>Scorciatoie: <span class="kbd">/</span> attiva la ricerca, <span class="kbd">Esc</span> pulisci.</span>
-          </div>
-          <div class="actions">
-            <button id="random-term" type="button" class="ghost">Random</button>
-            <button id="list-all" type="button" class="ghost">All terms</button>
-          </div>
 
           <section class="map-panel" aria-label="Term map">
             <div class="map-head">
               <div class="map-title">
-                <span class="kicker">Map</span>
-                <span class="map-sub">Term map</span>
+                <span class="map-sub">Term Map</span>
               </div>
               <div id="map-label" class="map-label" aria-live="polite"></div>
             </div>
             <canvas id="term-map" class="term-map" aria-label="Knowledge map"></canvas>
             <div class="map-hint">
               <span data-map-lang="en">Each point is a glossary term: nearby points have similar meaning, and lines show nearest neighbors. The map is built from term embeddings projected to 2D.</span>
-              <span data-map-lang="it" hidden>Ogni punto rappresenta un termine del glossario: punti vicini hanno significato simile, e le linee mostrano i vicini più prossimi. La mappa è creata da embedding dei termini proiettati in 2D.</span>
+              <span data-map-lang="it" hidden>Ogni punto è un termine del glossario: punti vicini indicano significati simili, e le linee mostrano i termini più affini. La mappa è costruita a partire dagli embedding dei termini, proiettati in 2D.</span>
             </div>
           </section>
         </section>
@@ -91,22 +88,21 @@
 
               <div id="intro-it" class="intro-copy" hidden>
                 <div class="kicker">Parti da qui</div>
-                <h2 class="intro-title">Conosci i termini. Risparmia token.</h2>
+                <h2 class="intro-title">Capire i termini AI, in fretta.</h2>
                 <p class="intro-lede">
-                  Un glossario essenziale di terminologia AI: definizioni, intuizione chiave e fonti.
-                  Utile per orientarsi e restare precisi senza sprecare token sui concetti base.
+                  Un glossario essenziale di terminologia AI con definizioni, intuizioni e fonti.
                 </p>
                 <div class="intro-grid">
                   <div class="intro-block">
                     <h3>Cosa contiene</h3>
-                    <p>Ricerca istantanea, difficoltà, intuizione chiave, fonti e termini correlati.</p>
+                    <p>Ricerca veloce, intuizione chiave, fonti, livello di difficoltà e termini correlati.</p>
                   </div>
                   <div class="intro-block">
                     <h3>Contribuisci</h3>
                     <p>
-                      Vuoi contribuire al progetto? Puoi farlo scrivendo, migliorando, traducendo o modificando le definizioni esistenti,
-                      oppure aggiungendone di nuove nel <a href="https://github.com/GarauGarau/ai-glossary" target="_blank" rel="noreferrer">repository GitHub</a>.
-                      Se invece vuoi supportare il progetto economicamente, puoi <a href="https://www.paypal.com/donate/?business=alessiogarau22%40gmail.com&currency_code=EUR" target="_blank" rel="noreferrer">fare una donazione con PayPal</a>.
+                      Vuoi contribuire al progetto? Puoi scrivere nuove definizioni, migliorare e tradurre quelle esistenti,
+                      oppure proporre modifiche direttamente nel <a href="https://github.com/GarauGarau/ai-glossary" target="_blank" rel="noreferrer">repository su GitHub</a>.
+                      Se invece preferisci supportare il progetto economicamente, puoi <a href="https://www.paypal.com/donate/?business=alessiogarau22%40gmail.com&currency_code=EUR" target="_blank" rel="noreferrer">fare una donazione con PayPal</a>.
                     </p>
                   </div>
                 </div>
@@ -133,7 +129,7 @@
                 </div>
                 <p class="intro-hint">
                   <span data-intro-lang="en">Tip: press <span class="kbd">/</span> to jump to the search bar. Press <span class="kbd">Esc</span> to clear.</span>
-                  <span data-intro-lang="it" hidden>Suggerimento: premi <span class="kbd">/</span> per attivare la barra di ricerca. Premi <span class="kbd">Esc</span> per pulire.</span>
+                  <span data-intro-lang="it" hidden>Suggerimento: premi <span class="kbd">/</span> per andare alla barra di ricerca. Premi <span class="kbd">Esc</span> per cancellare.</span>
                 </p>
               </div>
             </article>

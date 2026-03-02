@@ -7,10 +7,10 @@ difficulty: intermediate
 tags:
   - intermediate
 definition: |
-  Un AI agent è un sistema che va oltre la risposta a un singolo prompt: può pianificare compiti multi-step, usare strumenti esterni (motori di ricerca, API, interpreti di codice, database), eseguire azioni, osservare risultati e adattare il proprio approccio. Invece di "rispondi alla mia domanda", gli dai un obiettivo come "ricerca i competitor e produci un report", e lui capisce autonomamente i passi per arrivarci.
+  Un AI agent è un sistema che va oltre la risposta a un singolo prompt: può pianificare attività in più passaggi, usare strumenti esterni (motori di ricerca, API, interpreti di codice, database), eseguire azioni, osservare i risultati e adattare l'approccio. Invece di "rispondi alla mia domanda", gli dai un obiettivo (es. "analizza i concorrenti e prepara un report") e l'agente decide autonomamente quali passi fare.
 key_intuition: |
-  Un chatbot è come un bibliotecario che risponde alle domande da dietro un banco. Un agente è come un assistente di ricerca che lascia il banco: consulta più database, incrocia fonti, prende appunti, scrive una bozza di report, capisce che gli serve altro dato, lo va a trovare e torna con un risultato finito. L'LLM è il cervello, ma il framework dell'agente aggiunge mani, occhi e la capacità di muoversi.
-use_cases: Automatizzare workflow multi-step con tool; assistenti di ricerca; esecuzione di codice; loop di pianificazione/esecuzione.
+  Un chatbot è come un bibliotecario che risponde alle domande da dietro un banco. Un agente è più simile a un assistente di ricerca che si alza e lavora: consulta più fonti, incrocia dati, prende appunti, scrive una bozza, capisce cosa manca, va a recuperarlo e torna con un risultato finito. L'LLM è il cervello, ma il framework dell'agente aggiunge strumenti, osservazione e la capacità di agire nel mondo.
+use_cases: Automatizzare workflow in più passaggi con tool; assistenti di ricerca; esecuzione di codice; cicli di pianificazione/esecuzione.
 links:
   - title: Yao et al. (2023) - ReAct (arXiv:2210.03629)
     url: https://arxiv.org/abs/2210.03629
