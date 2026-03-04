@@ -80,23 +80,43 @@
 
                 <div class="map-details-copy" data-map-lang="it" hidden>
                   <p>
-                    Costruiamo un vettore di embedding per ogni termine inglese usando nome del termine, definizione, intuizione chiave e (se presenti) casi d'uso.
-                    Puoi vedere un embedding come coordinate semantiche: termini con significato simile finiscono in zone vicine.
+                    Il sistema genera un vettore di embedding per ogni termine inglese, elaborando dati quali il nome, la definizione,
+                    l'intuizione chiave e gli eventuali casi d'uso. Questi embedding fungono da "coordinate semantiche": concetti con
+                    significati affini vengono collocati in regioni contigue dello spazio vettoriale.
                   </p>
+
+                  <p><strong>Calcolo della Distanza e Connessioni</strong></p>
+
                   <p>
-                    La similarità è calcolata con la distanza angolare:
-                    <code>d(i,j) = acos(cosine(i,j)) / pi</code>.
-                    Intuizione: il coseno misura quanto due vettori hanno la stessa direzione (1 = stessa direzione, 0 = non correlati, -1 = opposti).
-                    Con <code>acos</code> trasformiamo questo allineamento in un angolo, e dividendo per <code>pi</code> lo portiamo in scala 0-1.
-                    Distanza più piccola = maggiore vicinanza semantica.
+                    La similarità tra i termini viene determinata attraverso la distanza angolare, calcolata secondo la formula:
+                    <code>d(i,j) = arccos(cosine(i,j)) / π</code>.
                   </p>
+
                   <p>
-                    Per ogni termine, ordiniamo tutti gli altri per distanza e teniamo i 3 più vicini.
-                    Le linee della mappa sono esattamente questi collegamenti di vicinanza.
+                    <strong>Logica:</strong> La similarità cosinusoidale misura l'allineamento direzionale tra due vettori (dove 1 indica
+                    la medesima direzione e 0 l'assenza di correlazione).
                   </p>
+
                   <p>
-                    Le posizioni dei nodi vengono poi proiettate in 2D (MDS) per visualizzare la mappa in modo leggibile,
-                    ma i collegamenti tra vicini sono calcolati nello spazio degli embedding, non dalla distanza 2D sullo schermo.
+                    <strong>Normalizzazione:</strong> L'arcocoseno trasforma tale allineamento in un angolo, mentre la divisione per π
+                    normalizza il valore in una scala compresa tra 0 e 1.
+                  </p>
+
+                  <p>
+                    <strong>Risultato:</strong> Minore è la distanza, maggiore è la prossimità semantica tra i termini.
+                  </p>
+
+                  <p>
+                    Per ogni termine vengono individuati i tre concetti più vicini in base alla distanza calcolata. Le linee che compongono
+                    la mappa rappresentano esattamente questi legami di prossimità.
+                  </p>
+
+                  <p><strong>Visualizzazione</strong></p>
+
+                  <p>
+                    Infine, le posizioni dei nodi vengono proiettate in uno spazio bidimensionale tramite Multidimensional Scaling (MDS)
+                    per garantire la leggibilità della mappa. È importante notare che i collegamenti tra i vicini sono stabiliti nello spazio
+                    multidimensionale degli embedding e non dipendono dalla semplice distanza visiva sul piano 2D.
                   </p>
                 </div>
               </details>
