@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +27,45 @@ VALID_DIFFICULTY = {"beginner", "intermediate", "advanced"}
 VALID_LINK_TYPES = {"explainer", "technical", "video", "reference", "official"}
 
 
+ITALIAN_COMMON_MISSING_ACCENTS: dict[str, str] = {
+    "piu": "più",
+    "perche": "perché",
+    "cosi": "così",
+    "cio": "ciò",
+    "puo": "può",
+    "qualita": "qualità",
+    "quantita": "quantità",
+    "finche": "finché",
+    "estremita": "estremità",
+    "ambiguita": "ambiguità",
+    "migliorera": "migliorerà",
+    "prevedibilita": "prevedibilità",
+    "modalita": "modalità",
+    "multimodalita": "multimodalità",
+    "similarita": "similarità",
+}
+
+
+def validate_italian_accents(path: Path, payload: dict[str, Any]) -> None:
+    fields: dict[str, str] = {
+        "term": str(payload.get("term") or ""),
+        "aliases": "\n".join(str(x) for x in (payload.get("aliases") or []) if x),
+        "definition": str(payload.get("definition") or ""),
+        "key_intuition": str(payload.get("key_intuition") or ""),
+        "use_cases": str(payload.get("use_cases") or ""),
+    }
+
+    for wrong, right in ITALIAN_COMMON_MISSING_ACCENTS.items():
+        pattern = r"\b" + re.escape(wrong) + r"\b"
+        for field, text in fields.items():
+            if not text:
+                continue
+            if re.search(pattern, text, flags=re.IGNORECASE):
+                raise ValueError(
+                    f"Possible missing accent in {path} ({field}): found '{wrong}', expected '{right}'"
+                )
+
+
 def read_yaml(path: Path) -> dict[str, Any]:
     try:
         with path.open("r", encoding="utf-8") as f:
@@ -37,7 +77,7 @@ def read_yaml(path: Path) -> dict[str, Any]:
     return data
 
 
-def validate_term(path: Path, payload: dict[str, Any]) -> None:
+def validate_term(lang: str, path: Path, payload: dict[str, Any]) -> None:
     for field, expected_type in REQUIRED_FIELDS.items():
         if field not in payload:
             raise ValueError(f"Missing required field '{field}' in {path}")
@@ -73,6 +113,9 @@ def validate_term(path: Path, payload: dict[str, Any]) -> None:
         if item["type"] not in VALID_LINK_TYPES:
             raise ValueError(f"links[{idx}].type invalid in {path}: {item['type']}")
 
+    if lang == "it":
+        validate_italian_accents(path, payload)
+
 
 def load_language(lang: str) -> dict[str, dict[str, Any]]:
     lang_dir = DATA_DIR / lang
@@ -83,7 +126,7 @@ def load_language(lang: str) -> dict[str, dict[str, Any]]:
     for path in sorted(lang_dir.glob("*.yaml")):
         term_id = path.stem
         payload = read_yaml(path)
-        validate_term(path, payload)
+        validate_term(lang, path, payload)
         payload.setdefault("aliases", [])
         payload.setdefault("related", [])
         payload["id"] = term_id

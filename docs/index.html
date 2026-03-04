@@ -50,9 +50,6 @@
             </div>
             <canvas id="term-map" class="term-map" aria-label="Knowledge map"></canvas>
             <div class="map-hint">
-              <span data-map-lang="en">Each point is one glossary term. Distances come from semantic embeddings; lines connect each term to its 3 nearest semantic neighbors.</span>
-              <span data-map-lang="it" hidden>Ogni punto rappresenta un termine del glossario. Le distanze vengono dagli embedding semantici; le linee collegano ogni termine ai suoi 3 vicini semantici piu prossimi.</span>
-
               <details class="details map-details">
                 <summary>
                   <span data-map-lang="en">How this map is built</span>
@@ -87,14 +84,14 @@
                     Puoi vedere un embedding come coordinate semantiche: termini con significato simile finiscono in zone vicine.
                   </p>
                   <p>
-                    La similarita e calcolata con la distanza angolare:
+                    La similarità è calcolata con la distanza angolare:
                     <code>d(i,j) = acos(cosine(i,j)) / pi</code>.
                     Intuizione: il coseno misura quanto due vettori hanno la stessa direzione (1 = stessa direzione, 0 = non correlati, -1 = opposti).
                     Con <code>acos</code> trasformiamo questo allineamento in un angolo, e dividendo per <code>pi</code> lo portiamo in scala 0-1.
-                    Distanza piu piccola = maggiore vicinanza semantica.
+                    Distanza più piccola = maggiore vicinanza semantica.
                   </p>
                   <p>
-                    Per ogni termine, ordiniamo tutti gli altri per distanza e teniamo i 3 piu vicini.
+                    Per ogni termine, ordiniamo tutti gli altri per distanza e teniamo i 3 più vicini.
                     Le linee della mappa sono esattamente questi collegamenti di vicinanza.
                   </p>
                   <p>
