@@ -1,0 +1,28 @@
+term: Alignment & AI Safety
+aliases:
+  - AI alignment
+  - AI safety
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Alignment is the problem of making AI systems actually do what humans want - not just what they're literally told. A model can be extremely capable but misaligned: it might find creative loopholes in instructions, optimize for the wrong metric, produce harmful outputs, or behave well during testing but differently in deployment. AI safety is the broader field that studies these risks and develops techniques to mitigate them. RLHF, guardrails, red-teaming, and constitutional AI are all alignment techniques, but the field goes beyond any single method: it asks fundamental questions about how to build AI systems that remain beneficial as they become more powerful.
+key_intuition: |
+  Imagine hiring someone extremely competent but giving them vague instructions. You say "maximize customer satisfaction scores." They might achieve this by only surveying happy customers, by offering unsustainable refunds, or by manipulating the survey itself - all technically satisfying the instruction while completely missing the intent. Alignment is the challenge of making AI systems understand and follow the spirit of what you want, not just the letter.
+
+  This gets harder as models get more capable. A weak model that's misaligned can't do much damage. A powerful model that's misaligned could cause serious harm precisely because it's so effective at pursuing the wrong objective. This is why alignment research has become increasingly urgent alongside capability research: every leap in what models can do raises the stakes on ensuring they do it for the right reasons.
+use_cases: Understanding why AI safety research exists; reasoning about deployment risks; evaluating how well a model is aligned; contextualizing techniques like RLHF and guardrails.
+links:
+  - title: Ngo, Chan & Mindermann (2024) - The Alignment Problem from a Deep Learning Perspective (arXiv:2209.00626)
+    url: https://arxiv.org/abs/2209.00626
+    type: technical
+  - title: Anthropic (2023) - Core Views on AI Safety
+    url: https://www.anthropic.com/research
+    type: official
+related:
+  - rlhf
+  - guardrails
+  - hallucination
+  - pre-training-vs-post-training
+  - reasoning-vs-pattern-matching

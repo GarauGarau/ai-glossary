@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import math
 import time
@@ -26,6 +27,10 @@ class TermDoc:
 
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def _text_hash(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
 def load_term_docs() -> list[TermDoc]:
@@ -106,6 +111,46 @@ def embed_texts(
     if len(embeddings) != len(texts):
         raise ValueError("Embedding count mismatch")
     return embeddings
+
+
+def _is_valid_vector(value: Any) -> bool:
+    return isinstance(value, list) and bool(value) and all(isinstance(x, (int, float)) for x in value)
+
+
+def load_embedding_cache(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return {}
+    if not isinstance(payload, dict):
+        return {}
+    if not isinstance(payload.get("vectors"), dict):
+        return {}
+    return payload
+
+
+def save_embedding_cache(
+    path: Path,
+    *,
+    base_url: str,
+    model: str,
+    vectors: dict[str, dict[str, Any]],
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "version": 1,
+        "source_lang": "en",
+        "updated_at": _utc_now_iso(),
+        "embedding": {
+            "provider": "lm-studio",
+            "base_url": base_url,
+            "model": model,
+        },
+        "vectors": vectors,
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def angular_distance_matrix(vectors: list[list[float]]) -> list[list[float]]:
@@ -222,6 +267,11 @@ def main() -> None:
     parser.add_argument("--out", default=str(ROOT / "docs" / "term_map.json"), help="Output JSON path")
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--timeout", type=int, default=60)
+    parser.add_argument(
+        "--cache",
+        default=str(ROOT / ".cache" / "term_embeddings.en.json"),
+        help="Embedding cache path for incremental rebuilds",
+    )
     parser.add_argument("--iters", type=int, default=2200)
     parser.add_argument("--lr", type=float, default=0.016)
     parser.add_argument("--weight-power", type=float, default=0.6)
@@ -229,15 +279,64 @@ def main() -> None:
     args = parser.parse_args()
 
     docs = load_term_docs()
-    vectors = embed_texts(
-        [d.text for d in docs],
-        base_url=args.base_url,
-        model=args.model,
-        batch_size=max(1, args.batch_size),
-        timeout_s=max(5, args.timeout),
-    )
+    cache_path = Path(args.cache) if str(args.cache).strip() else None
+    cache_payload = load_embedding_cache(cache_path) if cache_path else {}
+    cache_embedding: dict[str, Any] = {}
+    if isinstance(cache_payload.get("embedding"), dict):
+        cache_embedding = cache_payload["embedding"]
+    cache_model = str(cache_embedding.get("model") or "")
+    cache_vectors_raw: dict[str, Any] = {}
+    if isinstance(cache_payload.get("vectors"), dict):
+        cache_vectors_raw = cache_payload["vectors"]
+    use_cache = bool(cache_vectors_raw) and cache_model == args.model
 
-    dist = angular_distance_matrix(vectors)
+    vectors: list[list[float] | None] = [None for _ in docs]
+    missing_indices: list[int] = []
+    missing_texts: list[str] = []
+    next_cache_vectors: dict[str, dict[str, Any]] = {}
+    reused = 0
+
+    for i, doc in enumerate(docs):
+        text_hash = _text_hash(doc.text)
+        cached = cache_vectors_raw.get(doc.term_id) if use_cache else None
+        if isinstance(cached, dict) and cached.get("text_hash") == text_hash and _is_valid_vector(cached.get("vector")):
+            vec = [float(x) for x in cached["vector"]]
+            vectors[i] = vec
+            next_cache_vectors[doc.term_id] = {"text_hash": text_hash, "vector": vec}
+            reused += 1
+            continue
+
+        missing_indices.append(i)
+        missing_texts.append(doc.text)
+
+    if missing_texts:
+        new_vectors = embed_texts(
+            missing_texts,
+            base_url=args.base_url,
+            model=args.model,
+            batch_size=max(1, args.batch_size),
+            timeout_s=max(5, args.timeout),
+        )
+        for pos, vec in zip(missing_indices, new_vectors):
+            vectors[pos] = vec
+            doc = docs[pos]
+            next_cache_vectors[doc.term_id] = {"text_hash": _text_hash(doc.text), "vector": vec}
+
+    if any(v is None for v in vectors):
+        raise ValueError("Internal error: missing vectors after incremental embedding")
+
+    if cache_path:
+        save_embedding_cache(
+            cache_path,
+            base_url=args.base_url,
+            model=args.model,
+            vectors=next_cache_vectors,
+        )
+
+    vectors_final: list[list[float]] = [v for v in vectors if v is not None]
+    print(f"Embeddings: reused {reused}, computed {len(missing_indices)}, total {len(docs)}")
+
+    dist = angular_distance_matrix(vectors_final)
     pts = mds_2d(
         dist,
         seed=args.seed,

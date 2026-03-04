@@ -45,3 +45,5 @@ python scripts/build_term_map.py --base-url http://127.0.0.1:1234/v1 --model tex
 ```
 
 This writes `docs/term_map.json`.
+
+The script keeps an incremental cache at `.cache/term_embeddings.en.json`, so subsequent runs only request embeddings for new or changed English terms.

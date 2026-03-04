@@ -1,0 +1,29 @@
+term: Neural Network
+aliases:
+  - Rete neurale
+  - Rete neurale artificiale
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Una rete neurale e la struttura computazionale fondamentale dietro l'AI moderna. E un sistema di funzioni matematiche interconnesse organizzate in strati (layer), vagamente ispirate ai neuroni biologici. I dati entrano attraverso uno strato di input, passano per uno o piu strati nascosti (hidden layer, dove i pattern vengono rilevati e combinati) e producono risultati nello strato di output. Ogni connessione tra strati ha un peso numerico (weight) che determina quanto un segnale influenza il successivo. Quando si dice che un modello ha "miliardi di parametri", si contano proprio questi pesi. Addestrare una rete neurale significa regolare quei pesi finche la rete non produce output utili.
+key_intuition: |
+  Immagina una catena di montaggio in una fabbrica. La materia prima (il tuo input: testo, immagine, numeri) entra da un'estremita. A ogni stazione (layer), gli operai (neuroni) esaminano il materiale e prendono decisioni semplici: "c'e una curva qui?", "questa parola segue un pattern?", "questo valore supera una soglia?". Ogni operaio passa il suo giudizio alla stazione successiva, dove altri operai combinano questi segnali semplici in valutazioni sempre piu complesse. Alla fine della catena, una serie di operazioni banali ha prodotto qualcosa di sofisticato: una classificazione, una previsione, una frase generata.
+
+  L'intuizione chiave e che nessun singolo neurone e "intelligente". L'intelligenza emerge dalla combinazione di miliardi di operazioni semplici, ciascuna calibrata dall'addestramento. Per questo la scala conta cosi tanto nell'AI moderna: piu parametri significa combinazioni piu sfumate, e quindi la rete puo rappresentare pattern piu complessi.
+use_cases: Base per capire tutti i modelli AI moderni; comprendere perche scala e addestramento contano; ragionare su cosa l'AI puo e non puo imparare.
+links:
+  - title: Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)
+    url: https://www.deeplearningbook.org/
+    type: reference
+  - title: 3Blue1Brown - But what is a neural network? (YouTube)
+    url: https://www.youtube.com/watch?v=aircAruvnKk
+    type: video
+related:
+  - llm
+  - transformer
+  - weights-and-parameters
+  - fine-tuning
+  - overfitting-and-generalization

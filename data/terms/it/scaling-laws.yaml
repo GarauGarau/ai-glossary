@@ -1,0 +1,29 @@
+term: Scaling Laws
+aliases:
+  - Leggi di scaling
+  - Chinchilla scaling
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  Le scaling law sono scoperte empiriche che mostrano come le prestazioni di un modello AI migliorino in modo prevedibile aumentando tre fattori: il numero di parametri, la quantita di dati di addestramento e il budget di calcolo (compute). La relazione segue una legge di potenza: raddoppia il compute e ottieni un miglioramento misurabile e costante - non un salto improvviso, ma una curva liscia e prevedibile. Queste leggi, documentate rigorosamente da Kaplan et al. (2020) di OpenAI e raffinate da Hoffmann et al. (2022) di DeepMind (il paper "Chinchilla"), hanno dato all'industria una roadmap: se puoi permetterti piu compute, puoi prevedere quanto migliorera il modello.
+key_intuition: |
+  Le scaling law sono il motivo per cui la corsa all'AI e fondamentalmente una corsa alle risorse. Immagina di scoprire che, per un certo tipo di fabbrica, raddoppiare l'investimento raddoppia affidabilmente la qualita della produzione - non a volte, non approssimativamente, ma con prevedibilita matematica. Investiresti tutto il possibile. E esattamente cio che e successo nell'AI. Una volta che i laboratori hanno dimostrato che piu compute = modelli prevedibilmente migliori, la corsa a costruire cluster sempre piu grandi e diventata inevitabile.
+
+  L'intuizione di Chinchilla ha aggiunto una sfumatura cruciale: non basta costruire un modello piu grande. Un modello da 70 miliardi di parametri addestrato sulla giusta quantita di dati puo superare un modello da 175 miliardi addestrato su troppo pochi dati. La strategia ottimale bilancia dimensione del modello e quantita di dati per un dato budget di calcolo. Per questo "addestramento compute-ottimale" e diventato un mantra e perche qualita e quantita dei dati contano tanto quanto la dimensione del modello.
+use_cases: Capire l'economia dell'addestramento AI; prevedere miglioramenti dei modelli; ragionare su training compute-ottimale e perche i modelli piu grandi non sono sempre i migliori.
+links:
+  - title: Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)
+    url: https://arxiv.org/abs/2001.08361
+    type: technical
+  - title: Hoffmann et al. (2022) - Training Compute-Optimal LLMs / Chinchilla (arXiv:2203.15556)
+    url: https://arxiv.org/abs/2203.15556
+    type: technical
+related:
+  - llm
+  - weights-and-parameters
+  - pre-training-vs-post-training
+  - test-time-compute
+  - inference

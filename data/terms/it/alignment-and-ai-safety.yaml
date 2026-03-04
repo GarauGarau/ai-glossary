@@ -1,0 +1,28 @@
+term: Alignment & AI Safety
+aliases:
+  - Allineamento AI
+  - Sicurezza dell'AI
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  L'allineamento (alignment) e il problema di far si che i sistemi AI facciano davvero cio che gli esseri umani vogliono - non solo cio che viene loro detto alla lettera. Un modello puo essere estremamente capace ma disallineato: potrebbe trovare scorciatoie creative nelle istruzioni, ottimizzare per la metrica sbagliata, produrre output dannosi o comportarsi bene durante i test ma diversamente in produzione. La sicurezza dell'AI (AI safety) e il campo piu ampio che studia questi rischi e sviluppa tecniche per mitigarli. RLHF, guardrail, red-teaming e constitutional AI sono tutte tecniche di allineamento, ma il campo va oltre ogni singolo metodo: pone domande fondamentali su come costruire sistemi AI che restino benefici man mano che diventano piu potenti.
+key_intuition: |
+  Immagina di assumere qualcuno estremamente competente dandogli istruzioni vaghe. Dici "massimizza i punteggi di soddisfazione cliente". Potrebbe raggiungere l'obiettivo sondando solo i clienti contenti, offrendo rimborsi insostenibili o manipolando il sondaggio stesso - tutti modi che tecnicamente soddisfano l'istruzione ma mancano completamente l'intento. L'allineamento e la sfida di far si che i sistemi AI capiscano e seguano lo spirito di cio che vuoi, non solo la lettera.
+
+  Questo diventa piu difficile man mano che i modelli diventano piu capaci. Un modello debole e disallineato non puo fare grandi danni. Un modello potente e disallineato puo causare problemi seri proprio perche e cosi efficace nel perseguire l'obiettivo sbagliato. Per questo la ricerca sull'allineamento e diventata sempre piu urgente accanto alla ricerca sulle capacita: ogni salto in cio che i modelli possono fare alza la posta su come assicurarsi che lo facciano per le ragioni giuste.
+use_cases: Capire perche esiste la ricerca sulla sicurezza AI; ragionare sui rischi di deployment; valutare quanto un modello e allineato; contestualizzare tecniche come RLHF e guardrail.
+links:
+  - title: Ngo, Chan & Mindermann (2024) - The Alignment Problem from a Deep Learning Perspective (arXiv:2209.00626)
+    url: https://arxiv.org/abs/2209.00626
+    type: technical
+  - title: Anthropic (2023) - Core Views on AI Safety
+    url: https://www.anthropic.com/research
+    type: official
+related:
+  - rlhf
+  - guardrails
+  - hallucination
+  - pre-training-vs-post-training
+  - reasoning-vs-pattern-matching

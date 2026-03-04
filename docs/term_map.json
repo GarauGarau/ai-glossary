@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source_lang": "en",
-  "created_at": "2026-03-02T14:39:03Z",
+  "created_at": "2026-03-04T08:23:58Z",
   "embedding": {
     "provider": "lm-studio",
     "base_url": "http://127.0.0.1:1234/v1",
@@ -10,8 +10,13 @@
   "neighbors": {
     "ai-agent": [
       "api",
-      "mcp",
-      "transformer"
+      "neural-network",
+      "mcp"
+    ],
+    "alignment-and-ai-safety": [
+      "guardrails",
+      "neural-network",
+      "benchmark"
     ],
     "api": [
       "ai-agent",
@@ -21,12 +26,12 @@
     "attention-mechanism": [
       "transformer",
       "llm",
-      "token"
+      "neural-network"
     ],
     "benchmark": [
       "test-time-compute",
-      "overfitting-and-generalization",
-      "prompt"
+      "neural-network",
+      "overfitting-and-generalization"
     ],
     "chain-of-thought": [
       "test-time-compute",
@@ -51,12 +56,12 @@
     "fine-tuning": [
       "overfitting-and-generalization",
       "pre-training-vs-post-training",
-      "distillation"
+      "weights-and-parameters"
     ],
     "guardrails": [
-      "synthetic-data-model-collapse",
-      "benchmark",
-      "ai-agent"
+      "alignment-and-ai-safety",
+      "neural-network",
+      "synthetic-data-model-collapse"
     ],
     "hallucination": [
       "synthetic-data-model-collapse",
@@ -70,23 +75,33 @@
     ],
     "latent-space": [
       "embedding",
-      "llm",
-      "vector-database"
+      "neural-network",
+      "llm"
     ],
     "llm": [
       "reasoning-vs-pattern-matching",
-      "chain-of-thought",
-      "rlhf"
+      "neural-network",
+      "weights-and-parameters"
     ],
     "mcp": [
       "api",
       "ai-agent",
-      "benchmark"
+      "multimodality"
     ],
     "mixture-of-experts": [
       "inference",
-      "chain-of-thought",
-      "llm"
+      "neural-network",
+      "weights-and-parameters"
+    ],
+    "multimodality": [
+      "llm",
+      "neural-network",
+      "transformer"
+    ],
+    "neural-network": [
+      "weights-and-parameters",
+      "llm",
+      "transformer"
     ],
     "open-source-vs-closed-source-models": [
       "api",
@@ -96,7 +111,7 @@
     "overfitting-and-generalization": [
       "fine-tuning",
       "benchmark",
-      "synthetic-data-model-collapse"
+      "inference"
     ],
     "pre-training-vs-post-training": [
       "inference",
@@ -106,7 +121,7 @@
     "prompt-engineering": [
       "prompt",
       "pre-training-vs-post-training",
-      "api"
+      "alignment-and-ai-safety"
     ],
     "prompt": [
       "prompt-engineering",
@@ -114,9 +129,9 @@
       "benchmark"
     ],
     "quantization": [
+      "weights-and-parameters",
       "synthetic-data-model-collapse",
-      "overfitting-and-generalization",
-      "inference"
+      "overfitting-and-generalization"
     ],
     "rag": [
       "llm",
@@ -126,22 +141,27 @@
     "reasoning-vs-pattern-matching": [
       "llm",
       "chain-of-thought",
-      "inference"
+      "neural-network"
     ],
     "rlhf": [
       "llm",
       "pre-training-vs-post-training",
       "ai-agent"
     ],
+    "scaling-laws": [
+      "weights-and-parameters",
+      "neural-network",
+      "test-time-compute"
+    ],
     "synthetic-data-model-collapse": [
+      "quantization",
       "pre-training-vs-post-training",
-      "overfitting-and-generalization",
-      "quantization"
+      "overfitting-and-generalization"
     ],
     "temperature": [
       "distillation",
-      "inference",
-      "reasoning-vs-pattern-matching"
+      "weights-and-parameters",
+      "inference"
     ],
     "test-time-compute": [
       "inference",
@@ -149,14 +169,14 @@
       "benchmark"
     ],
     "token": [
-      "attention-mechanism",
+      "weights-and-parameters",
       "context-window",
-      "inference"
+      "attention-mechanism"
     ],
     "transformer": [
       "attention-mechanism",
-      "llm",
-      "ai-agent"
+      "neural-network",
+      "llm"
     ],
     "vector-database": [
       "embedding",
@@ -165,138 +185,163 @@
     ],
     "vibe-coding": [
       "api",
-      "prompt-engineering",
-      "temperature"
+      "multimodality",
+      "prompt-engineering"
+    ],
+    "weights-and-parameters": [
+      "neural-network",
+      "quantization",
+      "llm"
     ]
   },
   "items": {
     "ai-agent": {
-      "x": 0.32084683193220265,
-      "y": 0.7769393354901332
+      "x": 0.05261257134398812,
+      "y": 0.035796476620884046
+    },
+    "alignment-and-ai-safety": {
+      "x": 0.08848269038763698,
+      "y": 0.06742444475101406
     },
     "api": {
-      "x": 0.33767449967040486,
-      "y": 0.8287432797685015
+      "x": 0.026659822057637405,
+      "y": 0.07247121190882028
     },
     "attention-mechanism": {
-      "x": 0.11370891827296539,
-      "y": 0.7017809413647312
-    },
-    "benchmark": {
-      "x": 0.20326699576094792,
-      "y": 0.8233001189874803
-    },
-    "chain-of-thought": {
-      "x": 0.13185892380993994,
-      "y": 0.8163457588630658
-    },
-    "context-window": {
-      "x": 0.18800732638909678,
-      "y": 0.6324627186875867
-    },
-    "distillation": {
-      "x": 0.1126158457030717,
-      "y": 0.9601018667849235
-    },
-    "embedding": {
-      "x": 0.0,
-      "y": 0.723289892523433
-    },
-    "fine-tuning": {
-      "x": 0.06049634013546479,
-      "y": 0.9328424480015122
-    },
-    "guardrails": {
-      "x": 0.2879510009880062,
-      "y": 0.9738529590948768
-    },
-    "hallucination": {
-      "x": 0.16843575863797355,
-      "y": 0.9463457454093086
-    },
-    "inference": {
-      "x": 0.12641165660233467,
-      "y": 0.8877164651862594
-    },
-    "latent-space": {
-      "x": 0.012592972357263173,
-      "y": 0.7801909647756501
-    },
-    "llm": {
-      "x": 0.10529269751997093,
-      "y": 0.8224464777907929
-    },
-    "mcp": {
-      "x": 0.28265738654869427,
-      "y": 0.7820713369067962
-    },
-    "mixture-of-experts": {
-      "x": 0.01602222375580053,
-      "y": 0.8412332556033822
-    },
-    "open-source-vs-closed-source-models": {
-      "x": 0.3140514363001561,
-      "y": 0.8850390553743732
-    },
-    "overfitting-and-generalization": {
-      "x": 0.04369384943178919,
-      "y": 0.906670535465114
-    },
-    "pre-training-vs-post-training": {
-      "x": 0.18702465462049245,
-      "y": 0.8706196312948028
-    },
-    "prompt-engineering": {
-      "x": 0.2769832243078845,
-      "y": 0.7194799898033749
-    },
-    "prompt": {
-      "x": 0.26728113198460374,
-      "y": 0.6863309089718358
-    },
-    "quantization": {
-      "x": 0.001203007836890462,
-      "y": 0.894387576730478
-    },
-    "rag": {
-      "x": 0.07937462729205715,
-      "y": 0.7804992381332542
-    },
-    "reasoning-vs-pattern-matching": {
-      "x": 0.07778478758729838,
-      "y": 0.8723188581330823
-    },
-    "rlhf": {
-      "x": 0.2362089770917876,
-      "y": 0.9085348251331936
-    },
-    "synthetic-data-model-collapse": {
-      "x": 0.14825520619918864,
-      "y": 0.9104907992028716
-    },
-    "temperature": {
-      "x": 0.12418919018166813,
-      "y": 1.0
-    },
-    "test-time-compute": {
-      "x": 1.0,
+      "x": 0.18254820591629753,
       "y": 0.0
     },
+    "benchmark": {
+      "x": 0.17038223891394652,
+      "y": 0.0873718370351267
+    },
+    "chain-of-thought": {
+      "x": 0.24885812107288247,
+      "y": 0.032857333897905565
+    },
+    "context-window": {
+      "x": 0.07194561365204753,
+      "y": 0.10231404337405862
+    },
+    "distillation": {
+      "x": 0.35428862739016603,
+      "y": 0.06601044577208644
+    },
+    "embedding": {
+      "x": 0.3525660207000323,
+      "y": 0.023910274663518243
+    },
+    "fine-tuning": {
+      "x": 0.2604094097188115,
+      "y": 0.09909009304247438
+    },
+    "guardrails": {
+      "x": 0.0,
+      "y": 0.040484172315390185
+    },
+    "hallucination": {
+      "x": 0.1312309405319179,
+      "y": 0.03364176667544711
+    },
+    "inference": {
+      "x": 0.1934675038998585,
+      "y": 0.05657943337323631
+    },
+    "latent-space": {
+      "x": 0.3017801411349043,
+      "y": 0.0213528758168581
+    },
+    "llm": {
+      "x": 0.19761407601945613,
+      "y": 0.028455298638395393
+    },
+    "mcp": {
+      "x": 0.07233404430380194,
+      "y": 0.018235247042957134
+    },
+    "mixture-of-experts": {
+      "x": 0.2420547793826616,
+      "y": 0.0048370301535953005
+    },
+    "multimodality": {
+      "x": 0.11466835262427146,
+      "y": 0.013393459993723583
+    },
+    "neural-network": {
+      "x": 0.15430038258871875,
+      "y": 0.026082326354675184
+    },
+    "open-source-vs-closed-source-models": {
+      "x": 0.1702521588260009,
+      "y": 0.1121617540260537
+    },
+    "overfitting-and-generalization": {
+      "x": 0.2944430953930405,
+      "y": 0.08742145616972412
+    },
+    "pre-training-vs-post-training": {
+      "x": 0.15542346608067759,
+      "y": 0.07234529448224845
+    },
+    "prompt-engineering": {
+      "x": 0.06947586127491205,
+      "y": 0.08849690900132832
+    },
+    "prompt": {
+      "x": 0.11321339809263371,
+      "y": 0.10763421008588067
+    },
+    "quantization": {
+      "x": 0.33425905386871474,
+      "y": 0.07142846957726708
+    },
+    "rag": {
+      "x": 0.20919110630257948,
+      "y": 0.017822253373510896
+    },
+    "reasoning-vs-pattern-matching": {
+      "x": 0.2741617437036237,
+      "y": 0.05029770311910559
+    },
+    "rlhf": {
+      "x": 0.07642638301930178,
+      "y": 0.050631576826856255
+    },
+    "scaling-laws": {
+      "x": 0.28114407730898927,
+      "y": 0.0688332436727001
+    },
+    "synthetic-data-model-collapse": {
+      "x": 0.22244257601205147,
+      "y": 0.085518332216764
+    },
+    "temperature": {
+      "x": 0.28748600732689544,
+      "y": 0.0014571791034564264
+    },
+    "test-time-compute": {
+      "x": 0.2339963394353777,
+      "y": 0.06379155879002645
+    },
     "token": {
-      "x": 0.0940619965997694,
-      "y": 0.7330691411941855
+      "x": 0.31011975584772644,
+      "y": 0.0409492827692874
     },
     "transformer": {
-      "x": 0.1654609203909927,
-      "y": 0.718607553072235
+      "x": 0.14383277013175066,
+      "y": 0.002273844883976977
     },
     "vector-database": {
-      "x": 0.01871829016182204,
-      "y": 0.662076218255932
+      "x": 0.3959353834508004,
+      "y": 0.03643079406507875
     },
     "vibe-coding": {
-      "x": 0.3207667089191089,
-      "y": 0.9333671293066537
+      "x": 0.002562843097601064,
+      "y": 0.05905590833093319
+    },
+    "weights-and-parameters": {
+      "x": 1.0,
+      "y": 1.0
     }
   }
 }

@@ -1,0 +1,31 @@
+term: Weights & Parameters
+aliases:
+  - Pesi
+  - Parametri
+  - Pesi del modello
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  I parametri (spesso chiamati pesi, o weights) sono i singoli valori numerici all'interno di una rete neurale che ne determinano il comportamento. Quando si dice che GPT-4 ha "oltre mille miliardi di parametri", ognuno e un singolo numero - tipicamente un decimale come 0.0023 o -1.47 - che controlla quanto un neurone influenza un altro. Prima dell'addestramento questi numeri sono essenzialmente casuali. L'addestramento li regola, miliardi di volte, fino a che la rete non produce output affidabili. Una volta terminato, i pesi vengono congelati e diventano la "conoscenza" del modello: tutto cio che ha imparato e codificato in questi numeri.
+key_intuition: |
+  Pensa a un mixer in uno studio di registrazione. Ogni slider (parametro) controlla un aspetto del suono: il volume del basso, il riverbero della voce, la brillantezza della chitarra. Singolarmente, spostare uno slider non produce nulla di interessante. Ma con migliaia di slider impostati con precisione, ottieni una canzone curata. Addestrare un modello AI e come avere un sistema automatizzato che sposta milioni di slider, ascolta il risultato e li sposta di nuovo - miliardi di volte - finche l'output non suona giusto.
+
+  Questo spiega anche perche i file dei modelli sono cosi grandi: un modello con 70 miliardi di parametri, salvati a 2 byte ciascuno, occupa circa 140 GB di spazio. La quantizzazione (vedi: Quantization) riduce questa dimensione abbassando la precisione di ogni numero. Ed e il motivo per cui i modelli "open weights" sono cosi significativi: rilasciare i pesi significa rilasciare tutto cio che il modello ha imparato.
+use_cases: Capire dimensione e storage dei modelli; ragionare su addestramento, fine-tuning e quantizzazione; capire cosa significa "open weights".
+links:
+  - title: Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)
+    url: https://www.deeplearningbook.org/
+    type: reference
+  - title: Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)
+    url: https://arxiv.org/abs/2001.08361
+    type: technical
+related:
+  - neural-network
+  - llm
+  - quantization
+  - fine-tuning
+  - open-source-vs-closed-source-models
+  - scaling-laws

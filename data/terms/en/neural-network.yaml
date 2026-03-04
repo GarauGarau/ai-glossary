@@ -1,0 +1,29 @@
+term: Neural Network
+aliases:
+  - Artificial neural network
+  - ANN
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  A neural network is the fundamental computational structure behind modern AI. It's a system of interconnected mathematical functions organized in layers, loosely inspired by biological neurons. Data enters through an input layer, passes through one or more hidden layers (where patterns are detected and combined), and produces results at an output layer. Each connection between layers has a numerical weight that determines how strongly one signal influences the next. When we say a model has "billions of parameters," we're counting these weights. Training a neural network means adjusting those weights until the network produces useful outputs.
+key_intuition: |
+  Imagine an assembly line in a factory. Raw material (your input - text, an image, numbers) enters at one end. At each station (layer), workers (neurons) inspect the material and make small, simple decisions: "is there a curve here?", "does this word follow a pattern?", "is this value above a threshold?" Each worker passes their judgment to the next station, where more workers combine these simple signals into increasingly complex assessments. By the end of the line, a series of trivially simple operations has produced something sophisticated: a classification, a prediction, a generated sentence.
+
+  The key insight is that no individual neuron is "smart." Intelligence emerges from the combination of billions of simple operations, each tuned by training. This is why scale matters so much in modern AI: more parameters means more nuanced combinations, which means the network can represent more complex patterns.
+use_cases: Foundation for understanding all modern AI models; grasping why scale and training matter; reasoning about what AI can and cannot learn.
+links:
+  - title: Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)
+    url: https://www.deeplearningbook.org/
+    type: reference
+  - title: 3Blue1Brown - But what is a neural network? (YouTube)
+    url: https://www.youtube.com/watch?v=aircAruvnKk
+    type: video
+related:
+  - llm
+  - transformer
+  - weights-and-parameters
+  - fine-tuning
+  - overfitting-and-generalization

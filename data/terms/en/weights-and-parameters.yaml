@@ -1,0 +1,31 @@
+term: Weights & Parameters
+aliases:
+  - Weights
+  - Parameters
+  - Model weights
+category: essentials
+difficulty: beginner
+tags:
+  - essentials
+  - beginner
+definition: |
+  Parameters (often called weights) are the individual numerical values inside a neural network that determine its behavior. When GPT-4 is described as having "over a trillion parameters," each one is a single number - typically a decimal like 0.0023 or -1.47 - that controls how strongly one neuron influences another. Before training, these numbers are essentially random. Training adjusts them, billions of times over, until the network reliably produces useful outputs. Once training is done, these weights are frozen and become the model's "knowledge" - everything it learned is encoded in these numbers.
+key_intuition: |
+  Think of a mixing board in a recording studio. Each slider (parameter) controls one aspect of the sound: the volume of the bass, the reverb on the vocals, the brightness of the guitar. Individually, moving one slider does almost nothing interesting. But with thousands of sliders set precisely right, you get a polished song. Training an AI model is like having an automated system that nudges millions of sliders, listens to the result, and nudges again - billions of times - until the output sounds right.
+
+  This is also why model files are so large: a model with 70 billion parameters, stored at 2 bytes each, takes about 140 GB of disk space. Quantization (see: Quantization) shrinks this by reducing the precision of each number. And it's why "open weights" models are so significant: releasing the weights means releasing everything the model learned.
+use_cases: Understanding model size and storage; reasoning about training, fine-tuning, and quantization; grasping what "open weights" means.
+links:
+  - title: Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)
+    url: https://www.deeplearningbook.org/
+    type: reference
+  - title: Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)
+    url: https://arxiv.org/abs/2001.08361
+    type: technical
+related:
+  - neural-network
+  - llm
+  - quantization
+  - fine-tuning
+  - open-source-vs-closed-source-models
+  - scaling-laws

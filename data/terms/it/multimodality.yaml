@@ -1,0 +1,27 @@
+term: Multimodality
+aliases:
+  - AI multimodale
+  - Modelli multimodali
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  La multimodalita si riferisce a modelli AI che possono elaborare e generare piu di un tipo di dato - testo, immagini, audio, video, codice - all'interno di un unico sistema. I primi LLM erano solo testo: testo in ingresso, testo in uscita. I modelli multimodali moderni (GPT-4V, Gemini, Claude con visione) possono guardare un'immagine e descriverla, leggere un grafico e rispondere a domande sui dati, oppure ascoltare audio e trascriverlo. Alcuni possono anche generare immagini o voce, non solo testo. La tendenza e verso modelli che percepiscono e producono attraverso tutte le modalita, in modo simile agli esseri umani.
+key_intuition: |
+  I primi modelli AI erano come qualcuno che poteva comunicare solo per telefono: brillanti con le parole, ma completamente ciechi e sordi a tutto cio che e visivo o sonoro. Per analizzare un grafico dovevi prima descriverlo a parole. I modelli multimodali sono come passare a una videochiamata: ora possono vedere il tuo schermo, guardare la lavagna, leggere il grafico che stai indicando e rispondere sia con parole che con elementi visivi. La quantita di informazione che possono gestire aumenta enormemente.
+
+  Questo conta nella pratica perche il mondo reale e multimodale. Un medico ha bisogno di leggere sia la descrizione del paziente sia la radiografia. Uno sviluppatore ha bisogno di vedere sia il messaggio di errore sia lo screenshot dell'interfaccia rotta. Elaborando tutti questi input insieme, i modelli multimodali possono risolvere problemi che erano impossibili quando ogni modalita viveva in un sistema separato.
+use_cases: Comprensione e analisi di immagini; lettura di documenti e grafici; trascrizione audio; costruire applicazioni AI piu ricche oltre il solo testo.
+links:
+  - title: OpenAI (2023) - GPT-4V System Card
+    url: https://cdn.openai.com/papers/GPTV_System_Card.pdf
+    type: technical
+  - title: Bordes et al. (2024) - An Introduction to Vision-Language Modeling (arXiv:2405.17247)
+    url: https://arxiv.org/abs/2405.17247
+    type: technical
+related:
+  - llm
+  - transformer
+  - token
+  - embedding

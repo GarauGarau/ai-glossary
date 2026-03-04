@@ -598,7 +598,24 @@ function renderTermMap(selectedId) {
 
   const fullView = { x0: 0, x1: 1, y0: 0, y1: 1 };
   const spatialNeighbors = buildSpatialNeighborLookup(items, validIds, 3);
-  const mapNeighbors = (termId) => spatialNeighbors.get(termId) || [];
+  const validIdSet = new Set(validIds);
+  const savedNeighbors = (state.termMap && typeof state.termMap.neighbors === "object" && state.termMap.neighbors)
+    ? state.termMap.neighbors
+    : null;
+  const mapNeighbors = (termId) => {
+    if (!termId) {
+      return [];
+    }
+    if (savedNeighbors && Array.isArray(savedNeighbors[termId])) {
+      const explicit = savedNeighbors[termId]
+        .filter((id) => validIdSet.has(id) && id !== termId)
+        .slice(0, 3);
+      if (explicit.length) {
+        return explicit;
+      }
+    }
+    return spatialNeighbors.get(termId) || [];
+  };
 
   const targetView = (() => {
     if (!selectedId || !items[selectedId] || typeof items[selectedId]._nx !== "number" || typeof items[selectedId]._ny !== "number") {

@@ -1,0 +1,27 @@
+term: Multimodality
+aliases:
+  - Multimodal AI
+  - Multimodal models
+category: intermediate
+difficulty: intermediate
+tags:
+  - intermediate
+definition: |
+  Multimodality refers to AI models that can process and generate more than one type of data - text, images, audio, video, code - within a single system. Early LLMs were text-only: text in, text out. Modern multimodal models (GPT-4V, Gemini, Claude with vision) can look at an image and describe it, read a chart and answer questions about the data, or listen to audio and transcribe it. Some can also generate images or speech, not just text. The trend is toward models that perceive and produce across all modalities, much like humans do.
+key_intuition: |
+  Early AI models were like someone who could only communicate by phone: brilliant with words, but completely blind and deaf to anything visual or auditory. You had to describe a chart to them in words before they could analyze it. Multimodal models are like switching to a video call: now they can see your screen, look at your whiteboard, read the graph you're pointing at, and respond with both words and visuals. The information bandwidth explodes.
+
+  This matters practically because the real world is multimodal. A doctor needs to read both the patient's description and the X-ray. A developer needs to see both the error message and the screenshot of the broken UI. By processing all these inputs together, multimodal models can solve problems that were impossible when each modality lived in a separate system.
+use_cases: Image understanding and analysis; document/chart reading; audio transcription; building richer AI applications that go beyond text.
+links:
+  - title: OpenAI (2023) - GPT-4V System Card
+    url: https://cdn.openai.com/papers/GPTV_System_Card.pdf
+    type: technical
+  - title: Bordes et al. (2024) - An Introduction to Vision-Language Modeling (arXiv:2405.17247)
+    url: https://arxiv.org/abs/2405.17247
+    type: technical
+related:
+  - llm
+  - transformer
+  - token
+  - embedding

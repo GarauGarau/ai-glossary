@@ -1,0 +1,29 @@
+term: Scaling Laws
+aliases:
+  - Neural scaling laws
+  - Chinchilla scaling
+category: deep-dive
+difficulty: advanced
+tags:
+  - deep-dive
+  - advanced
+definition: |
+  Scaling laws are empirical findings showing that AI model performance improves predictably as you increase three things: the number of parameters, the amount of training data, and the compute budget. The relationship follows a power law: double the compute, and you get a measurable, consistent improvement - not a sudden jump, but a smooth, predictable curve. These laws, first rigorously documented by Kaplan et al. (2020) at OpenAI and refined by Hoffmann et al. (2022) at DeepMind (the "Chinchilla" paper), gave the industry a roadmap: if you can afford more compute, you can predict how much better the model will be.
+key_intuition: |
+  Scaling laws are why the AI race is fundamentally a resources race. Imagine you discovered that, for a specific type of factory, doubling your investment reliably doubled your output quality - not sometimes, not roughly, but with mathematical predictability. You'd invest as much as you possibly could. That's exactly what happened in AI. Once labs proved that more compute = predictably better models, the race to build bigger clusters became inevitable.
+
+  The Chinchilla insight added a crucial nuance: it's not just about building a bigger model. A 70-billion-parameter model trained on the right amount of data can outperform a 175-billion-parameter model trained on too little data. The optimal strategy balances model size with data quantity for a given compute budget. This is why "compute-optimal training" became a mantra and why data quality and quantity matter as much as raw model size.
+use_cases: Understanding the economics of AI training; predicting model improvements; reasoning about compute-optimal training and why the biggest models aren't always the best.
+links:
+  - title: Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)
+    url: https://arxiv.org/abs/2001.08361
+    type: technical
+  - title: Hoffmann et al. (2022) - Training Compute-Optimal LLMs / Chinchilla (arXiv:2203.15556)
+    url: https://arxiv.org/abs/2203.15556
+    type: technical
+related:
+  - llm
+  - weights-and-parameters
+  - pre-training-vs-post-training
+  - test-time-compute
+  - inference
