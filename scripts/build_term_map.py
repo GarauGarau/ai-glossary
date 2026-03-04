@@ -260,6 +260,33 @@ def normalize_to_unit(points: list[tuple[float, float]]) -> list[tuple[float, fl
     return out
 
 
+def limit_radial_outliers(
+    points: list[tuple[float, float]],
+    *,
+    max_radius_ratio: float,
+) -> list[tuple[float, float]]:
+    if not points:
+        return points
+    cx = sum(x for x, _ in points) / len(points)
+    cy = sum(y for _, y in points) / len(points)
+    radii = [math.hypot(x - cx, y - cy) for x, y in points]
+    sorted_r = sorted(radii)
+    mid = len(sorted_r) // 2
+    median = sorted_r[mid] if len(sorted_r) % 2 == 1 else (sorted_r[mid - 1] + sorted_r[mid]) / 2.0
+    if median <= 1e-9:
+        return points
+    max_r = max(1e-9, median * max(1.0, max_radius_ratio))
+
+    out: list[tuple[float, float]] = []
+    for (x, y), r in zip(points, radii):
+        if r <= max_r:
+            out.append((x, y))
+            continue
+        scale = max_r / r
+        out.append((cx + (x - cx) * scale, cy + (y - cy) * scale))
+    return out
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Build a semantic term map (2D) into docs/term_map.json")
     parser.add_argument("--base-url", default="http://127.0.0.1:1234/v1", help="LM Studio base URL")
@@ -274,7 +301,8 @@ def main() -> None:
     )
     parser.add_argument("--iters", type=int, default=2200)
     parser.add_argument("--lr", type=float, default=0.016)
-    parser.add_argument("--weight-power", type=float, default=0.6)
+    parser.add_argument("--weight-power", type=float, default=0.4)
+    parser.add_argument("--max-radius-ratio", type=float, default=3.5)
     parser.add_argument("--seed", type=int, default=7)
     args = parser.parse_args()
 
@@ -344,6 +372,7 @@ def main() -> None:
         lr=args.lr,
         weight_power=max(0.2, args.weight_power),
     )
+    pts = limit_radial_outliers(pts, max_radius_ratio=args.max_radius_ratio)
     unit = normalize_to_unit(pts)
 
     neighbors: dict[str, list[str]] = {}
