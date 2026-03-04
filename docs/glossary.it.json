@@ -38,6 +38,41 @@
       "id": "ai-agent"
     },
     {
+      "term": "Alignment & AI Safety",
+      "aliases": [
+        "Allineamento AI",
+        "Sicurezza dell'AI"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "L'allineamento (alignment) e il problema di far si che i sistemi AI facciano davvero cio che gli esseri umani vogliono - non solo cio che viene loro detto alla lettera. Un modello puo essere estremamente capace ma disallineato: potrebbe trovare scorciatoie creative nelle istruzioni, ottimizzare per la metrica sbagliata, produrre output dannosi o comportarsi bene durante i test ma diversamente in produzione. La sicurezza dell'AI (AI safety) e il campo piu ampio che studia questi rischi e sviluppa tecniche per mitigarli. RLHF, guardrail, red-teaming e constitutional AI sono tutte tecniche di allineamento, ma il campo va oltre ogni singolo metodo: pone domande fondamentali su come costruire sistemi AI che restino benefici man mano che diventano piu potenti.\n",
+      "key_intuition": "Immagina di assumere qualcuno estremamente competente dandogli istruzioni vaghe. Dici \"massimizza i punteggi di soddisfazione cliente\". Potrebbe raggiungere l'obiettivo sondando solo i clienti contenti, offrendo rimborsi insostenibili o manipolando il sondaggio stesso - tutti modi che tecnicamente soddisfano l'istruzione ma mancano completamente l'intento. L'allineamento e la sfida di far si che i sistemi AI capiscano e seguano lo spirito di cio che vuoi, non solo la lettera.\n\nQuesto diventa piu difficile man mano che i modelli diventano piu capaci. Un modello debole e disallineato non puo fare grandi danni. Un modello potente e disallineato puo causare problemi seri proprio perche e cosi efficace nel perseguire l'obiettivo sbagliato. Per questo la ricerca sull'allineamento e diventata sempre piu urgente accanto alla ricerca sulle capacita: ogni salto in cio che i modelli possono fare alza la posta su come assicurarsi che lo facciano per le ragioni giuste.\n",
+      "use_cases": "Capire perche esiste la ricerca sulla sicurezza AI; ragionare sui rischi di deployment; valutare quanto un modello e allineato; contestualizzare tecniche come RLHF e guardrail.",
+      "links": [
+        {
+          "title": "Ngo, Chan & Mindermann (2024) - The Alignment Problem from a Deep Learning Perspective (arXiv:2209.00626)",
+          "url": "https://arxiv.org/abs/2209.00626",
+          "type": "technical"
+        },
+        {
+          "title": "Anthropic (2023) - Core Views on AI Safety",
+          "url": "https://www.anthropic.com/research",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "rlhf",
+        "guardrails",
+        "hallucination",
+        "pre-training-vs-post-training",
+        "reasoning-vs-pattern-matching"
+      ],
+      "id": "alignment-and-ai-safety"
+    },
+    {
       "term": "API",
       "aliases": [
         "Application Programming Interface",
@@ -84,7 +119,7 @@
         "advanced"
       ],
       "definition": "Il meccanismo di attention è l'operazione matematica al cuore dei Transformer. Per ogni token in input, l'attention calcola un punteggio di rilevanza rispetto a ogni altro token, creando una mappa pesata di \"su cosa devo concentrarmi per capire questa parola nel contesto?\". È ciò che permette al modello di risolvere ambiguità, tracciare riferimenti e capire dipendenze a lungo raggio nel testo.\n",
-      "key_intuition": "Leggi questa frase: \"The trophy didn't fit in the suitcase because it was too big.\" A cosa si riferisce \"it\"? Al trophy (troppo grande per entrare). Ora: \"The trophy didn't fit in the suitcase because it was too small.\" Ora \"it\" si riferisce alla suitcase. Hai risolto questa ambiguità istantaneamente usando comprensione contestuale. L'attention fa la stessa cosa matematicamente: calcola un punteggio tra \"it\" e ogni altra parola, e la parola con il punteggio di attention più alto diventa il riferimento. In una frase vince \"trophy\"; nell'altra vince \"suitcase\".\n\nLa multi-head attention significa che il modello esegue questo processo più volte in parallelo: ogni \"head\" impara tipi diversi di relazioni. Una head può seguire la struttura grammaticale, un'altra il significato semantico, un'altra la coreference (come nel nostro esempio di \"it\"). La combinazione crea una comprensione ricca e multidimensionale del testo.\n",
+      "key_intuition": "Questo esempio funziona meglio in inglese, dove il pronome \"it\" non ha genere e quindi e ambiguo. Leggi: \"The trophy didn't fit in the suitcase because it was too big.\" A cosa si riferisce \"it\"? Al trophy (troppo grande per entrare). Ora: \"The trophy didn't fit in the suitcase because it was too small.\" Ora \"it\" si riferisce alla suitcase. Hai risolto questa ambiguita istantaneamente usando comprensione contestuale. L'attention fa la stessa cosa matematicamente: calcola un punteggio tra \"it\" e ogni altra parola, e la parola con il peso di attention più alto contribuisce di più alla rappresentazione. In una frase domina \"trophy\"; nell'altra domina \"suitcase\".\n\nLa multi-head attention significa che il modello esegue questo processo più volte in parallelo: ogni \"head\" impara tipi diversi di relazioni. Una head può seguire la struttura grammaticale, un'altra il significato semantico, un'altra la coreference (come nel nostro esempio di \"it\"). La combinazione crea una comprensione ricca e multidimensionale del testo.\n",
       "use_cases": "Capire risoluzione di riferimenti e dipendenze a lungo raggio; interpretare mappe di attention e comportamento dei Transformer.",
       "links": [
         {
@@ -99,7 +134,7 @@
         },
         {
           "title": "3Blue1Brown (2024) - Attention in Transformers, visually explained (YouTube)",
-          "url": "https://www.youtube.com/results?search_query=3Blue1Brown+Attention+in+Transformers",
+          "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc",
           "type": "video"
         }
       ],
@@ -115,11 +150,10 @@
       "aliases": [
         "AI benchmark"
       ],
-      "category": "deep-dive",
-      "difficulty": "advanced",
+      "category": "intermediate",
+      "difficulty": "intermediate",
       "tags": [
-        "deep-dive",
-        "advanced"
+        "intermediate"
       ],
       "definition": "Un benchmark è un test standardizzato per modelli AI: un set fisso di domande o compiti con risposte corrette note, progettato per misurare capacità specifiche. I benchmark permettono a ricercatori e aziende di confrontare modelli su una classifica comune. Ma sono profondamente imperfetti: i modelli possono essere ottimizzati specificamente per i benchmark, i dati di training possono contenere accidentalmente domande di benchmark e le prestazioni nel mondo reale spesso divergono dai punteggi.\n",
       "key_intuition": "I benchmark sono come i test standardizzati per l'AI: SAT, GRE, test di QI. Danno un segnale utile, ma tutti sanno che un punteggio alto al SAT non garantisce successo nella vita. Allo stesso modo, un modello che domina MMLU (un enorme test a scelta multipla di conoscenza) può comunque dare pessimi consigli sul tuo specifico problema di business. L'industria AI sta imparando lentamente la stessa lezione che l'educazione ha imparato decenni fa: non puoi ridurre una capacità complessa a un singolo numero.\n",
@@ -199,7 +233,7 @@
         },
         {
           "title": "Anthropic - Long Context Prompting Tips",
-          "url": "https://docs.anthropic.com/",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips",
           "type": "official"
         }
       ],
@@ -257,7 +291,7 @@
         "beginner"
       ],
       "definition": "Un embedding è una lista di numeri (un vettore) che rappresenta il \"significato\" di un pezzo di testo in una forma su cui i computer possono fare calcoli. La proprietà chiave è che testi con significati simili producono vettori simili. Questo permette alle macchine di fare una cosa che prima era difficile: cercare per significato invece che per corrispondenza esatta di parole chiave.\n",
-      "key_intuition": "Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. \"cane\" e \"cucciolo\" sono vicinissimi. \"cane\" e \"gatto\" sono vicini (entrambi animali domestici). \"cane\" e \"aereo\" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi \"auto familiare economica\" e il sistema trova un documento su \"veicoli convenienti per famiglie\" anche se nessuna parola coincide, sono gli embedding che lavorano.\n\nIl classico esempio: nello spazio degli embedding, il vettore per \"king\" meno \"man\" più \"woman\" produce un vettore molto vicino a \"queen\". Il modello ha imparato relazioni (in questo caso legate al genere) puramente dai pattern statistici nel testo.\n",
+      "key_intuition": "Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. \"cane\" e \"cucciolo\" sono vicinissimi. \"cane\" e \"gatto\" sono vicini (entrambi animali domestici). \"cane\" e \"aereo\" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi \"auto familiare economica\" e il sistema trova un documento su \"veicoli convenienti per famiglie\" anche se nessuna parola coincide, sono gli embedding che lavorano. Questa capacità di ricerca semantica è ciò che rende gli embedding così utili in pratica, alla base di sistemi RAG, motori di raccomandazione e molto altro.\n\nUn esempio storicamente famoso: i primi modelli di embedding (Word2Vec, 2013) mostrarono che \"king\" meno \"man\" più \"woman\" produceva un vettore vicino a \"queen\". I modelli moderni funzionano diversamente e sono ottimizzati più per ricerca e retrieval che per questa aritmetica, ma il principio di fondo resta: il significato diventa geometria.\n",
       "use_cases": "Ricerca semantica, clustering, raccomandazioni; recupero documenti per RAG; deduplicazione e matching di similarità.",
       "links": [
         {
@@ -283,11 +317,10 @@
       "aliases": [
         "Finetuning"
       ],
-      "category": "essentials",
-      "difficulty": "beginner",
+      "category": "intermediate",
+      "difficulty": "intermediate",
       "tags": [
-        "essentials",
-        "beginner"
+        "intermediate"
       ],
       "definition": "Il fine-tuning significa prendere un modello pre-addestrato (che già conosce il linguaggio in modo generale) e addestrarlo ulteriormente su un dataset più piccolo e specializzato. I pesi del modello vengono aggiornati per renderlo migliore in uno specifico dominio o compito, mantenendo le capacità generali. È la differenza tra un medico generico e un cardiologo: stessa università, specializzazione diversa.\n",
       "key_intuition": "Il pre-training è educazione (costosa, ampia, fatta una volta). Il fine-tuning è formazione sul lavoro (più economica, focalizzata, fatta per un ruolo specifico). Non rimanderesti qualcuno all'università ogni volta che vuoi che impari una nuova abilità: gli daresti una formazione mirata. Stessa logica: non riaddestri GPT-4 da zero per renderlo bravo nell'analisi legale; fai fine-tuning su un corpus di documenti legali.\n",
@@ -323,7 +356,7 @@
       "tags": [
         "intermediate"
       ],
-      "definition": "I guardrail sono livelli di sicurezza e controllo messi attorno a un modello AI per vincolarne il comportamento. Possono filtrare gli input (bloccando prompt pericolosi o fuori tema prima che il modello li veda), filtrare gli output (scansionando la risposta e redigendo o bloccando contenuti dannosi) o imporre regole strutturali (il modello deve rispondere in JSON, non deve citare concorrenti, deve sempre includere un disclaimer). Sono le cinture di sicurezza e i paraurti dell'AI in produzione.\n",
+      "definition": "I guardrail sono livelli di sicurezza e controllo messi attorno a un modello AI per vincolarne il comportamento. Possono filtrare gli input (bloccando prompt pericolosi o fuori tema prima che il modello li veda), filtrare gli output (scansionando la risposta e oscurando o bloccando contenuti dannosi) o imporre regole strutturali (il modello deve rispondere in JSON, non deve citare concorrenti, deve sempre includere un disclaimer). Sono le cinture di sicurezza e i paraurti dell'AI in produzione.\n",
       "key_intuition": "Un modello senza guardrail è come uno stagista molto intelligente ma senza supervisione e senza regole: potrebbe fare un lavoro brillante oppure inviare per errore dati riservati a un cliente, dire qualcosa di problematico dal punto di vista legale o andare fuori copione. I guardrail sono policy, processi di review e strati di compliance che rendono sicuro mettere questo stagista in un contesto reale. Ogni messa in produzione seria li usa.\n",
       "use_cases": "Controlli di sicurezza e compliance; filtro input/output; enforcement di schemi; mitigazione dei jailbreak.",
       "links": [
@@ -357,7 +390,7 @@
         "essentials",
         "beginner"
       ],
-      "definition": "Un'allucinazione è quando un'AI genera informazioni false, inventate o senza senso, ma le presenta con lo stesso tono sicuro di informazioni corrette. Il modello non sa di essere nel torto perché non ha un concetto di verità. Sta producendo la sequenza di token statisticamente più probabile e, a volte, quella sequenza è semplicemente sbagliata.\n",
+      "definition": "Un'allucinazione è quando un'AI genera informazioni false, inventate o senza senso, ma le presenta con lo stesso tono sicuro di informazioni corrette. Il modello non sa di sbagliare perché non ha un concetto di verità. Sta producendo la sequenza di token statisticamente più probabile e, a volte, quella sequenza è semplicemente sbagliata.\n",
       "key_intuition": "Immagina di essere a una festa e che qualcuno ti chieda di un libro che non hai letto. Invece di dire \"non lo so\", metti insieme quello che hai sentito dalle recensioni, altre opere dell'autore, le convenzioni del genere e improvvisi una risposta plausibile. Potresti cogliere il senso o potresti inventarti un dettaglio che non esiste. Questa è un'allucinazione. Il modello improvvisa sempre perché non ha mai \"letto il libro\": ha assorbito pattern su come si parla di libri.\n\nPiù l'argomento è specifico e oscuro, più cresce il rischio di allucinazioni. Chiedere della Rivoluzione francese? Rischio basso. Chiedere di uno specifico caso giudiziario del 2019? Rischio alto. Chiedere un URL o una citazione? Rischio altissimo: il modello ama generare URL plausibili che in realtà non esistono.\n",
       "use_cases": "Sapere quando verificare; ancorare le risposte con RAG/citazioni; progettare UX più sicure in contesti ad alto rischio.",
       "links": [
@@ -391,7 +424,7 @@
         "beginner"
       ],
       "definition": "L'inferenza è il processo con cui un modello già addestrato produce una risposta (output). L'addestramento è quando il modello impara (una volta sola, ed è estremamente costoso); l'inferenza è quando applica ciò che ha imparato (ogni singola volta che invii un prompt). Ogni chiamata API, ogni messaggio in chat, ogni email generata dall'AI è un'operazione di inferenza. È questa la fase che costa denaro su larga scala e che determina quanto rapidamente il modello risponde.\n",
-      "key_intuition": "L'addestramento è come scrivere un ricettario: richiede anni di lavoro, test e milioni di dollari. L'inferenza è come cucinare un pasto da quel ricettario: lo fai migliaia di volte al giorno e ogni pasto costa ingredienti ed energia. Quando vedi prezzi tipo \"$3 per milione di token in input\", stai pagando l'inferenza - il calcolo necessario per far passare il tuo testo attraverso i miliardi di parametri del modello.\n",
+      "key_intuition": "L'addestramento è come scrivere il ricettario definitivo: richiede anni di lavoro e un investimento enorme. L'inferenza è come cucinare un pasto da quel ricettario: lo fai migliaia di volte al giorno e ogni pasto costa ingredienti ed energia. Quando vedi prezzi tipo \"$3 per milione di token in input\", stai pagando l'inferenza - il calcolo necessario per far passare il tuo testo attraverso i miliardi di parametri del modello.\n",
       "use_cases": "Ragionare su latenza e costo per richiesta; aumentare il volume (batching, caching); scelta e ottimizzazione del modello.",
       "links": [
         {
@@ -425,7 +458,7 @@
         "intermediate"
       ],
       "definition": "Lo spazio latente è la rappresentazione interna (nascosta) che un modello costruisce del suo input: uno spazio matematico ad alta dimensionalità in cui concetti e caratteristiche sono codificati come punti. Non lo puoi vedere direttamente, ma è lì che avviene gran parte dell'elaborazione. In questo spazio, concetti simili finiscono vicini; e alcune relazioni diventano operazioni geometriche: il significato astratto diventa computabile.\n",
-      "key_intuition": "Pensa a una mappa del mondo. Ogni città ha coordinate (latitudine, longitudine). Città vicine hanno coordinate simili. Puoi calcolare la distanza tra due città, trovare cluster (i paesi) o persino fare aritmetica: \"le coordinate di Parigi meno il centro della Francia più il centro della Germania\" ti porta vicino a Berlino. Lo spazio latente è la stessa idea, ma con centinaia o migliaia di dimensioni invece di due e con le \"città\" sostituite da concetti, parole, immagini o qualunque dato che il modello ha imparato a rappresentare.\n\nNella generazione di immagini (Stable Diffusion, DALL-E), lo spazio latente è dove succede la magia. Il modello non genera pixel direttamente: naviga dentro una rappresentazione compressa in cui muoversi in una direzione può portare da \"giorno\" a \"notte\" o da \"foto\" a \"pittura a olio\".\n",
+      "key_intuition": "Se gli embedding danno a ogni concetto una posizione su una mappa (vedi: Embedding), lo spazio latente è l'intera mappa - compreso tutto il territorio non etichettato fra un punto e l'altro. La differenza chiave: puoi muoverti nello spazio latente in modo continuo e scoprire transizioni significative. Muoviti in una direzione e un volto invecchia gradualmente; muoviti in un'altra e inizia a sorridere. Queste direzioni non sono programmate: il modello le ha scoperte dai dati.\n\nNella generazione di immagini (Stable Diffusion, DALL-E), lo spazio latente è dove avviene il lavoro vero. Il modello non genera pixel direttamente: naviga dentro una rappresentazione compressa in cui muoversi in una direzione può portare da \"giorno\" a \"notte\" o da \"foto\" a \"pittura a olio\". Per questo puoi interpolare tra due immagini e ottenere stati intermedi plausibili: stai tracciando un percorso nello spazio latente.\n",
       "use_cases": "Capire embedding e modelli generativi; interpolare tra concetti; ragionare su representation learning.",
       "links": [
         {
@@ -459,7 +492,7 @@
         "beginner"
       ],
       "definition": "Un LLM è una rete neurale con miliardi di parametri numerici, addestrata leggendo enormi quantità di testo (libri, siti web, codice, conversazioni). Durante l'addestramento, il modello apprende pattern statistici: quali parole tendono a seguire quali, in quali contesti, attraverso milioni di argomenti diversi. Il risultato è un sistema che può generare testo così fluente da sembrare comprensione, anche se il processo sottostante è una previsione matematica.\n",
-      "key_intuition": "Immagina di aver letto ogni libro nella più grande biblioteca del mondo, ogni articolo di Wikipedia, ogni thread di Reddit, ogni repository su GitHub. Non li hai memorizzati parola per parola, ma hai assorbito dei pattern: come suonano i contratti legali, come è strutturato il codice Python, come un medico spiega una diagnosi, come scorre la poesia italiana. Ora qualcuno ti fa una domanda e tu generi una risposta prevedendo, parola per parola, quale sia la continuazione più plausibile dato tutto ciò che hai assorbito.\n\nEcco cosa fa un LLM. Non sta cercando informazioni. Non ragiona a partire da primi principi. Genera la sequenza di parole statisticamente più probabile dato il tuo input e il suo addestramento. Il miracolo è che questo processo, a sufficiente scala, produce output coerenti, ricchi di conoscenza e spesso davvero utili.\n",
+      "key_intuition": "Immagina di aver letto ogni libro nella più grande biblioteca del mondo, ogni articolo di Wikipedia, ogni thread di Reddit, ogni repository su GitHub. Non li hai memorizzati parola per parola, ma hai assorbito dei pattern: come suonano i contratti legali, come è strutturato il codice Python, come un medico spiega una diagnosi, come scorre la poesia italiana. Ora qualcuno ti fa una domanda e tu generi una risposta prevedendo, parola per parola, quale sia la continuazione più plausibile dato tutto ciò che hai assorbito.\n\nEcco cosa fa un LLM. Non sta cercando informazioni. Alla base, genera la sequenza di parole statisticamente più probabile dato il tuo input e il suo addestramento. Se questo processo costituisca un vero ragionamento o un sofisticato pattern matching è uno dei dibattiti centrali e aperti nell'AI (vedi: Reasoning vs Pattern Matching). Ciò che è chiaro è che, a sufficiente scala, questo processo produce output coerenti, ricchi di conoscenza e spesso davvero utili.\n",
       "use_cases": "Chatbot e assistenti; riassunti e scrittura; generazione di codice; modello mentale per limiti come le allucinazioni.",
       "links": [
         {
@@ -556,6 +589,76 @@
       "id": "mixture-of-experts"
     },
     {
+      "term": "Multimodality",
+      "aliases": [
+        "AI multimodale",
+        "Modelli multimodali"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "La multimodalita si riferisce a modelli AI che possono elaborare e generare piu di un tipo di dato - testo, immagini, audio, video, codice - all'interno di un unico sistema. I primi LLM erano solo testo: testo in ingresso, testo in uscita. I modelli multimodali moderni (GPT-4V, Gemini, Claude con visione) possono guardare un'immagine e descriverla, leggere un grafico e rispondere a domande sui dati, oppure ascoltare audio e trascriverlo. Alcuni possono anche generare immagini o voce, non solo testo. La tendenza e verso modelli che percepiscono e producono attraverso tutte le modalita, in modo simile agli esseri umani.\n",
+      "key_intuition": "I primi modelli AI erano come qualcuno che poteva comunicare solo per telefono: brillanti con le parole, ma completamente ciechi e sordi a tutto cio che e visivo o sonoro. Per analizzare un grafico dovevi prima descriverlo a parole. I modelli multimodali sono come passare a una videochiamata: ora possono vedere il tuo schermo, guardare la lavagna, leggere il grafico che stai indicando e rispondere sia con parole che con elementi visivi. La quantita di informazione che possono gestire aumenta enormemente.\n\nQuesto conta nella pratica perche il mondo reale e multimodale. Un medico ha bisogno di leggere sia la descrizione del paziente sia la radiografia. Uno sviluppatore ha bisogno di vedere sia il messaggio di errore sia lo screenshot dell'interfaccia rotta. Elaborando tutti questi input insieme, i modelli multimodali possono risolvere problemi che erano impossibili quando ogni modalita viveva in un sistema separato.\n",
+      "use_cases": "Comprensione e analisi di immagini; lettura di documenti e grafici; trascrizione audio; costruire applicazioni AI piu ricche oltre il solo testo.",
+      "links": [
+        {
+          "title": "OpenAI (2023) - GPT-4V System Card",
+          "url": "https://cdn.openai.com/papers/GPTV_System_Card.pdf",
+          "type": "technical"
+        },
+        {
+          "title": "Bordes et al. (2024) - An Introduction to Vision-Language Modeling (arXiv:2405.17247)",
+          "url": "https://arxiv.org/abs/2405.17247",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "transformer",
+        "token",
+        "embedding"
+      ],
+      "id": "multimodality"
+    },
+    {
+      "term": "Neural Network",
+      "aliases": [
+        "Rete neurale",
+        "Rete neurale artificiale"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Una rete neurale e la struttura computazionale fondamentale dietro l'AI moderna. E un sistema di funzioni matematiche interconnesse organizzate in strati (layer), vagamente ispirate ai neuroni biologici. I dati entrano attraverso uno strato di input, passano per uno o piu strati nascosti (hidden layer, dove i pattern vengono rilevati e combinati) e producono risultati nello strato di output. Ogni connessione tra strati ha un peso numerico (weight) che determina quanto un segnale influenza il successivo. Quando si dice che un modello ha \"miliardi di parametri\", si contano proprio questi pesi. Addestrare una rete neurale significa regolare quei pesi finche la rete non produce output utili.\n",
+      "key_intuition": "Immagina una catena di montaggio in una fabbrica. La materia prima (il tuo input: testo, immagine, numeri) entra da un'estremita. A ogni stazione (layer), gli operai (neuroni) esaminano il materiale e prendono decisioni semplici: \"c'e una curva qui?\", \"questa parola segue un pattern?\", \"questo valore supera una soglia?\". Ogni operaio passa il suo giudizio alla stazione successiva, dove altri operai combinano questi segnali semplici in valutazioni sempre piu complesse. Alla fine della catena, una serie di operazioni banali ha prodotto qualcosa di sofisticato: una classificazione, una previsione, una frase generata.\n\nL'intuizione chiave e che nessun singolo neurone e \"intelligente\". L'intelligenza emerge dalla combinazione di miliardi di operazioni semplici, ciascuna calibrata dall'addestramento. Per questo la scala conta cosi tanto nell'AI moderna: piu parametri significa combinazioni piu sfumate, e quindi la rete puo rappresentare pattern piu complessi.\n",
+      "use_cases": "Base per capire tutti i modelli AI moderni; comprendere perche scala e addestramento contano; ragionare su cosa l'AI puo e non puo imparare.",
+      "links": [
+        {
+          "title": "Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)",
+          "url": "https://www.deeplearningbook.org/",
+          "type": "reference"
+        },
+        {
+          "title": "3Blue1Brown - But what is a neural network? (YouTube)",
+          "url": "https://www.youtube.com/watch?v=aircAruvnKk",
+          "type": "video"
+        }
+      ],
+      "related": [
+        "llm",
+        "transformer",
+        "weights-and-parameters",
+        "fine-tuning",
+        "overfitting-and-generalization"
+      ],
+      "id": "neural-network"
+    },
+    {
       "term": "Open Source vs. Closed Source Models",
       "aliases": [
         "Modelli open source",
@@ -602,7 +705,7 @@
         "deep-dive",
         "advanced"
       ],
-      "definition": "L'overfitting è quando un modello memorizza i dati di addestramento invece di imparare pattern generalizzabili. Va benissimo su esempi già visti, ma fallisce su quelli nuovi. La generalizzazione è l'opposto: la capacità di performare bene su dati mai visti. Tutta l'arte del machine learning è massimizzare la generalizzazione minimizzando l'overfitting.\n",
+      "definition": "L'overfitting è quando un modello memorizza i dati di addestramento invece di imparare pattern generalizzabili. Va benissimo su esempi già visti, ma fallisce su quelli nuovi. La generalizzazione è l'opposto: la capacità di ottenere buoni risultati su dati mai visti. Tutta l'arte del machine learning è massimizzare la generalizzazione minimizzando l'overfitting.\n",
       "key_intuition": "Immagina uno studente che si prepara a un esame. Uno studente in overfitting memorizza le domande e risposte esatte dei test di pratica. Se l'esame reale usa le stesse domande, prende il massimo. Se le domande sono riformulate o compaiono nuovi argomenti, è perso. Uno studente che generalizza capisce i principi sottostanti, quindi gestisce domande nuove che non ha mai visto. Potrebbe andare un po' peggio sul test di pratica, ma farà meglio all'esame vero.\n\nEcco perché i benchmark possono essere fuorvianti: un modello addestrato (intenzionalmente o accidentalmente) su domande di benchmark può eccellere nei benchmark ma deludere nel mondo reale. È anche per questo che \"insegnare per il test\" è problematico in AI come lo è in educazione.\n",
       "use_cases": "Interpretare differenza tra training e mondo reale; evitare over-ottimizzazione sui benchmark e data leakage.",
       "links": [
@@ -670,12 +773,12 @@
         "intermediate"
       ],
       "definition": "La prompt engineering è l'arte di progettare input che producano in modo consistente output di alta qualità da modelli AI. Non è solo \"chiedere gentilmente\" - è una disciplina strutturata con tecniche specifiche, ciascuna adatta a compiti diversi. I tre concetti più importanti: system prompt (istruzioni nascoste dello sviluppatore), zero-shot (richiesta senza esempi) e few-shot (fornire esempi di ciò che vuoi).\n",
-      "key_intuition": "La prompt engineering è la differenza tra un turista e un locale quando ordinano al ristorante. Il turista dice \"dammi qualcosa di buono\" (zero-shot). Il turista informato dice \"mi piace quello che hai appena servito a quel tavolo, dammi qualcosa di simile\" (few-shot). Il locale dice \"sono un abituale, sai che sono vegetariano, mi piace il piccante e ho fretta\" (system prompt + contesto). Stesso ristorante, esperienza completamente diversa.\n",
+      "key_intuition": "La prompt engineering è la differenza tra un turista e un locale quando ordinano al ristorante. Il turista dice \"dammi qualcosa di buono\" (zero-shot). Il turista informato dice \"mi piace quello che hai appena servito a quel tavolo, dammi qualcosa di simile\" (few-shot). E poi c'è il system prompt: sono le istruzioni che il proprietario del ristorante ha dato alla cucina prima ancora che tu entrassi - \"questo cliente è VIP, servi sempre pane extra, non proporre mai il pesce, e tieni le porzioni abbondanti.\" Il cliente non vede mai queste istruzioni, ma influenzano tutta l'esperienza. Stesso ristorante, risultati completamente diversi a seconda dell'approccio.\n",
       "use_cases": "Prompt affidabili per estrazione/classificazione/formati; system prompt per comportamento di prodotto; few-shot per casi limite.",
       "links": [
         {
           "title": "Anthropic Prompt Engineering Guide",
-          "url": "https://docs.anthropic.com/",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
           "type": "official"
         },
         {
@@ -710,7 +813,7 @@
       "links": [
         {
           "title": "Anthropic Prompt Engineering Guide",
-          "url": "https://docs.anthropic.com/",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
           "type": "official"
         },
         {
@@ -740,7 +843,7 @@
         "advanced"
       ],
       "definition": "La quantizzazione è una tecnica di compressione che riduce la precisione numerica dei pesi di un modello. Durante l'addestramento, i pesi sono salvati come numeri ad alta precisione (floating point a 32 bit o 16 bit). La quantizzazione li converte a precisione più bassa (8 bit, 4 bit o anche 2 bit), riducendo drasticamente la memoria necessaria e accelerando l'inferenza. L'intuizione chiave: gran parte di quella precisione è ridondante e puoi eliminarla con una perdita di qualità sorprendentemente piccola.\n",
-      "key_intuition": "Immagina una fotografia. Alla massima risoluzione (32-bit), ogni pixel ha miliardi di colori possibili. Se la riduci a 256 colori (8-bit), perdi qualche gradiente sottile, ma l'immagine è ancora riconoscibile ed è 4x più piccola. Riduci a 16 colori (4-bit)? È più granulosa, ma riesci ancora a capire cos'è ed è 8x più piccola. La quantizzazione fa la stessa cosa ai pesi del modello: ogni numero usa meno bit, il modello si riduce drasticamente e la perdita di qualità è spesso appena percepibile.\n",
+      "key_intuition": "Immagina una fotografia salvata alla massima qualità. Ogni pixel è memorizzato con altissima precisione. Ora salvala come JPEG compresso: il file è molto più piccolo, ma l'immagine sembra quasi identica. Comprimi ancora, e inizi a notare qualche artefatto, ma resta perfettamente utilizzabile. La quantizzazione applica lo stesso principio ai pesi del modello: riduci la precisione di ogni numero, il modello si riduce drasticamente e la perdita di qualità è spesso appena percepibile.\n",
       "use_cases": "Far girare modelli grandi su hardware più piccolo; ridurre memoria/latenza; esecuzione locale di modelli open source.",
       "links": [
         {
@@ -869,6 +972,42 @@
       "id": "rlhf"
     },
     {
+      "term": "Scaling Laws",
+      "aliases": [
+        "Leggi di scaling",
+        "Chinchilla scaling"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Le scaling law sono scoperte empiriche che mostrano come le prestazioni di un modello AI migliorino in modo prevedibile aumentando tre fattori: il numero di parametri, la quantita di dati di addestramento e il budget di calcolo (compute). La relazione segue una legge di potenza: raddoppia il compute e ottieni un miglioramento misurabile e costante - non un salto improvviso, ma una curva liscia e prevedibile. Queste leggi, documentate rigorosamente da Kaplan et al. (2020) di OpenAI e raffinate da Hoffmann et al. (2022) di DeepMind (il paper \"Chinchilla\"), hanno dato all'industria una roadmap: se puoi permetterti piu compute, puoi prevedere quanto migliorera il modello.\n",
+      "key_intuition": "Le scaling law sono il motivo per cui la corsa all'AI e fondamentalmente una corsa alle risorse. Immagina di scoprire che, per un certo tipo di fabbrica, raddoppiare l'investimento raddoppia affidabilmente la qualita della produzione - non a volte, non approssimativamente, ma con prevedibilita matematica. Investiresti tutto il possibile. E esattamente cio che e successo nell'AI. Una volta che i laboratori hanno dimostrato che piu compute = modelli prevedibilmente migliori, la corsa a costruire cluster sempre piu grandi e diventata inevitabile.\n\nL'intuizione di Chinchilla ha aggiunto una sfumatura cruciale: non basta costruire un modello piu grande. Un modello da 70 miliardi di parametri addestrato sulla giusta quantita di dati puo superare un modello da 175 miliardi addestrato su troppo pochi dati. La strategia ottimale bilancia dimensione del modello e quantita di dati per un dato budget di calcolo. Per questo \"addestramento compute-ottimale\" e diventato un mantra e perche qualita e quantita dei dati contano tanto quanto la dimensione del modello.\n",
+      "use_cases": "Capire l'economia dell'addestramento AI; prevedere miglioramenti dei modelli; ragionare su training compute-ottimale e perche i modelli piu grandi non sono sempre i migliori.",
+      "links": [
+        {
+          "title": "Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)",
+          "url": "https://arxiv.org/abs/2001.08361",
+          "type": "technical"
+        },
+        {
+          "title": "Hoffmann et al. (2022) - Training Compute-Optimal LLMs / Chinchilla (arXiv:2203.15556)",
+          "url": "https://arxiv.org/abs/2203.15556",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "weights-and-parameters",
+        "pre-training-vs-post-training",
+        "test-time-compute",
+        "inference"
+      ],
+      "id": "scaling-laws"
+    },
+    {
       "term": "Synthetic Data & Model Collapse",
       "aliases": [
         "Dati sintetici",
@@ -929,7 +1068,9 @@
       "related": [
         "llm",
         "prompt",
-        "inference"
+        "inference",
+        "chain-of-thought",
+        "test-time-compute"
       ],
       "id": "temperature"
     },
@@ -978,7 +1119,7 @@
         "beginner"
       ],
       "definition": "Un token è l'unità atomica di testo che un modello elabora. Non è una parola, non è un carattere, ma qualcosa nel mezzo: un frammento di sotto-parola determinato dal tokenizer del modello. Il tokenizer è addestrato a spezzare il testo nei blocchi più efficienti in base a pattern di frequenza nei dati di addestramento. Le parole comuni diventano singoli token; le parole rare vengono spezzate in più pezzi.\n",
-      "key_intuition": "Pensa ai token come a mattoncini LEGO per il linguaggio. La parola \"the\" è così comune da avere un singolo mattoncino tutto per sé. Ma \"cryptocurrency\" potrebbe essere divisa in \"crypt\" + \"ocur\" + \"rency\" - tre mattoncini. Il modello non vede parole; vede questi mattoncini e costruisce la sua comprensione a partire da loro.\n\nQuesto conta nella pratica: quando un modello ha una \"context window\" da 128K, significa 128.000 token, non parole. In inglese sono circa 96.000 parole (circa 300 pagine). Ma in italiano lo stesso testo può usare il 30-40% di token in più perché il tokenizer è stato addestrato principalmente sull'inglese. In giapponese o cinese il rapporto è ancora peggiore.\n",
+      "key_intuition": "Pensa ai token come a mattoncini LEGO per il linguaggio. La parola \"the\" è così comune da avere un singolo mattoncino tutto per sé. Ma \"unhappiness\" potrebbe essere divisa in \"un\" + \"happiness\" - due mattoncini - e \"indistinguishable\" in ancora piu pezzi. Il modello non vede parole; vede questi mattoncini e costruisce la sua comprensione a partire da loro.\n\nQuesto conta nella pratica: quando un modello ha una \"context window\" da 128K, significa 128.000 token, non parole. In inglese sono circa 96.000 parole (circa 300 pagine). Ma in italiano lo stesso testo può usare il 30-40% di token in più perché il tokenizer è stato addestrato principalmente sull'inglese. In giapponese o cinese il rapporto è ancora peggiore.\n",
       "use_cases": "Stimare limiti di contesto e costi; capire perché un testo viene troncato; confrontare lingue e tokenizer.",
       "links": [
         {
@@ -1008,7 +1149,7 @@
         "intermediate"
       ],
       "definition": "Il Transformer è l'architettura di rete neurale dietro ogni grande modello AI di cui hai sentito parlare: GPT, Claude, Gemini, LLaMA, Mistral, BERT. Pubblicato nel 2017 da ricercatori di Google, ha risolto un problema fondamentale: come elaborare testo in parallelo (quindi più velocemente) mantenendo la capacità di capire relazioni tra parole lontane. La sua innovazione centrale, il meccanismo di attention, permette al modello di pesare l'importanza di ogni parola rispetto a tutte le altre simultaneamente.\n",
-      "key_intuition": "Prima dei Transformer, i modelli leggevano il testo come un essere umano che legge un rotolo: una parola alla volta, da sinistra a destra, cercando di ricordare l'inizio mentre legge la fine. I Transformer sono diversi: vedono tutto il testo in una volta, come guardare una pagina stampata, e possono tracciare connessioni tra qualsiasi due parti istantaneamente. La frase \"The animal didn't cross the street because it was too tired\" richiede collegare \"it\" ad \"animal\" (non a \"street\"). L'attention rende questa connessione esplicita e apprendibile.\n",
+      "key_intuition": "Prima dei Transformer, i modelli leggevano il testo come un essere umano che legge un rotolo: una parola alla volta, da sinistra a destra, cercando di ricordare l'inizio mentre legge la fine. I Transformer sono diversi: vedono tutto il testo in una volta, come guardare una pagina stampata, e possono tracciare connessioni tra qualsiasi due parti istantaneamente. La frase inglese \"The animal didn't cross the street because it was too tired\" (dove \"it\" e ambiguo perche non ha genere) richiede collegare \"it\" ad \"animal\" (non a \"street\"). L'attention rende questa connessione esplicita e apprendibile.\n",
       "use_cases": "Modello mentale base per gli LLM moderni; capire attention, scaling e perché funzionano modelli come GPT o BERT.",
       "links": [
         {
@@ -1078,21 +1219,61 @@
       "links": [
         {
           "title": "Andrej Karpathy (2025) - Original post coining \"vibe coding\"",
-          "url": "https://x.com/karpathy",
+          "url": "https://x.com/karpathy/status/1886192184808149383",
           "type": "reference"
         },
         {
           "title": "Simon Willison (2025) - Not all AI-assisted programming is vibe coding",
-          "url": "https://simonwillison.net/",
+          "url": "https://simonwillison.net/2025/Mar/19/vibe-coding/",
           "type": "explainer"
         }
       ],
       "related": [
         "llm",
         "api",
-        "ai-agent"
+        "ai-agent",
+        "prompt",
+        "prompt-engineering"
       ],
       "id": "vibe-coding"
+    },
+    {
+      "term": "Weights & Parameters",
+      "aliases": [
+        "Pesi",
+        "Parametri",
+        "Pesi del modello"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "I parametri (spesso chiamati pesi, o weights) sono i singoli valori numerici all'interno di una rete neurale che ne determinano il comportamento. Quando si dice che GPT-4 ha \"oltre mille miliardi di parametri\", ognuno e un singolo numero - tipicamente un decimale come 0.0023 o -1.47 - che controlla quanto un neurone influenza un altro. Prima dell'addestramento questi numeri sono essenzialmente casuali. L'addestramento li regola, miliardi di volte, fino a che la rete non produce output affidabili. Una volta terminato, i pesi vengono congelati e diventano la \"conoscenza\" del modello: tutto cio che ha imparato e codificato in questi numeri.\n",
+      "key_intuition": "Pensa a un mixer in uno studio di registrazione. Ogni slider (parametro) controlla un aspetto del suono: il volume del basso, il riverbero della voce, la brillantezza della chitarra. Singolarmente, spostare uno slider non produce nulla di interessante. Ma con migliaia di slider impostati con precisione, ottieni una canzone curata. Addestrare un modello AI e come avere un sistema automatizzato che sposta milioni di slider, ascolta il risultato e li sposta di nuovo - miliardi di volte - finche l'output non suona giusto.\n\nQuesto spiega anche perche i file dei modelli sono cosi grandi: un modello con 70 miliardi di parametri, salvati a 2 byte ciascuno, occupa circa 140 GB di spazio. La quantizzazione (vedi: Quantization) riduce questa dimensione abbassando la precisione di ogni numero. Ed e il motivo per cui i modelli \"open weights\" sono cosi significativi: rilasciare i pesi significa rilasciare tutto cio che il modello ha imparato.\n",
+      "use_cases": "Capire dimensione e storage dei modelli; ragionare su addestramento, fine-tuning e quantizzazione; capire cosa significa \"open weights\".",
+      "links": [
+        {
+          "title": "Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)",
+          "url": "https://www.deeplearningbook.org/",
+          "type": "reference"
+        },
+        {
+          "title": "Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)",
+          "url": "https://arxiv.org/abs/2001.08361",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "neural-network",
+        "llm",
+        "quantization",
+        "fine-tuning",
+        "open-source-vs-closed-source-models",
+        "scaling-laws"
+      ],
+      "id": "weights-and-parameters"
     }
   ]
 }

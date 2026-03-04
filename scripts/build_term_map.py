@@ -392,6 +392,20 @@ def main() -> None:
             "base_url": args.base_url,
             "model": args.model,
         },
+        "neighbors_meta": {
+            "k": 3,
+            "space": "embedding",
+            "metric": "angular_distance_acos_cosine_over_pi",
+        },
+        "projection": {
+            "method": "mds_gradient_descent",
+            "dims": 2,
+            "seed": args.seed,
+            "iters": max(200, args.iters),
+            "lr": args.lr,
+            "weight_power": max(0.2, args.weight_power),
+            "max_radius_ratio": args.max_radius_ratio,
+        },
         "neighbors": neighbors,
         "items": {
             doc.term_id: {"x": float(x), "y": float(y)}

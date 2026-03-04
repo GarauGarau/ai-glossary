@@ -108,35 +108,6 @@ function clampRange(min, max, lower, upper) {
 }
 
 
-function buildSpatialNeighborLookup(items, ids, k = 3) {
-  const lookup = new Map();
-  const count = Math.max(1, Math.floor(k));
-  for (const id of ids) {
-    const p = items[id];
-    if (!p || typeof p._nx !== "number" || typeof p._ny !== "number") {
-      lookup.set(id, []);
-      continue;
-    }
-    const ranked = [];
-    for (const otherId of ids) {
-      if (otherId === id) {
-        continue;
-      }
-      const q = items[otherId];
-      if (!q || typeof q._nx !== "number" || typeof q._ny !== "number") {
-        continue;
-      }
-      const dx = q._nx - p._nx;
-      const dy = q._ny - p._ny;
-      ranked.push({ id: otherId, d2: dx * dx + dy * dy });
-    }
-    ranked.sort((a, b) => a.d2 - b.d2);
-    lookup.set(id, ranked.slice(0, count).map((row) => row.id));
-  }
-  return lookup;
-}
-
-
 function scheduleMapFrame() {
   if (state.mapViewRaf) {
     return;
@@ -597,7 +568,6 @@ function renderTermMap(selectedId) {
   }
 
   const fullView = { x0: 0, x1: 1, y0: 0, y1: 1 };
-  const spatialNeighbors = buildSpatialNeighborLookup(items, validIds, 3);
   const validIdSet = new Set(validIds);
   const savedNeighbors = (state.termMap && typeof state.termMap.neighbors === "object" && state.termMap.neighbors)
     ? state.termMap.neighbors
@@ -607,14 +577,11 @@ function renderTermMap(selectedId) {
       return [];
     }
     if (savedNeighbors && Array.isArray(savedNeighbors[termId])) {
-      const explicit = savedNeighbors[termId]
+      return savedNeighbors[termId]
         .filter((id) => validIdSet.has(id) && id !== termId)
         .slice(0, 3);
-      if (explicit.length) {
-        return explicit;
-      }
     }
-    return spatialNeighbors.get(termId) || [];
+    return [];
   };
 
   const targetView = (() => {

@@ -38,6 +38,41 @@
       "id": "ai-agent"
     },
     {
+      "term": "Alignment & AI Safety",
+      "aliases": [
+        "AI alignment",
+        "AI safety"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Alignment is the problem of making AI systems actually do what humans want - not just what they're literally told. A model can be extremely capable but misaligned: it might find creative loopholes in instructions, optimize for the wrong metric, produce harmful outputs, or behave well during testing but differently in deployment. AI safety is the broader field that studies these risks and develops techniques to mitigate them. RLHF, guardrails, red-teaming, and constitutional AI are all alignment techniques, but the field goes beyond any single method: it asks fundamental questions about how to build AI systems that remain beneficial as they become more powerful.\n",
+      "key_intuition": "Imagine hiring someone extremely competent but giving them vague instructions. You say \"maximize customer satisfaction scores.\" They might achieve this by only surveying happy customers, by offering unsustainable refunds, or by manipulating the survey itself - all technically satisfying the instruction while completely missing the intent. Alignment is the challenge of making AI systems understand and follow the spirit of what you want, not just the letter.\n\nThis gets harder as models get more capable. A weak model that's misaligned can't do much damage. A powerful model that's misaligned could cause serious harm precisely because it's so effective at pursuing the wrong objective. This is why alignment research has become increasingly urgent alongside capability research: every leap in what models can do raises the stakes on ensuring they do it for the right reasons.\n",
+      "use_cases": "Understanding why AI safety research exists; reasoning about deployment risks; evaluating how well a model is aligned; contextualizing techniques like RLHF and guardrails.",
+      "links": [
+        {
+          "title": "Ngo, Chan & Mindermann (2024) - The Alignment Problem from a Deep Learning Perspective (arXiv:2209.00626)",
+          "url": "https://arxiv.org/abs/2209.00626",
+          "type": "technical"
+        },
+        {
+          "title": "Anthropic (2023) - Core Views on AI Safety",
+          "url": "https://www.anthropic.com/research",
+          "type": "official"
+        }
+      ],
+      "related": [
+        "rlhf",
+        "guardrails",
+        "hallucination",
+        "pre-training-vs-post-training",
+        "reasoning-vs-pattern-matching"
+      ],
+      "id": "alignment-and-ai-safety"
+    },
+    {
       "term": "API",
       "aliases": [
         "Application Programming Interface"
@@ -83,7 +118,7 @@
         "advanced"
       ],
       "definition": "The attention mechanism is the mathematical operation at the heart of Transformers. For each token in the input, attention computes a relevance score against every other token, creating a weighted map of \"what should I focus on to understand this word in context?\" It's what allows the model to resolve ambiguity, track references, and understand long-range dependencies in text.\n",
-      "key_intuition": "Read this sentence: \"The trophy didn't fit in the suitcase because it was too big.\" What does \"it\" refer to? The trophy (too big to fit). Now: \"The trophy didn't fit in the suitcase because it was too small.\" Now \"it\" refers to the suitcase. You resolved this ambiguity instantly using contextual understanding. Attention does the same thing mathematically: it computes a score between \"it\" and every other word, and the word with the highest attention score becomes the reference. In one sentence \"trophy\" wins; in the other, \"suitcase\" wins.\n\nMulti-head attention means the model runs this process multiple times in parallel, each \"head\" learning different types of relationships: one head might track grammatical structure, another tracks semantic meaning, another tracks co-reference (like our \"it\" example). The combination creates a rich, multi-dimensional understanding of the text.\n",
+      "key_intuition": "Read this sentence: \"The trophy didn't fit in the suitcase because it was too big.\" What does \"it\" refer to? The trophy (too big to fit). Now: \"The trophy didn't fit in the suitcase because it was too small.\" Now \"it\" refers to the suitcase. You resolved this ambiguity instantly using contextual understanding. Attention does the same thing mathematically: it computes a score between \"it\" and every other word, and the word with the highest attention weight contributes the most to the representation. In one sentence \"trophy\" dominates; in the other, \"suitcase\" does.\n\nMulti-head attention means the model runs this process multiple times in parallel, each \"head\" learning different types of relationships: one head might track grammatical structure, another tracks semantic meaning, another tracks co-reference (like our \"it\" example). The combination creates a rich, multi-dimensional understanding of the text.\n",
       "use_cases": "Understanding reference resolution and long-range dependencies; interpreting attention maps and transformer behavior.",
       "links": [
         {
@@ -98,7 +133,7 @@
         },
         {
           "title": "3Blue1Brown (2024) - Attention in Transformers, visually explained (YouTube)",
-          "url": "https://www.youtube.com/results?search_query=3Blue1Brown+Attention+in+Transformers",
+          "url": "https://www.youtube.com/watch?v=eMlx5fFNoYc",
           "type": "video"
         }
       ],
@@ -114,11 +149,10 @@
       "aliases": [
         "AI benchmark"
       ],
-      "category": "deep-dive",
-      "difficulty": "advanced",
+      "category": "intermediate",
+      "difficulty": "intermediate",
       "tags": [
-        "deep-dive",
-        "advanced"
+        "intermediate"
       ],
       "definition": "A benchmark is a standardized test for AI models: a fixed set of questions or tasks with known correct answers, designed to measure specific capabilities. Benchmarks let researchers and companies compare models on a common scoreboard. But they're deeply imperfect: models can be optimized specifically for benchmarks, training data can accidentally contain benchmark questions, and real-world performance often diverges from scores.\n",
       "key_intuition": "Benchmarks are like standardized tests for AI: SATs, GREs, IQ tests. They provide a useful signal, but everyone knows a high SAT score doesn't guarantee success in life. Similarly, a model that tops MMLU (a massive multiple-choice knowledge test) might still give terrible advice on your specific business problem. The AI industry is slowly learning the same lesson education learned decades ago: you can't reduce complex capability to a single number.\n",
@@ -154,7 +188,7 @@
         "deep-dive",
         "advanced"
       ],
-      "definition": "Chain-of-Thought is a technique where the model is encouraged (or trained) to explicitly show its step-by-step reasoning before giving a final answer. Instead of jumping to a conclusion, the model \"thinks out loud.\" This dramatically improves performance on complex tasks: math, logic, multi-step planning, code debugging. Reasoning models (OpenAI's o1/o3, Anthropic's extended thinking) take this further by being specifically trained to reason at length before answering.\n",
+      "definition": "Chain-of-Thought is a technique where the model is encouraged (or trained) to explicitly show its step-by-step reasoning before giving a final answer. Instead of jumping to a conclusion, the model \"thinks out loud.\" This can significantly improve performance on complex tasks like math, logic, multi-step planning, and code debugging. Reasoning models (OpenAI's o1/o3, Anthropic's extended thinking) take this further by being specifically trained to reason at length before answering.\n",
       "key_intuition": "Ask someone \"what's 17 times 24?\" and demand an instant answer - they'll likely get it wrong. But if you say \"take your time, show your work,\" they'll write \"17 x 24 = 17 x 20 + 17 x 4 = 340 + 68 = 408\" and get it right. The same applies to LLMs. By generating intermediate reasoning steps, the model essentially gives itself scratch paper. Each step constrains the next, reducing the chance of error propagating.\n\nHere's the counterintuitive part: making the model produce MORE tokens (the reasoning steps) actually makes the final answer MORE accurate. You're trading tokens (which cost money) for quality. This is a paradigm shift: intelligence can be improved not just by making the model bigger, but by letting it think longer.\n",
       "use_cases": "Improving accuracy on multi-step tasks; deciding when to spend tokens; prompting patterns for reasoning.",
       "links": [
@@ -198,7 +232,7 @@
         },
         {
           "title": "Anthropic - Long Context Prompting Tips",
-          "url": "https://docs.anthropic.com/",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips",
           "type": "official"
         }
       ],
@@ -255,7 +289,7 @@
         "beginner"
       ],
       "definition": "An embedding is a list of numbers (a vector) that represents the \"meaning\" of a piece of text in a format that computers can work with mathematically. The key property: texts with similar meanings get similar vectors. This allows machines to do something they couldn't before - search by meaning rather than by exact keyword match.\n",
-      "key_intuition": "Imagine a massive map where every concept in human language has a location. \"Dog\" and \"puppy\" are right next to each other. \"Dog\" and \"cat\" are nearby (both pets). \"Dog\" and \"airplane\" are far apart. An embedding is the GPS coordinates of a concept on this map. When you search for \"affordable family car\" and the system finds a document about \"budget-friendly vehicles for families\" even though no words match exactly, that's embeddings at work.\n\nThe famous example: in embedding space, the vector for \"king\" minus \"man\" plus \"woman\" produces a vector very close to \"queen.\" The model learned gender relationships purely from statistical patterns in text.\n",
+      "key_intuition": "Imagine a massive map where every concept in human language has a location. \"Dog\" and \"puppy\" are right next to each other. \"Dog\" and \"cat\" are nearby (both pets). \"Dog\" and \"airplane\" are far apart. An embedding is the GPS coordinates of a concept on this map. When you search for \"affordable family car\" and the system finds a document about \"budget-friendly vehicles for families\" even though no words match exactly, that's embeddings at work. This semantic search capability is what makes embeddings so practically valuable today, powering everything from RAG systems to recommendation engines.\n\nA historically famous example: early embedding models (Word2Vec, 2013) showed that \"king\" minus \"man\" plus \"woman\" produced a vector close to \"queen.\" While modern embeddings work differently and are optimized more for search and retrieval than for this kind of arithmetic, the core principle remains: meaning becomes geometry.\n",
       "use_cases": "Semantic search, clustering, recommendations; retrieval for RAG; deduplication and similarity matching.",
       "links": [
         {
@@ -281,11 +315,10 @@
       "aliases": [
         "Finetuning"
       ],
-      "category": "essentials",
-      "difficulty": "beginner",
+      "category": "intermediate",
+      "difficulty": "intermediate",
       "tags": [
-        "essentials",
-        "beginner"
+        "intermediate"
       ],
       "definition": "Fine-tuning means taking a pre-trained model (one that already knows language broadly) and training it further on a smaller, specialized dataset. The model's weights are updated to make it better at a specific domain or task, while retaining its general capabilities. It's the difference between a general-purpose doctor and a cardiologist: same medical school, different specialization.\n",
       "key_intuition": "Pre-training is education (expensive, broad, done once). Fine-tuning is job training (cheaper, focused, done for a specific role). You wouldn't send someone to university again every time you want them to learn a new skill - you'd give them targeted training. Same logic: you don't retrain GPT-4 from scratch to make it good at legal analysis; you fine-tune it on legal documents.\n",
@@ -387,7 +420,7 @@
         "beginner"
       ],
       "definition": "Inference is the process of using a trained model to generate an output. Training is when the model learns (once, extremely expensive); inference is when it applies what it learned (every single time you send a prompt). Every API call, every chat message, every AI-generated email is an inference operation. This is the phase that costs money at scale and determines how fast the model responds.\n",
-      "key_intuition": "Training is like writing a cookbook: it takes years of effort, testing, and millions of dollars. Inference is like cooking a meal from that cookbook: you do it thousands of times a day, and each meal costs ingredients and gas. When you see AI pricing like \"$3 per million input tokens,\" you're paying for inference - the compute required to run your text through the model's billions of parameters.\n",
+      "key_intuition": "Training is like writing the definitive cookbook: it takes years of effort and enormous investment. Inference is like cooking a meal from that cookbook: you do it thousands of times a day, and each meal costs ingredients and gas. When you see AI pricing like \"$3 per million input tokens,\" you're paying for inference - the compute required to run your text through the model's billions of parameters.\n",
       "use_cases": "Reasoning about latency/cost per request; scaling throughput (batching, caching); model selection and optimization.",
       "links": [
         {
@@ -421,7 +454,7 @@
         "intermediate"
       ],
       "definition": "Latent space is the internal, hidden representation that a model creates of its input - a high-dimensional mathematical space where concepts are encoded as points. You can't see it directly, but it's where all the \"thinking\" happens. In this space, similar concepts cluster together, relationships become geometric operations, and abstract meaning becomes computable.\n",
-      "key_intuition": "Think of a world map. Every city has coordinates (latitude, longitude). Close cities have similar coordinates. You can compute the distance between any two cities, find clusters (countries), or even do arithmetic: \"Paris's coordinates minus France's center plus Germany's center\" lands you near Berlin. Latent space is the same idea, but with hundreds or thousands of dimensions instead of two, and \"cities\" are replaced by concepts, words, images, or any data the model has learned to represent.\n\nIn image generation (Stable Diffusion, DALL-E), the latent space is where the magic happens. The model doesn't generate pixels directly - it navigates through a compressed representation where moving smoothly in one direction might transition from \"daytime\" to \"nighttime,\" or from \"photo\" to \"oil painting.\"\n",
+      "key_intuition": "If embeddings give each concept a location on a map (see: Embedding), latent space is the entire map itself - including all the unlabeled territory in between. The key difference: you can move through latent space smoothly and discover meaningful transitions. Move in one direction and a face gradually ages; move in another and it starts smiling. These directions aren't programmed - the model discovered them from data.\n\nIn image generation (Stable Diffusion, DALL-E), the latent space is where the real work happens. The model doesn't generate pixels directly - it navigates through a compressed representation where moving smoothly in one direction might transition from \"daytime\" to \"nighttime,\" or from \"photo\" to \"oil painting.\" This is why you can interpolate between two images and get plausible in-between states: you're tracing a path through latent space.\n",
       "use_cases": "Understanding embeddings and generative models; interpolation between concepts; reasoning about representation learning.",
       "links": [
         {
@@ -454,7 +487,7 @@
         "beginner"
       ],
       "definition": "An LLM is a neural network with billions of numerical parameters, trained by reading enormous quantities of text (books, websites, code, conversations). During training, the model learns statistical patterns: which words tend to follow which, in what contexts, across millions of different topics. The result is a system that can generate text so fluent it feels like understanding, even though the underlying process is mathematical prediction.\n",
-      "key_intuition": "Imagine you've read every book in the largest library on Earth, every Wikipedia article, every Reddit thread, every GitHub repository. You didn't memorize them word for word, but you absorbed patterns: how legal contracts sound, how Python code is structured, how a doctor explains a diagnosis, how Italian poetry flows. Now someone asks you a question, and you generate an answer by predicting, word by word, what the most plausible continuation would be given everything you've absorbed.\n\nThat's what an LLM does. It's not looking anything up. It's not reasoning from first principles. It's generating the statistically most likely sequence of words given your input and its training. The miracle is that this process, at sufficient scale, produces outputs that are coherent, knowledgeable, and often genuinely useful.\n",
+      "key_intuition": "Imagine you've read every book in the largest library on Earth, every Wikipedia article, every Reddit thread, every GitHub repository. You didn't memorize them word for word, but you absorbed patterns: how legal contracts sound, how Python code is structured, how a doctor explains a diagnosis, how Italian poetry flows. Now someone asks you a question, and you generate an answer by predicting, word by word, what the most plausible continuation would be given everything you've absorbed.\n\nThat's what an LLM does. It's not looking anything up. At its core, it's generating the statistically most likely sequence of words given your input and its training. Whether this process constitutes genuine reasoning or sophisticated pattern matching is one of the central open debates in AI (see: Reasoning vs Pattern Matching). What's clear is that at sufficient scale, this process produces outputs that are coherent, knowledgeable, and often genuinely useful.\n",
       "use_cases": "Chatbots and assistants; summarization and writing; code generation; mental model for limitations like hallucinations.",
       "links": [
         {
@@ -549,6 +582,76 @@
         "open-source-vs-closed-source-models"
       ],
       "id": "mixture-of-experts"
+    },
+    {
+      "term": "Multimodality",
+      "aliases": [
+        "Multimodal AI",
+        "Multimodal models"
+      ],
+      "category": "intermediate",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate"
+      ],
+      "definition": "Multimodality refers to AI models that can process and generate more than one type of data - text, images, audio, video, code - within a single system. Early LLMs were text-only: text in, text out. Modern multimodal models (GPT-4V, Gemini, Claude with vision) can look at an image and describe it, read a chart and answer questions about the data, or listen to audio and transcribe it. Some can also generate images or speech, not just text. The trend is toward models that perceive and produce across all modalities, much like humans do.\n",
+      "key_intuition": "Early AI models were like someone who could only communicate by phone: brilliant with words, but completely blind and deaf to anything visual or auditory. You had to describe a chart to them in words before they could analyze it. Multimodal models are like switching to a video call: now they can see your screen, look at your whiteboard, read the graph you're pointing at, and respond with both words and visuals. The information bandwidth explodes.\n\nThis matters practically because the real world is multimodal. A doctor needs to read both the patient's description and the X-ray. A developer needs to see both the error message and the screenshot of the broken UI. By processing all these inputs together, multimodal models can solve problems that were impossible when each modality lived in a separate system.\n",
+      "use_cases": "Image understanding and analysis; document/chart reading; audio transcription; building richer AI applications that go beyond text.",
+      "links": [
+        {
+          "title": "OpenAI (2023) - GPT-4V System Card",
+          "url": "https://cdn.openai.com/papers/GPTV_System_Card.pdf",
+          "type": "technical"
+        },
+        {
+          "title": "Bordes et al. (2024) - An Introduction to Vision-Language Modeling (arXiv:2405.17247)",
+          "url": "https://arxiv.org/abs/2405.17247",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "transformer",
+        "token",
+        "embedding"
+      ],
+      "id": "multimodality"
+    },
+    {
+      "term": "Neural Network",
+      "aliases": [
+        "Artificial neural network",
+        "ANN"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "A neural network is the fundamental computational structure behind modern AI. It's a system of interconnected mathematical functions organized in layers, loosely inspired by biological neurons. Data enters through an input layer, passes through one or more hidden layers (where patterns are detected and combined), and produces results at an output layer. Each connection between layers has a numerical weight that determines how strongly one signal influences the next. When we say a model has \"billions of parameters,\" we're counting these weights. Training a neural network means adjusting those weights until the network produces useful outputs.\n",
+      "key_intuition": "Imagine an assembly line in a factory. Raw material (your input - text, an image, numbers) enters at one end. At each station (layer), workers (neurons) inspect the material and make small, simple decisions: \"is there a curve here?\", \"does this word follow a pattern?\", \"is this value above a threshold?\" Each worker passes their judgment to the next station, where more workers combine these simple signals into increasingly complex assessments. By the end of the line, a series of trivially simple operations has produced something sophisticated: a classification, a prediction, a generated sentence.\n\nThe key insight is that no individual neuron is \"smart.\" Intelligence emerges from the combination of billions of simple operations, each tuned by training. This is why scale matters so much in modern AI: more parameters means more nuanced combinations, which means the network can represent more complex patterns.\n",
+      "use_cases": "Foundation for understanding all modern AI models; grasping why scale and training matter; reasoning about what AI can and cannot learn.",
+      "links": [
+        {
+          "title": "Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)",
+          "url": "https://www.deeplearningbook.org/",
+          "type": "reference"
+        },
+        {
+          "title": "3Blue1Brown - But what is a neural network? (YouTube)",
+          "url": "https://www.youtube.com/watch?v=aircAruvnKk",
+          "type": "video"
+        }
+      ],
+      "related": [
+        "llm",
+        "transformer",
+        "weights-and-parameters",
+        "fine-tuning",
+        "overfitting-and-generalization"
+      ],
+      "id": "neural-network"
     },
     {
       "term": "Open Source vs. Closed Source Models",
@@ -665,12 +768,12 @@
         "intermediate"
       ],
       "definition": "Prompt engineering is the craft of designing inputs that consistently produce high-quality outputs from AI models. It's not just \"asking nicely\" - it's a structured discipline with specific techniques, each suited to different tasks. The three most important concepts: system prompts (hidden developer instructions), zero-shot (asking with no examples), and few-shot (providing examples of what you want).\n",
-      "key_intuition": "Prompt engineering is the difference between a tourist and a local when ordering at a restaurant. The tourist says \"give me something good\" (zero-shot). The informed tourist says \"I like what you just served that table, give me something like that\" (few-shot). The local says \"I'm a regular, you know I'm vegetarian, I like spicy food, and I'm in a hurry\" (system prompt + context). Same restaurant, wildly different experience.\n",
+      "key_intuition": "Prompt engineering is the difference between a tourist and a local when ordering at a restaurant. The tourist says \"give me something good\" (zero-shot). The informed tourist says \"I like what you just served that table, give me something like that\" (few-shot). And then there's the system prompt: it's like instructions the restaurant owner gave to the kitchen before you even walked in - \"this customer is VIP, always serve extra bread, never suggest the fish, and keep portions generous.\" The customer never sees those instructions, but they shape the entire experience. Same restaurant, wildly different outcomes depending on the approach.\n",
       "use_cases": "Reliable prompting for extraction/classification/formatting; system prompts for product behavior; few-shot for edge cases.",
       "links": [
         {
           "title": "Anthropic Prompt Engineering Guide",
-          "url": "https://docs.anthropic.com/",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
           "type": "official"
         },
         {
@@ -705,7 +808,7 @@
       "links": [
         {
           "title": "Anthropic Prompt Engineering Guide",
-          "url": "https://docs.anthropic.com/",
+          "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
           "type": "official"
         },
         {
@@ -735,7 +838,7 @@
         "advanced"
       ],
       "definition": "Quantization is a compression technique that reduces the numerical precision of a model's weights. During training, weights are stored as high-precision numbers (32-bit or 16-bit floating point). Quantization converts these to lower precision (8-bit, 4-bit, or even 2-bit), dramatically reducing the model's memory footprint and speeding up inference. The key insight: most of that precision is redundant, and you can throw it away with surprisingly little quality loss.\n",
-      "key_intuition": "Imagine a photograph. At full resolution (32-bit), every pixel has billions of possible colors. If you reduce it to 256 colors (8-bit), you lose some subtle gradients, but the image is still clearly recognizable and 4x smaller. Reduce to 16 colors (4-bit)? It's grainier, but you can still tell what it is and it's 8x smaller. Quantization does the same thing to model weights: each number gets fewer bits, the model shrinks dramatically, and the quality loss is often barely noticeable.\n",
+      "key_intuition": "Imagine a photograph saved at maximum quality. Every pixel is stored with very high precision. Now save it as a compressed JPEG: the file is much smaller, but the image still looks nearly identical. Compress it further, and you start to notice some artifacts, but it's still perfectly usable. Quantization applies the same principle to model weights: reduce the precision of each number, the model shrinks dramatically, and the quality loss is often barely noticeable.\n",
       "use_cases": "Running large models on smaller hardware; reducing memory/latency; local deployment of open models.",
       "links": [
         {
@@ -864,6 +967,42 @@
       "id": "rlhf"
     },
     {
+      "term": "Scaling Laws",
+      "aliases": [
+        "Neural scaling laws",
+        "Chinchilla scaling"
+      ],
+      "category": "deep-dive",
+      "difficulty": "advanced",
+      "tags": [
+        "deep-dive",
+        "advanced"
+      ],
+      "definition": "Scaling laws are empirical findings showing that AI model performance improves predictably as you increase three things: the number of parameters, the amount of training data, and the compute budget. The relationship follows a power law: double the compute, and you get a measurable, consistent improvement - not a sudden jump, but a smooth, predictable curve. These laws, first rigorously documented by Kaplan et al. (2020) at OpenAI and refined by Hoffmann et al. (2022) at DeepMind (the \"Chinchilla\" paper), gave the industry a roadmap: if you can afford more compute, you can predict how much better the model will be.\n",
+      "key_intuition": "Scaling laws are why the AI race is fundamentally a resources race. Imagine you discovered that, for a specific type of factory, doubling your investment reliably doubled your output quality - not sometimes, not roughly, but with mathematical predictability. You'd invest as much as you possibly could. That's exactly what happened in AI. Once labs proved that more compute = predictably better models, the race to build bigger clusters became inevitable.\n\nThe Chinchilla insight added a crucial nuance: it's not just about building a bigger model. A 70-billion-parameter model trained on the right amount of data can outperform a 175-billion-parameter model trained on too little data. The optimal strategy balances model size with data quantity for a given compute budget. This is why \"compute-optimal training\" became a mantra and why data quality and quantity matter as much as raw model size.\n",
+      "use_cases": "Understanding the economics of AI training; predicting model improvements; reasoning about compute-optimal training and why the biggest models aren't always the best.",
+      "links": [
+        {
+          "title": "Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)",
+          "url": "https://arxiv.org/abs/2001.08361",
+          "type": "technical"
+        },
+        {
+          "title": "Hoffmann et al. (2022) - Training Compute-Optimal LLMs / Chinchilla (arXiv:2203.15556)",
+          "url": "https://arxiv.org/abs/2203.15556",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "llm",
+        "weights-and-parameters",
+        "pre-training-vs-post-training",
+        "test-time-compute",
+        "inference"
+      ],
+      "id": "scaling-laws"
+    },
+    {
       "term": "Synthetic Data & Model Collapse",
       "aliases": [
         "Synthetic data",
@@ -924,7 +1063,9 @@
       "related": [
         "llm",
         "prompt",
-        "inference"
+        "inference",
+        "chain-of-thought",
+        "test-time-compute"
       ],
       "id": "temperature"
     },
@@ -973,7 +1114,7 @@
         "beginner"
       ],
       "definition": "A token is the atomic unit of text that a model processes. It's not a word, not a character, but something in between: a subword fragment determined by the model's tokenizer. The tokenizer is trained to split text into the most efficient chunks based on frequency patterns in the training data. Common words become single tokens; rare words get split into pieces.\n",
-      "key_intuition": "Think of tokens like LEGO bricks for language. The word \"the\" is so common it gets its own single brick. But \"cryptocurrency\" might be split into \"crypt\" + \"ocur\" + \"rency\" - three bricks. The model doesn't see words; it sees these bricks, and it builds its understanding from them.\n\nThis matters practically: when a model has a \"128K context window,\" that means 128,000 tokens, not words. In English, that's roughly 96,000 words (about 300 pages). But in Italian, the same text might use 30-40% more tokens because the tokenizer was trained primarily on English. In Japanese or Chinese, the ratio is even worse.\n",
+      "key_intuition": "Think of tokens like LEGO bricks for language. The word \"the\" is so common it gets its own single brick. But \"unhappiness\" might be split into \"un\" + \"happiness\" - two bricks - and \"indistinguishable\" into even more pieces. The model doesn't see words; it sees these bricks, and it builds its understanding from them.\n\nThis matters practically: when a model has a \"128K context window,\" that means 128,000 tokens, not words. In English, that's roughly 96,000 words (about 300 pages). But in Italian, the same text might use 30-40% more tokens because the tokenizer was trained primarily on English. In Japanese or Chinese, the ratio is even worse.\n",
       "use_cases": "Estimating context limits and cost; debugging truncation; comparing languages and tokenizers.",
       "links": [
         {
@@ -1033,7 +1174,7 @@
       "tags": [
         "intermediate"
       ],
-      "definition": "A vector database is a specialized database designed to store and search embeddings - those numerical representations of meaning we discussed in Video 1. Unlike a traditional database that finds exact matches (\"find all records where name = 'John'\"), a vector database finds approximate nearest neighbors: \"find the stored items whose meaning is closest to this query.\" This is the search engine behind every RAG system.\n",
+      "definition": "A vector database is a specialized database designed to store and search embeddings - numerical representations of meaning (see: Embedding). Unlike a traditional database that finds exact matches (\"find all records where name = 'John'\"), a vector database finds approximate nearest neighbors: \"find the stored items whose meaning is closest to this query.\" This is the search engine behind every RAG system.\n",
       "key_intuition": "A traditional database is like an alphabetical filing cabinet: incredibly fast at finding things if you know the exact label, useless if you're searching by concept. A vector database is like a librarian who understands meaning: you say \"I need something about the impact of social media on teenage mental health\" and they find relevant documents even if none of those exact words appear in the text. The \"magic\" is that semantic similarity becomes a mathematical distance calculation.\n",
       "use_cases": "Storing embeddings for semantic search; retrieval layer for RAG; similarity search at scale with filtering.",
       "links": [
@@ -1069,21 +1210,61 @@
       "links": [
         {
           "title": "Andrej Karpathy (2025) - Original post coining \"vibe coding\"",
-          "url": "https://x.com/karpathy",
+          "url": "https://x.com/karpathy/status/1886192184808149383",
           "type": "reference"
         },
         {
           "title": "Simon Willison (2025) - Not all AI-assisted programming is vibe coding",
-          "url": "https://simonwillison.net/",
+          "url": "https://simonwillison.net/2025/Mar/19/vibe-coding/",
           "type": "explainer"
         }
       ],
       "related": [
         "llm",
         "api",
-        "ai-agent"
+        "ai-agent",
+        "prompt",
+        "prompt-engineering"
       ],
       "id": "vibe-coding"
+    },
+    {
+      "term": "Weights & Parameters",
+      "aliases": [
+        "Weights",
+        "Parameters",
+        "Model weights"
+      ],
+      "category": "essentials",
+      "difficulty": "beginner",
+      "tags": [
+        "essentials",
+        "beginner"
+      ],
+      "definition": "Parameters (often called weights) are the individual numerical values inside a neural network that determine its behavior. When GPT-4 is described as having \"over a trillion parameters,\" each one is a single number - typically a decimal like 0.0023 or -1.47 - that controls how strongly one neuron influences another. Before training, these numbers are essentially random. Training adjusts them, billions of times over, until the network reliably produces useful outputs. Once training is done, these weights are frozen and become the model's \"knowledge\" - everything it learned is encoded in these numbers.\n",
+      "key_intuition": "Think of a mixing board in a recording studio. Each slider (parameter) controls one aspect of the sound: the volume of the bass, the reverb on the vocals, the brightness of the guitar. Individually, moving one slider does almost nothing interesting. But with thousands of sliders set precisely right, you get a polished song. Training an AI model is like having an automated system that nudges millions of sliders, listens to the result, and nudges again - billions of times - until the output sounds right.\n\nThis is also why model files are so large: a model with 70 billion parameters, stored at 2 bytes each, takes about 140 GB of disk space. Quantization (see: Quantization) shrinks this by reducing the precision of each number. And it's why \"open weights\" models are so significant: releasing the weights means releasing everything the model learned.\n",
+      "use_cases": "Understanding model size and storage; reasoning about training, fine-tuning, and quantization; grasping what \"open weights\" means.",
+      "links": [
+        {
+          "title": "Goodfellow, Bengio & Courville (2016) - Deep Learning (Chapter 6)",
+          "url": "https://www.deeplearningbook.org/",
+          "type": "reference"
+        },
+        {
+          "title": "Kaplan et al. (2020) - Scaling Laws for Neural Language Models (arXiv:2001.08361)",
+          "url": "https://arxiv.org/abs/2001.08361",
+          "type": "technical"
+        }
+      ],
+      "related": [
+        "neural-network",
+        "llm",
+        "quantization",
+        "fine-tuning",
+        "open-source-vs-closed-source-models",
+        "scaling-laws"
+      ],
+      "id": "weights-and-parameters"
     }
   ]
 }
