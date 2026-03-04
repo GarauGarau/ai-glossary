@@ -9,9 +9,9 @@ tags:
 definition: |
   An embedding is a list of numbers (a vector) that represents the "meaning" of a piece of text in a format that computers can work with mathematically. The key property: texts with similar meanings get similar vectors. This allows machines to do something they couldn't before - search by meaning rather than by exact keyword match.
 key_intuition: |
-  Imagine a massive map where every concept in human language has a location. "Dog" and "puppy" are right next to each other. "Dog" and "cat" are nearby (both pets). "Dog" and "airplane" are far apart. An embedding is the GPS coordinates of a concept on this map. When you search for "affordable family car" and the system finds a document about "budget-friendly vehicles for families" even though no words match exactly, that's embeddings at work.
+  Imagine a massive map where every concept in human language has a location. "Dog" and "puppy" are right next to each other. "Dog" and "cat" are nearby (both pets). "Dog" and "airplane" are far apart. An embedding is the GPS coordinates of a concept on this map. When you search for "affordable family car" and the system finds a document about "budget-friendly vehicles for families" even though no words match exactly, that's embeddings at work. This semantic search capability is what makes embeddings so practically valuable today, powering everything from RAG systems to recommendation engines.
 
-  The famous example: in embedding space, the vector for "king" minus "man" plus "woman" produces a vector very close to "queen." The model learned gender relationships purely from statistical patterns in text.
+  A historically famous example: early embedding models (Word2Vec, 2013) showed that "king" minus "man" plus "woman" produced a vector close to "queen." While modern embeddings work differently and are optimized more for search and retrieval than for this kind of arithmetic, the core principle remains: meaning becomes geometry.
 use_cases: Semantic search, clustering, recommendations; retrieval for RAG; deduplication and similarity matching.
 links:
   - title: Mikolov et al. (2013) - Word2Vec (arXiv:1301.3781)

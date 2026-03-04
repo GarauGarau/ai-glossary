@@ -13,7 +13,7 @@ key_intuition: |
 use_cases: Ottenere output migliori aggiungendo contesto, vincoli, esempi e il formato desiderato.
 links:
   - title: Anthropic Prompt Engineering Guide
-    url: https://docs.anthropic.com/
+    url: https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
     type: official
   - title: Wei et al. (2022) - Chain-of-Thought Prompting (arXiv:2201.11903)
     url: https://arxiv.org/abs/2201.11903

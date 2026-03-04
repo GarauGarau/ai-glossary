@@ -6,7 +6,7 @@ difficulty: intermediate
 tags:
   - intermediate
 definition: |
-  I guardrail sono livelli di sicurezza e controllo messi attorno a un modello AI per vincolarne il comportamento. Possono filtrare gli input (bloccando prompt pericolosi o fuori tema prima che il modello li veda), filtrare gli output (scansionando la risposta e redigendo o bloccando contenuti dannosi) o imporre regole strutturali (il modello deve rispondere in JSON, non deve citare concorrenti, deve sempre includere un disclaimer). Sono le cinture di sicurezza e i paraurti dell'AI in produzione.
+  I guardrail sono livelli di sicurezza e controllo messi attorno a un modello AI per vincolarne il comportamento. Possono filtrare gli input (bloccando prompt pericolosi o fuori tema prima che il modello li veda), filtrare gli output (scansionando la risposta e oscurando o bloccando contenuti dannosi) o imporre regole strutturali (il modello deve rispondere in JSON, non deve citare concorrenti, deve sempre includere un disclaimer). Sono le cinture di sicurezza e i paraurti dell'AI in produzione.
 key_intuition: |
   Un modello senza guardrail è come uno stagista molto intelligente ma senza supervisione e senza regole: potrebbe fare un lavoro brillante oppure inviare per errore dati riservati a un cliente, dire qualcosa di problematico dal punto di vista legale o andare fuori copione. I guardrail sono policy, processi di review e strati di compliance che rendono sicuro mettere questo stagista in un contesto reale. Ogni messa in produzione seria li usa.
 use_cases: Controlli di sicurezza e compliance; filtro input/output; enforcement di schemi; mitigazione dei jailbreak.

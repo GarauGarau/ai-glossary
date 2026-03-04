@@ -12,7 +12,7 @@ definition: |
 key_intuition: |
   Immagina di aver letto ogni libro nella più grande biblioteca del mondo, ogni articolo di Wikipedia, ogni thread di Reddit, ogni repository su GitHub. Non li hai memorizzati parola per parola, ma hai assorbito dei pattern: come suonano i contratti legali, come è strutturato il codice Python, come un medico spiega una diagnosi, come scorre la poesia italiana. Ora qualcuno ti fa una domanda e tu generi una risposta prevedendo, parola per parola, quale sia la continuazione più plausibile dato tutto ciò che hai assorbito.
 
-  Ecco cosa fa un LLM. Non sta cercando informazioni. Non ragiona a partire da primi principi. Genera la sequenza di parole statisticamente più probabile dato il tuo input e il suo addestramento. Il miracolo è che questo processo, a sufficiente scala, produce output coerenti, ricchi di conoscenza e spesso davvero utili.
+  Ecco cosa fa un LLM. Non sta cercando informazioni. Alla base, genera la sequenza di parole statisticamente più probabile dato il tuo input e il suo addestramento. Se questo processo costituisca un vero ragionamento o un sofisticato pattern matching è uno dei dibattiti centrali e aperti nell'AI (vedi: Reasoning vs Pattern Matching). Ciò che è chiaro è che, a sufficiente scala, questo processo produce output coerenti, ricchi di conoscenza e spesso davvero utili.
 use_cases: Chatbot e assistenti; riassunti e scrittura; generazione di codice; modello mentale per limiti come le allucinazioni.
 links:
   - title: Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)

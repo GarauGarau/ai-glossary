@@ -9,9 +9,9 @@ tags:
 definition: |
   Un embedding è una lista di numeri (un vettore) che rappresenta il "significato" di un pezzo di testo in una forma su cui i computer possono fare calcoli. La proprietà chiave è che testi con significati simili producono vettori simili. Questo permette alle macchine di fare una cosa che prima era difficile: cercare per significato invece che per corrispondenza esatta di parole chiave.
 key_intuition: |
-  Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. "cane" e "cucciolo" sono vicinissimi. "cane" e "gatto" sono vicini (entrambi animali domestici). "cane" e "aereo" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi "auto familiare economica" e il sistema trova un documento su "veicoli convenienti per famiglie" anche se nessuna parola coincide, sono gli embedding che lavorano.
+  Immagina una mappa enorme in cui ogni concetto del linguaggio umano ha una posizione. "cane" e "cucciolo" sono vicinissimi. "cane" e "gatto" sono vicini (entrambi animali domestici). "cane" e "aereo" sono lontani. Un embedding è come le coordinate GPS di un concetto su questa mappa. Quando cerchi "auto familiare economica" e il sistema trova un documento su "veicoli convenienti per famiglie" anche se nessuna parola coincide, sono gli embedding che lavorano. Questa capacità di ricerca semantica è ciò che rende gli embedding così utili in pratica, alla base di sistemi RAG, motori di raccomandazione e molto altro.
 
-  Il classico esempio: nello spazio degli embedding, il vettore per "king" meno "man" più "woman" produce un vettore molto vicino a "queen". Il modello ha imparato relazioni (in questo caso legate al genere) puramente dai pattern statistici nel testo.
+  Un esempio storicamente famoso: i primi modelli di embedding (Word2Vec, 2013) mostrarono che "king" meno "man" più "woman" produceva un vettore vicino a "queen". I modelli moderni funzionano diversamente e sono ottimizzati più per ricerca e retrieval che per questa aritmetica, ma il principio di fondo resta: il significato diventa geometria.
 use_cases: Ricerca semantica, clustering, raccomandazioni; recupero documenti per RAG; deduplicazione e matching di similarità.
 links:
   - title: Mikolov et al. (2013) - Word2Vec (arXiv:1301.3781)

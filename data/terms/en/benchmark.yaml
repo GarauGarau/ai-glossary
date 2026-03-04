@@ -1,11 +1,10 @@
 term: Benchmark
 aliases:
   - AI benchmark
-category: deep-dive
-difficulty: advanced
+category: intermediate
+difficulty: intermediate
 tags:
-  - deep-dive
-  - advanced
+  - intermediate
 definition: |
   A benchmark is a standardized test for AI models: a fixed set of questions or tasks with known correct answers, designed to measure specific capabilities. Benchmarks let researchers and companies compare models on a common scoreboard. But they're deeply imperfect: models can be optimized specifically for benchmarks, training data can accidentally contain benchmark questions, and real-world performance often diverges from scores.
 key_intuition: |

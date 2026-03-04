@@ -8,7 +8,7 @@ tags:
   - deep-dive
   - advanced
 definition: |
-  Chain-of-Thought is a technique where the model is encouraged (or trained) to explicitly show its step-by-step reasoning before giving a final answer. Instead of jumping to a conclusion, the model "thinks out loud." This dramatically improves performance on complex tasks: math, logic, multi-step planning, code debugging. Reasoning models (OpenAI's o1/o3, Anthropic's extended thinking) take this further by being specifically trained to reason at length before answering.
+  Chain-of-Thought is a technique where the model is encouraged (or trained) to explicitly show its step-by-step reasoning before giving a final answer. Instead of jumping to a conclusion, the model "thinks out loud." This can significantly improve performance on complex tasks like math, logic, multi-step planning, and code debugging. Reasoning models (OpenAI's o1/o3, Anthropic's extended thinking) take this further by being specifically trained to reason at length before answering.
 key_intuition: |
   Ask someone "what's 17 times 24?" and demand an instant answer - they'll likely get it wrong. But if you say "take your time, show your work," they'll write "17 x 24 = 17 x 20 + 17 x 4 = 340 + 68 = 408" and get it right. The same applies to LLMs. By generating intermediate reasoning steps, the model essentially gives itself scratch paper. Each step constrains the next, reducing the chance of error propagating.
 

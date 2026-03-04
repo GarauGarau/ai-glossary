@@ -10,11 +10,11 @@ tags:
 definition: |
   La prompt engineering è l'arte di progettare input che producano in modo consistente output di alta qualità da modelli AI. Non è solo "chiedere gentilmente" - è una disciplina strutturata con tecniche specifiche, ciascuna adatta a compiti diversi. I tre concetti più importanti: system prompt (istruzioni nascoste dello sviluppatore), zero-shot (richiesta senza esempi) e few-shot (fornire esempi di ciò che vuoi).
 key_intuition: |
-  La prompt engineering è la differenza tra un turista e un locale quando ordinano al ristorante. Il turista dice "dammi qualcosa di buono" (zero-shot). Il turista informato dice "mi piace quello che hai appena servito a quel tavolo, dammi qualcosa di simile" (few-shot). Il locale dice "sono un abituale, sai che sono vegetariano, mi piace il piccante e ho fretta" (system prompt + contesto). Stesso ristorante, esperienza completamente diversa.
+  La prompt engineering è la differenza tra un turista e un locale quando ordinano al ristorante. Il turista dice "dammi qualcosa di buono" (zero-shot). Il turista informato dice "mi piace quello che hai appena servito a quel tavolo, dammi qualcosa di simile" (few-shot). E poi c'è il system prompt: sono le istruzioni che il proprietario del ristorante ha dato alla cucina prima ancora che tu entrassi - "questo cliente è VIP, servi sempre pane extra, non proporre mai il pesce, e tieni le porzioni abbondanti." Il cliente non vede mai queste istruzioni, ma influenzano tutta l'esperienza. Stesso ristorante, risultati completamente diversi a seconda dell'approccio.
 use_cases: Prompt affidabili per estrazione/classificazione/formati; system prompt per comportamento di prodotto; few-shot per casi limite.
 links:
   - title: Anthropic Prompt Engineering Guide
-    url: https://docs.anthropic.com/
+    url: https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
     type: official
   - title: Brown et al. (2020) - In-context learning / few-shot (arXiv:2005.14165)
     url: https://arxiv.org/abs/2005.14165

@@ -9,7 +9,7 @@ tags:
 definition: |
   L'inferenza è il processo con cui un modello già addestrato produce una risposta (output). L'addestramento è quando il modello impara (una volta sola, ed è estremamente costoso); l'inferenza è quando applica ciò che ha imparato (ogni singola volta che invii un prompt). Ogni chiamata API, ogni messaggio in chat, ogni email generata dall'AI è un'operazione di inferenza. È questa la fase che costa denaro su larga scala e che determina quanto rapidamente il modello risponde.
 key_intuition: |
-  L'addestramento è come scrivere un ricettario: richiede anni di lavoro, test e milioni di dollari. L'inferenza è come cucinare un pasto da quel ricettario: lo fai migliaia di volte al giorno e ogni pasto costa ingredienti ed energia. Quando vedi prezzi tipo "$3 per milione di token in input", stai pagando l'inferenza - il calcolo necessario per far passare il tuo testo attraverso i miliardi di parametri del modello.
+  L'addestramento è come scrivere il ricettario definitivo: richiede anni di lavoro e un investimento enorme. L'inferenza è come cucinare un pasto da quel ricettario: lo fai migliaia di volte al giorno e ogni pasto costa ingredienti ed energia. Quando vedi prezzi tipo "$3 per milione di token in input", stai pagando l'inferenza - il calcolo necessario per far passare il tuo testo attraverso i miliardi di parametri del modello.
 use_cases: Ragionare su latenza e costo per richiesta; aumentare il volume (batching, caching); scelta e ottimizzazione del modello.
 links:
   - title: Patterson et al. (2022) - The Carbon Footprint of Machine Learning Training

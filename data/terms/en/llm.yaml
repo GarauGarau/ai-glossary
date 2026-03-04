@@ -11,7 +11,7 @@ definition: |
 key_intuition: |
   Imagine you've read every book in the largest library on Earth, every Wikipedia article, every Reddit thread, every GitHub repository. You didn't memorize them word for word, but you absorbed patterns: how legal contracts sound, how Python code is structured, how a doctor explains a diagnosis, how Italian poetry flows. Now someone asks you a question, and you generate an answer by predicting, word by word, what the most plausible continuation would be given everything you've absorbed.
 
-  That's what an LLM does. It's not looking anything up. It's not reasoning from first principles. It's generating the statistically most likely sequence of words given your input and its training. The miracle is that this process, at sufficient scale, produces outputs that are coherent, knowledgeable, and often genuinely useful.
+  That's what an LLM does. It's not looking anything up. At its core, it's generating the statistically most likely sequence of words given your input and its training. Whether this process constitutes genuine reasoning or sophisticated pattern matching is one of the central open debates in AI (see: Reasoning vs Pattern Matching). What's clear is that at sufficient scale, this process produces outputs that are coherent, knowledgeable, and often genuinely useful.
 use_cases: Chatbots and assistants; summarization and writing; code generation; mental model for limitations like hallucinations.
 links:
   - title: Vaswani et al. (2017) - Attention Is All You Need (arXiv:1706.03762)

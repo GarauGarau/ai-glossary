@@ -1,11 +1,10 @@
 term: Fine-tuning
 aliases:
   - Finetuning
-category: essentials
-difficulty: beginner
+category: intermediate
+difficulty: intermediate
 tags:
-  - essentials
-  - beginner
+  - intermediate
 definition: |
   Il fine-tuning significa prendere un modello pre-addestrato (che già conosce il linguaggio in modo generale) e addestrarlo ulteriormente su un dataset più piccolo e specializzato. I pesi del modello vengono aggiornati per renderlo migliore in uno specifico dominio o compito, mantenendo le capacità generali. È la differenza tra un medico generico e un cardiologo: stessa università, specializzazione diversa.
 key_intuition: |

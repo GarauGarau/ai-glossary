@@ -12,12 +12,14 @@ key_intuition: |
 use_cases: Prototipazione rapida con AI; accelerare piccoli progetti; capire rischi (sicurezza, manutenibilità) del codice scritto da AI.
 links:
   - title: Andrej Karpathy (2025) - Original post coining "vibe coding"
-    url: https://x.com/karpathy
+    url: https://x.com/karpathy/status/1886192184808149383
     type: reference
   - title: Simon Willison (2025) - Not all AI-assisted programming is vibe coding
-    url: https://simonwillison.net/
+    url: https://simonwillison.net/2025/Mar/19/vibe-coding/
     type: explainer
 related:
   - llm
   - api
   - ai-agent
+  - prompt
+  - prompt-engineering

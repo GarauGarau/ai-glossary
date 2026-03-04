@@ -21,3 +21,5 @@ related:
   - llm
   - prompt
   - inference
+  - chain-of-thought
+  - test-time-compute

@@ -18,7 +18,7 @@ links:
     url: https://arxiv.org/abs/1706.03762
     type: technical
   - title: Anthropic - Long Context Prompting Tips
-    url: https://docs.anthropic.com/
+    url: https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/long-context-tips
     type: official
 related:
   - llm

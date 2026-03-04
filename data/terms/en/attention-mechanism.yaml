@@ -9,7 +9,7 @@ tags:
 definition: |
   The attention mechanism is the mathematical operation at the heart of Transformers. For each token in the input, attention computes a relevance score against every other token, creating a weighted map of "what should I focus on to understand this word in context?" It's what allows the model to resolve ambiguity, track references, and understand long-range dependencies in text.
 key_intuition: |
-  Read this sentence: "The trophy didn't fit in the suitcase because it was too big." What does "it" refer to? The trophy (too big to fit). Now: "The trophy didn't fit in the suitcase because it was too small." Now "it" refers to the suitcase. You resolved this ambiguity instantly using contextual understanding. Attention does the same thing mathematically: it computes a score between "it" and every other word, and the word with the highest attention score becomes the reference. In one sentence "trophy" wins; in the other, "suitcase" wins.
+  Read this sentence: "The trophy didn't fit in the suitcase because it was too big." What does "it" refer to? The trophy (too big to fit). Now: "The trophy didn't fit in the suitcase because it was too small." Now "it" refers to the suitcase. You resolved this ambiguity instantly using contextual understanding. Attention does the same thing mathematically: it computes a score between "it" and every other word, and the word with the highest attention weight contributes the most to the representation. In one sentence "trophy" dominates; in the other, "suitcase" does.
 
   Multi-head attention means the model runs this process multiple times in parallel, each "head" learning different types of relationships: one head might track grammatical structure, another tracks semantic meaning, another tracks co-reference (like our "it" example). The combination creates a rich, multi-dimensional understanding of the text.
 use_cases: Understanding reference resolution and long-range dependencies; interpreting attention maps and transformer behavior.
@@ -21,7 +21,7 @@ links:
     url: https://arxiv.org/abs/1906.04341
     type: technical
   - title: 3Blue1Brown (2024) - Attention in Transformers, visually explained (YouTube)
-    url: https://www.youtube.com/results?search_query=3Blue1Brown+Attention+in+Transformers
+    url: https://www.youtube.com/watch?v=eMlx5fFNoYc
     type: video
 related:
   - transformer

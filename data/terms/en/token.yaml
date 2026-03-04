@@ -9,7 +9,7 @@ tags:
 definition: |
   A token is the atomic unit of text that a model processes. It's not a word, not a character, but something in between: a subword fragment determined by the model's tokenizer. The tokenizer is trained to split text into the most efficient chunks based on frequency patterns in the training data. Common words become single tokens; rare words get split into pieces.
 key_intuition: |
-  Think of tokens like LEGO bricks for language. The word "the" is so common it gets its own single brick. But "cryptocurrency" might be split into "crypt" + "ocur" + "rency" - three bricks. The model doesn't see words; it sees these bricks, and it builds its understanding from them.
+  Think of tokens like LEGO bricks for language. The word "the" is so common it gets its own single brick. But "unhappiness" might be split into "un" + "happiness" - two bricks - and "indistinguishable" into even more pieces. The model doesn't see words; it sees these bricks, and it builds its understanding from them.
 
   This matters practically: when a model has a "128K context window," that means 128,000 tokens, not words. In English, that's roughly 96,000 words (about 300 pages). But in Italian, the same text might use 30-40% more tokens because the tokenizer was trained primarily on English. In Japanese or Chinese, the ratio is even worse.
 use_cases: Estimating context limits and cost; debugging truncation; comparing languages and tokenizers.

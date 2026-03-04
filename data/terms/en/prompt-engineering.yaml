@@ -10,11 +10,11 @@ tags:
 definition: |
   Prompt engineering is the craft of designing inputs that consistently produce high-quality outputs from AI models. It's not just "asking nicely" - it's a structured discipline with specific techniques, each suited to different tasks. The three most important concepts: system prompts (hidden developer instructions), zero-shot (asking with no examples), and few-shot (providing examples of what you want).
 key_intuition: |
-  Prompt engineering is the difference between a tourist and a local when ordering at a restaurant. The tourist says "give me something good" (zero-shot). The informed tourist says "I like what you just served that table, give me something like that" (few-shot). The local says "I'm a regular, you know I'm vegetarian, I like spicy food, and I'm in a hurry" (system prompt + context). Same restaurant, wildly different experience.
+  Prompt engineering is the difference between a tourist and a local when ordering at a restaurant. The tourist says "give me something good" (zero-shot). The informed tourist says "I like what you just served that table, give me something like that" (few-shot). And then there's the system prompt: it's like instructions the restaurant owner gave to the kitchen before you even walked in - "this customer is VIP, always serve extra bread, never suggest the fish, and keep portions generous." The customer never sees those instructions, but they shape the entire experience. Same restaurant, wildly different outcomes depending on the approach.
 use_cases: Reliable prompting for extraction/classification/formatting; system prompts for product behavior; few-shot for edge cases.
 links:
   - title: Anthropic Prompt Engineering Guide
-    url: https://docs.anthropic.com/
+    url: https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
     type: official
   - title: Brown et al. (2020) - In-context learning / few-shot (arXiv:2005.14165)
     url: https://arxiv.org/abs/2005.14165
