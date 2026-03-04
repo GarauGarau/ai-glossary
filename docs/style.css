@@ -339,6 +339,34 @@ body.dark .map-panel::before {
   color: rgb(var(--ink-rgb) / 0.72);
 }
 
+.map-details {
+  margin-top: 10px;
+  border-radius: var(--radius-md);
+  background: rgb(var(--panel-rgb) / 0.90);
+}
+
+.map-details summary {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: 12px;
+}
+
+.map-details-copy {
+  margin-top: 10px;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: rgb(var(--ink-rgb) / 0.86);
+}
+
+.map-details-copy p {
+  margin: 0 0 10px;
+}
+
+.map-details-copy p:last-child {
+  margin-bottom: 0;
+}
+
 .lang-switch {
   display: inline-flex;
   align-items: center;

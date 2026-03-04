@@ -50,8 +50,59 @@
             </div>
             <canvas id="term-map" class="term-map" aria-label="Knowledge map"></canvas>
             <div class="map-hint">
-              <span data-map-lang="en">Each point is a glossary term. The map is built from term embeddings projected to 2D, and lines connect nearest neighbors in embedding space.</span>
-              <span data-map-lang="it" hidden>Ogni punto è un termine del glossario. La mappa è costruita dagli embedding dei termini proiettati in 2D, e le linee collegano i vicini più prossimi nello spazio degli embedding.</span>
+              <span data-map-lang="en">Each point is one glossary term. Distances come from semantic embeddings; lines connect each term to its 3 nearest semantic neighbors.</span>
+              <span data-map-lang="it" hidden>Ogni punto rappresenta un termine del glossario. Le distanze vengono dagli embedding semantici; le linee collegano ogni termine ai suoi 3 vicini semantici piu prossimi.</span>
+
+              <details class="details map-details">
+                <summary>
+                  <span data-map-lang="en">How this map is built</span>
+                  <span data-map-lang="it" hidden>Come viene costruita questa mappa</span>
+                </summary>
+
+                <div class="map-details-copy" data-map-lang="en">
+                  <p>
+                    We build one embedding vector per English term using the term name, definition, key intuition, and (if present) use cases.
+                    Think of an embedding as semantic coordinates: terms with similar meaning end up in nearby regions.
+                  </p>
+                  <p>
+                    Similarity is computed with angular distance:
+                    <code>d(i,j) = acos(cosine(i,j)) / pi</code>.
+                    Intuition: cosine measures how aligned two vectors are in direction (1 = same direction, 0 = unrelated, -1 = opposite).
+                    Taking <code>acos</code> turns that alignment into an angle, then dividing by <code>pi</code> rescales it to 0-1.
+                    Smaller distance means stronger semantic similarity.
+                  </p>
+                  <p>
+                    For each term, we rank all other terms by this distance and keep the top 3 nearest neighbors.
+                    The lines in the map are exactly those neighbor links.
+                  </p>
+                  <p>
+                    Node positions are then projected to 2D for visualization (MDS): this helps us draw an interpretable map,
+                    but neighbor links are computed in embedding space, not from 2D screen distance.
+                  </p>
+                </div>
+
+                <div class="map-details-copy" data-map-lang="it" hidden>
+                  <p>
+                    Costruiamo un vettore di embedding per ogni termine inglese usando nome del termine, definizione, intuizione chiave e (se presenti) casi d'uso.
+                    Puoi vedere un embedding come coordinate semantiche: termini con significato simile finiscono in zone vicine.
+                  </p>
+                  <p>
+                    La similarita e calcolata con la distanza angolare:
+                    <code>d(i,j) = acos(cosine(i,j)) / pi</code>.
+                    Intuizione: il coseno misura quanto due vettori hanno la stessa direzione (1 = stessa direzione, 0 = non correlati, -1 = opposti).
+                    Con <code>acos</code> trasformiamo questo allineamento in un angolo, e dividendo per <code>pi</code> lo portiamo in scala 0-1.
+                    Distanza piu piccola = maggiore vicinanza semantica.
+                  </p>
+                  <p>
+                    Per ogni termine, ordiniamo tutti gli altri per distanza e teniamo i 3 piu vicini.
+                    Le linee della mappa sono esattamente questi collegamenti di vicinanza.
+                  </p>
+                  <p>
+                    Le posizioni dei nodi vengono poi proiettate in 2D (MDS) per visualizzare la mappa in modo leggibile,
+                    ma i collegamenti tra vicini sono calcolati nello spazio degli embedding, non dalla distanza 2D sullo schermo.
+                  </p>
+                </div>
+              </details>
             </div>
           </section>
         </section>
